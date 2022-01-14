@@ -55,11 +55,11 @@ En este sentido, es de gran importancia cuantificar el aumento en la estadístic
 %Para hacer estas figs hay que ir a /home/igna/Escritorio/Tesis2021/Figs/pys_para_plots y correr plots_entries_fano_eh.py que usa los datos que están en /home/igna/Escritorio/Tesis2021/Figs/txts_para_plots y se llaman Entries_count.txt
     \centering
     \includegraphics[scale=0.5]{Figs/Entradas_vs_Epix.pdf}
-    \caption{\footnotesize{asd.}}
+    \caption{\footnotesize{Gráfico de barras para las diferentes cantidad de entradas contabilizadas por el programa, tanto para valores diferentes de EPIX como para los diferentes cuadrantes del sensor. OHDUT hace referencia a la suma de las entradas del resto de los cuadrantes funcionales ($1$, $3$ y $4$). Se observa un aumento de más del doble en la cantidad en la cantidad de entradas para el primer cuadrante, y un aumento importante pero menos pronunciado para el resto de los cuadrantes.}}
     \label{fig:EntradasVsEpix}
 \end{figure}
 Se puede ver como los cuadrantes $1$, $3$ y $4$ tienen un cambio pronunciado en la cantidad de entradas al pasar de \verb|EPIX = 0.5| a \verb|EPIX = 1.5|, lo cual implica un aumento en la estadística, que era lo que se esperaba. En cambio, al pasar de \verb|EPIX = 1.5| a \verb|EPIX = 2.5| el aumento en el número de entradas es mucho menor. Particularmente, el primer cuadrante tiene un aumento muy importante en la cantidad de entradas en relación a los otros cuadrantes. Si bien el aumento sigue siendo pronunciado, para los cuadrantes $3$ y $4$ el aumento es menor. En la tabla \ref{tab:EntriesVsEpix} están los valores precisos del cambio en el número de entradas para cada cuadrante para cada valor de \verb|EPIX|. El primer cuadrante pasa de tener $760$ entradas para \verb|EPIX = 0.5| a tener $2272$ para un \verb|EPIX = 1.5|, casi el triple, es un aumento de $\sim 198\%$. En cambio, los cuadrantes $3$ y $4$ pasan de tener $1571$ y $1503$ entradas a $2229$ y $2320$, un aumento muy similar y en torno al $\sim40\%$ y $\sim50\%$ respectivamente.
-\begin{table}[]
+\begin{table}[h]
 \centering
 \begin{tabular}{@{}c|c|c|c|c@{}}
 \toprule
@@ -68,7 +68,7 @@ EPIX = 0.5 & 760    & 1571   & 1503   & 3834           \\
 EPIX = 1.5 & 2272   & 2229   & 2320   & 6821           \\
 EPIX = 2.5 & 2399   & 2261   & 2356   & 7016           \\ \bottomrule
 \end{tabular}
-\caption{tabla}
+\caption{\footnotesize{Diferentes valores para las entradas, para cada uno de los cuadrantes, para los diferentes valores de EPIX utilizados.}}
 \label{tab:EntriesVsEpix}
 \end{table}
 Efectivamente se observa un aumento en el conteo de eventos que reconoce el programa al aumentar el valor del parámetro \verb|EPIX|. También se observa que el aumento más pronunciado es desde $0.5$ a $1.5$. El aumento promedio en el conteo de eventos es de alrededor del $100\%$.
@@ -76,7 +76,7 @@ Efectivamente se observa un aumento en el conteo de eventos que reconoce el prog
 %Para hacer estas figs hay que ir a /home/igna/Escritorio/Tesis2021/Figs/pys_para_plots y correr plots_entries_fano_eh.py que usa los datos que están en /home/igna/Escritorio/Tesis2021/Figs/txts_para_plots y se llaman Entries_count.txt
     \centering
     \includegraphics[scale=0.5]{Figs/EnergiaCreacion_vs_Epix.pdf}
-    \caption{\footnotesize{asd.}}
+    \caption{\footnotesize{Diferentes valores para la energía de creación electrón-hueco en función del EPIX y del cuadrante del sensor utilizado. OHDUT hace referencia a al promedio del resto de los cuadrantes funcionales ($1$, $3$ y $4$). Se observa que en todos los casos hay un aumento de la energía de creación electrón hueco cuando aumenta el EPIX.}}
     \label{fig:EnergiadeCreacionVsEpix}
 \end{figure}
 En cuanto al gráfico de la figura \ref{fig:EnergiadeCreacionVsEpix}, se ve como el valor preliminar para la energía de creación electrón hueco aumenta en todos los casos al aumentar el umbral \verb|EPIX|. Esto puede deberse al efecto que genera aplicar un umbral y disminuir la carga en los clusters contabilizados, que a su vez son más. Puede suceder que la cantidad de carga en los clusters sufra un corrimiento a la izquierda del valor medio real y por esto la energía de creación electrón-hueco aumente al aumentar el \verb|EPIX|: A un mismo valor de energía, una menor carga ionizada implica una mayor energía de creación electrón-hueco.
@@ -85,12 +85,11 @@ Finalmente, el caso más irregular corresponde al gráfico de la figura \ref{fig
 %Para hacer estas figs hay que ir a /home/igna/Escritorio/Tesis2021/Figs/pys_para_plots y correr plots_entries_fano_eh.py que usa los datos que están en /home/igna/Escritorio/Tesis2021/Figs/txts_para_plots y se llaman Entries_count.txt
     \centering
     \includegraphics[scale=0.5]{Figs/Fano_vs_Epix.pdf}
-    \caption{\footnotesize{asd.}}
+    \caption{\footnotesize{Variación del factor de Fano en función del EPIX para diferentes cuadrantes del sensor. No se observa un patrón que se repita.}}
     \label{fig:FanoVsEpix}
 \end{figure}
 Entonces, del análisis preliminar modificando el umbral conteo de carga por píxel se puede observar el aumento deseado en la estadística para los eventos de interés de este trabajo. Como se observa que el mayor aumento en la estadística se da para \verb|EPIX = 1.5|, ese es el valor de umbral con el que se realizan los subsiguientes análisis. No está de más recordar que ese valor de umbral implica desechar los píxeles que tengan $2$ o menos electrones de carga.\\
-\indent 
-\indent Entonces, con este resultado se plantea buscar las correcciones necesarias a ser aplicadas, debido a la eliminación de carga que genera el umbral usado para aumentar la estadística. En adelante, la idea es intentar compromender el ruido de fondo en las imágenes y con ello poder corregir los valores de carga de los clústeres.
+\indent Habiendo tomado este rumbo, es necesario poder remover el sesgo producido por la eliminación de carga en los eventos medidos. Más aún, es necesario remover además el exceso de carga que tengan los clusters de interés debido a corrientes oscuras o eventos indeseados.  En adelante, la idea es intentar comprender el ruido de fondo en las imágenes y con ello poder corregir los valores de carga de los clústeres y así mejorar la incerteza de los resultados.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
