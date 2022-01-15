@@ -176,7 +176,7 @@ Los resultados de ambos métodos son parecidos, pero distintos y no se solapan s
 donde $\mu_{bkg}$ es la esperanza de la distribución de la variable aleatoria \textit{cantidad de eventos espurios por píxel}, mientras que $\mu_{g}$ es la esperanza de la variable aleatoria \textit{cantidad de eventos genuinos por píxel}. Hay que lograr separar ambos efectos para poder aplicar las correcciones correctamente. Queda claro que hasta el momento solo se calculó $\mu_{T}$, sin poder discriminar las contribuciones del ruido y de los eventos genuinos. La forma en la que se llevó a cabo la separación en ambas contribuciones se detalla a continuación.
 
 \subsection{Análisis de los bordes de los clústers}
-\noindent Para poder separar ambas contribuciones al calcular el $\mu_{T}$ de la distribución, la idea fue analizar los bordes de los clústers, donde ahora por clústers se entiende todo píxel individual con carga $2$ o más, o conjunto de píxeles donde cada píxel tenga como mínimo $2$ electrones de carga. Es decir, se toma una imagen que tiene eventos de $2$ o más electrones, y los demás eventos se hacen $0$, como se ve en la figura \ref{fig:ImagenFits2omasElectrones}.
+\noindent Para poder separar ambas contribuciones al calcular el $\mu_{T}$ de la distribución, la idea fue analizar los bordes de los clústers, donde ahora por clústers se entiende todo píxel individual $2$ o más electrones de carga, o conjunto de píxeles donde cada píxel tenga como mínimo $2$ electrones de carga. Es decir, se toma una imagen que tiene eventos de $2$ o más electrones, y los demás eventos se hacen $0$, como se ve en la figura \ref{fig:ImagenFits2omasElectrones}.
 \begin{figure}[h]
 %Para modificar este plot hay que ir a /home/igna/Escritorio/Tesis2021/Figs/pys_para_plots y correr imagen_fit_2_o_mas_e.py
     \centering
@@ -184,13 +184,43 @@ donde $\mu_{bkg}$ es la esperanza de la distribución de la variable aleatoria \
     \caption{\footnotesize{Imagen de ejemplo en la que solo hay píxeles que tenga más de $2$ electrones.}}
     \label{fig:ImagenFits2omasElectrones}
 \end{figure}
-Usando los clústers de esta imagen, se genera una máscara sobre de los bordes de estos, es decir, los píxeles inmediatamente contiguos al píxel con carga. Como la idea es corregir la carga en los clústers, tiene sentido mirar en el entorno de estos y no en todo el sensor.\\
-\indent El procedimiento consiste en tomar los clústers y hacer una máscara de su contorno, expandiéndola en un píxel en todas las direcciones. Luego, superponiendo la máscara sobre la imagen original (con todos los eventos), se cuenta cuántos eventos cayeron dentro de la máscara. Nuevamente, haciendo la relación entre eventos de un electrón y píxeles vacíos, se calcula el $\mu_{T}$. Se estima que en el borde inmediato a los clústers existe contribución de ambos efectos: eventos espurios y eventos genuinos. Por otro lado, para calcular la contribución de los eventos espurios, se hace el mismo procedimiento pero expandiendo los clústers en dos pixeles en todas las direcciones, y quedándose únicamente con el segundo borde, donde claramente no puede haber contribución de eventos genuinos de un cluster. Nuevamente, de la relación entre los eventos de $1$ electrón y los píxeles vacíos, se obtiene $\mu_{bkg}$ y con este, puede despejarse el valor $\mu_{g}$.\\
-\indent El valor de la esperanza de ambas contribuciones resultó $\mu_{T} = 0.19735 \pm 0.00024$ yel valor de la esperanza para los eventos espurios resultó $\mu_{bkg} = 0.18583 \pm 0.00021$, con lo cual, la esperanza para los eventos genuinos es $\mu_{g} = 0.011524 \pm 0.00003$. Teniendo estos valores puede corregirse el conteo de carga en los clústeres, tanto por exceso como por defecto y así tener una medición más precisa del factor de Fano y la energía de creación electrón-hueco.
+Usando como referencia los clústers de esta imagen, se genera una máscara sobre de los bordes de estos, es decir, los píxeles inmediatamente contiguos a los píxeles con carga. Como la idea es corregir la carga en los clústers, tiene sentido mirar en el entorno de estos y no en todo el sensor.\\
+\indent El procedimiento consiste en tomar los clústers y hacer una máscara de su contorno, es decir, la máscara es el conjunto de píxeles que rodea al clúster, sin incluir los píxeles cargados. Luego, superponiendo la máscara sobre la imagen original (con todos los eventos), se cuenta cuántos eventos cayeron dentro de la máscara. 
+\begin{figure}[h]
+%Para modificar este plot hay que ir a /home/igna/Escritorio/Tesis2021/Figs/pys_para_plots y correr imagen_bordes.py
+    \centering
+    \includegraphics[scale=0.4]{Figs/analisis_bordes.pdf}
+    \caption{\footnotesize{Diferentes partes del proceso de análisis de los bordes de los clusters para una imagen de ejemplo. En cada figura se ve una porción de $25 \times 25$ píxeles de área. En la primera imagen (contando de izquierda a derecha) se tiene los clústers de $2$ o más electrones. En la segunda imagen se representa la dilatación de los clústers aumentando en $1$ píxel en todas las direcciones. En la tercera imagen se ve la diferencia entre las dos primeras imágenes y se la define como la máscara a utilizar. En la cuarta se ve la máscara y superpuestos todos los eventos de $1$ electrón de esa porción del sensor. Finalmente, en la quinta se se ven solo los eventos de $1$ electrón que cayeron dentro de los píxeles de máscara. Son estos eventos los que son se cuentan en todas las imágenes, junto con los píxeles vacíos de la máscara para calcular el $\mu_{T}$.}}
+    \label{fig:AnalisisBordes}
+\end{figure}
+Nuevamente, haciendo la relación entre eventos de un electrón y píxeles vacíos, se calcula el $\mu_{T}$. En la figura \ref{fig:AnalisisBordes} puede verse gráficamente cada uno de los pasos que se lleva a cabo para contabilizar los eventos de $1$ electrón que caen sobre la máscara. Se estima que en el borde inmediato a los clústers existe contribución de ambos efectos: eventos espurios y eventos genuinos.\\
+\indent Por otro lado, para calcular la contribución de los eventos espurios, se hace el mismo procedimiento pero expandiendo los clústers en dos píxeles en todas las direcciones, y quedándose únicamente con el segundo borde, donde claramente no puede haber contribución de eventos genuinos de un cluster. Este proceso puede verse en la imagen \ref{fig:AnalisisBordesx2}. Nuevamente, de la relación entre los eventos de $1$ electrón y los píxeles vacíos, se obtiene $\mu_{bkg}$ y con este, puede despejarse el valor $\mu_{g}$.\\
+\begin{figure}[h]
+%Para modificar este plot hay que ir a /home/igna/Escritorio/Tesis2021/Figs/pys_para_plots y correr imagen_bordes.py
+    \centering
+    \includegraphics[scale=0.4]{Figs/analisis_bordesx2.pdf}
+    \caption{\footnotesize{Análoga a la figura \ref{fig:AnalisisBordes}, pero para el caso de $2$ dilataciones, de forma de generar una máscara en el segundo borde. Los pasos son los mismos antes descriptos. De este proceso se halla la esperanza $\mu_{bkg}$.}}
+    \label{fig:AnalisisBordesx2}
+\end{figure}
+La razón por la cual se usan los eventos inmediatamente contiguos a los bordes de los clústers para calcular el $\mu_{T}$, es porque se puede decir con seguridad que es la única región del sensor donde coexisten ambas contribuciones: $\mu_{bkg}$ y $\mu_{g}$. Tanto los eventos de un electrón que realmente pertenecen a los clústers como los eventos de un electrón que son espurios. Por otro lado, la razón por la cual se estima $\mu_{bkg}$ del siguiente cordón ($2$ píxeles de distancia al borde del clúster) se debe a que en esa zona es seguro que no pueden haber eventos genuinos de un clúster (o al menos la probabilidad de que eso suceda ronda los $10\times 10^{-14}$).\\
+\indent Finalmente, de realizar estos análisis se obtuvieron los valores para las esperanzas de ambas contribuciones, que resultaron ser:
+\begin{equation*}
+    \mu_{T} = 0.19735 \pm 0.00024
+\end{equation*} 
+y el valor de la esperanza para los eventos espurios resultó 
+\begin{equation*}
+    \mu_{bkg} = 0.18583 \pm 0.00021
+\end{equation*}
+con lo cual, la esperanza para los eventos genuinos es 
+\begin{equation*}
+    \mu_{g} = 0.011524 \pm 0.00003
+\end{equation*}
+Teniendo estos valores puede corregirse el conteo de carga en los clústeres, tanto por exceso como por defecto y así tener una medición más precisa del factor de Fano y la energía de creación electrón-hueco.
 
 \subsection{Corrección del conteo de carga}
-\noindent La corrección del conteo de carga se llevó a cabo modificando el código del programa que con root calcula el factor de Fano, la energía de creación electrón-hueco, y otras variables, por medio del ajuste de los histogramas de carga. El programa se encarga de procesar todas las imagenes, desechar eventos que tengan carga menor a $2$ electrones (\verb|EPIX = 1.5|), buscar los clusters, quedarse únicamente con aquellos que tengan cargas en el entorno de los $180$ electrones y calcular esos valores. Al contar la carga de estos clusters, se agrega y se quita carga en función los valores hallados antes.\\
-\indent Dado que la distribución de la variable aleatoria \textit{cantidad de eventos por píxel} sigue una distribución poissoniana de esperanza $\mu$, para cada tipo evento (espurio, genuino o total) se tiene una esperanza. Para calcular la cantidad de carga que se espera que tenga un cluster de $N$ píxeles en el sensor, se puede hacer uso de las propiedades de la esperanza. Sea $Y = \sum\limits_{i = 1}^{N} X_{i}$, donde $X_{i}$ son distintas realizaciones de la variable aleatoria con distribución Poissoniana y $N$ es el número de píxeles del cluster, entonces la esperanza se calcula como
+\noindent El punto de todo el análisis anterior era poder generar las herramientas para corregir el conteo de carga que hace el programa de detección de clusters, luego de aplicar un umbral que podría eliminar carga genuina y además poder estimar cuánta carga excedente por corrientes oscuras tiene cada clúster.\\
+\indent Esta corrección se llevó a cabo modificando el código del programa que con \textit{root} calcula el factor de Fano, la energía de creación electrón-hueco, y otras variables, por medio del ajuste de los espectros de carga. El programa se encarga de procesar todas las imágenes, desechar eventos que tengan carga menor a $2$ electrones (\verb|EPIX = 1.5|), filtrar eventos que no cumplan ciertos criterios (cortes de calidad), buscar los clusters, quedarse únicamente con aquellos que tengan cargas en el entorno de los $180$ electrones y calcular esos valores. Al contar la carga de estos clústers y conociendo el área de los mismos (cantidad de píxeles que los conforman), se agrega y se quita carga en función los valores hallados antes.\\
+\indent Dado que la distribución de la variable aleatoria \textit{cantidad de eventos por píxel} sigue una distribución poissoniana, de esperanza $\mu$, para cada tipo evento (espurio, genuino o total) se tiene una esperanza. Para calcular la cantidad de carga que se espera que tenga un clúster de $N$ píxeles en el sensor, se puede hacer uso de las propiedades de la esperanza. Sea $Y = \sum\limits_{i = 1}^{N} X_{i}$, donde $X_{i}$ son distintas realizaciones de la variable aleatoria con distribución Poissoniana y $N$ es el número de píxeles del clúster, entonces la esperanza se calcula como
 \begin{equation*}
     E(Y) = 
     E
@@ -200,26 +230,15 @@ Usando los clústers de esta imagen, se genera una máscara sobre de los bordes 
     = \sum\limits_{i=1}^{N}E(X_{i})
     = \sum\limits_{i=1}^{N}\mu_{i}
 \end{equation*}
-pero como $X_{i}$ son distintas realizaciones de la misma variable aleatoria, entonces tiene todas la misma esperanza, es decir $\mu_{i} = \mu\ \forall\ i$, con lo cual
+pero como $X_{i}$ son distintas realizaciones de la misma variable aleatoria, entonces tienen todas la misma esperanza, es decir $\mu_{i} = \mu\ \forall\ i$, con lo cual
 \begin{equation*}
     E(Y) = N\mu
 \end{equation*}
-con lo cual, la cantidad de carga esperada para un cluster viene dada por la esperanza de la distribución, por la cantidad de píxeles. De esta forma, teniendo una esperanza total $\mu_{T} = \mu_{bgk} + \mu_{g}$, aplicando esta misma receta pueden corregirse los valores de carga por cluster. Sea $n_{e}$ la cantidad de carga medida en un dado cluster, la corrección de este valor de carga será $n_{c}$ y viene dado por
+con lo cual, la cantidad de carga esperada para un cluster viene dada por la esperanza de la distribución, por la cantidad de píxeles. De esta forma, teniendo una esperanza total $\mu_{T} = \mu_{bgk} + \mu_{g}$, aplicando esta misma receta pueden corregirse los valores de carga por cluster. Si $n_{e}$ es la cantidad de carga medida en un dado cluster, la corrección de este valor de carga será $n_{c}$ y viene dado por
 \begin{equation*}
     n_{c} = n_{e} + N\mu_{g} - N\mu_{bkg}
 \end{equation*}
-es decir, se agrega la cantidad de carga genuina que se estima se pierde por aplicar \verb|EPIX = 1.5| y se quita la carga estimada por ruido. \textcolor{red}{Acá no me queda del todo claro como era el tema del redondeo: $N\mu_{g}$ y $N\mu_{bkg}$ claramente son float, pero la carga tiene que ser entera. El redondeo donde se hacía?}
-
-
-\newpage
-Acá va a ir el análisis y manejo de las imágenes, con las diferentes pruebas que se fueron haciendo, primero para entender los datos con los que se está tratando (hablar de dónde el sensor es más propenso a ver ruido, por qué siempre hay un pixel brillante, por qué hay lineas verticales brillantes, por qué hay cuadrantes con tanto ruido, cuadrantes que andan mal, qué cuadrante usé, por qué?).\\
-\indent Luego los diferentes approaches que se hicieron para tratar de estimar el ruido por background que mete un bias en el conteo de carga de los eventos de interés:
-\begin{itemize}
-    \item Primero lo que hice fue agarrar la imagen y quedarme solo con los eventos de 1 electrón, transformando a 0 la carga en los demás píxeles y promediando en todas las imágenes esta cantidad y así obtener una probabilidad de que en un dado píxel halla un electrón de ruido. Explicar por qué este approach no es del todo correcto 
-    \item Segundo, manteniendo este approach, usarlo para estimar el $\mu$ de la distribución poissoniana de la variable aleatoria "cantidad de carga por píxel"
-    \item Tercero, estimar el ruido pero sólo mirando en los contornos de los clusters, debido a que en estas regiones es donde se elimina carga al usar el epix=1.5 y porque encima de los clusters es donde se agrega carga espuria por ruido.
-\end{itemize}
-Una vez explicados los approachs que usé y por qué se fueron refinando, hablar de la corrección final a aplicar y como se aplica en el software ya armado para el cálculo del factor de fano y de la energía de creación electrón hueco.
+es decir, se agrega la cantidad de carga que se estima se pierde en los bordes por aplicar el umbral \verb|EPIX = 1.5| y se quita la carga estimada por ruido en el interior de los clústers. \textcolor{red}{Acá no me queda del todo claro como era el tema del redondeo: $N\mu_{g}$ y $N\mu_{bkg}$ claramente son float, pero la carga tiene que ser entera. El redondeo donde se hacía?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
