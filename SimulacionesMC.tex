@@ -1,5 +1,15 @@
-\chapter{Estudios preliminares: Ionización del medio y simulaciones Monte Carlo}
-\section{Apéndice - Simulaciones Montecarlo}
+\chapter{Ionización del medio y simulaciones Monte Carlo}
+\textcolor{red}{Esta sección va a tener que ser totalmente refactorizada:
+\begin{itemize}
+    \item Podría empezar con una introducción \textit{teórica} del fenómeno físico, poder explicarlo en detalle desde el punto de vista que es necesario en esta tesis: Viene un fotón, interactúa con los electrones del medio casi siempre efecto fotoeléctrico hasta que se le acaba la energía.
+    \item Después introducir un poco lo que dice el paper de alig, quizás las cataratas
+    \item Después introducir el paper de ramanathan y su método para modelar el fenómeno y decir que eso se uso
+    \item Empezar con simulaciones sin pérdida por fonones y básicas
+    \item Terminar con las simulaciones basadas en la idea de Alig y Ramanathan
+    \item Intercalar más las figuras para que no sea tanto texto seguido
+    \item El detalle del código ponerlo en un apéndice.
+\end{itemize}}
+\section{Simulaciones Montecarlo}
 \noindent Uno de los interrogantes que se propuso responder en este trabajo es por qué el factor de Fano del sensor no vale $1$, independientemente de la energía depositada, dado que para todo proceso Poissoniano, la relación entre la varianza y la esperanza vale
 \begin{equation*}
     F = \frac{\sigma^{2}}{\mu} = 1
