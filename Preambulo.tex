@@ -32,6 +32,9 @@
 % (citas)
 \usepackage[superscript,biblabel]{cite}
 % (citas) hace las citas superíndices
+\usepackage{mathtools} % 02/02/2022 para tener el prescript{}{} índice y supraíndice del lado izq a misma altura
+\usepackage{mathrsfs} %03/02/2022 Para la L del lagrangiano bien cheta 14/10/2021
+
 \makeatletter 
 \renewcommand{\@citess}[1]{\textsuperscript{\,[#1]}}
 
@@ -45,3 +48,6 @@
 \usepackage{enumitem,kantlipsum} %05/01/2022 <- para indentar dentro del enumerate
 
 \usepackage{booktabs} %13/01/2022 Para tener tablas de libros
+
+% 03/02/2022 Command for a cheta L for the lagrangian partir 
+\newcommand{\Lagr}{\mathscr{L}}
