@@ -33,30 +33,30 @@ donde $\sigma^{2}$ es la varianza de la distribución y $\mu$ es la media o la e
 \end{itemize}
 Los CCD's convencionales son capaces de alcanzar ruidos de lectura del orden de los $2\,e^{-}\si{rms/pix}$, gracias a la técnica de muestreo doblemente correlacionado. Sin embargo, en aplicaciones de bajas energías, el ruido electrónico de lectura presupone una barrera al límite de energías que pueden medirse con estos sensores para mentener la precisión deseada.\\
 \textcolor{red}{Figura de las mediciones del fano a baja energía}\\
-\indent Los sensores \textit{Skipper} CCD's, por otro lado, permiten disminuir el ruido electrónico de lectura a niveles subelectrónicos gracias a que son capaces de medir la carga en los píxeles de forma no destructiva. Esto permite tomar tantas mediciones como sean necesarias de la carga y estimar la carga real a partir de un promedio sobre el número de mediciones tomadas. El prácticamente ausente ruido de lectura que hace posible la capacidad de medir repetidas veces y de forma no destructiva la carga en cada píxel de un sensor Skipper-CCD, tiene un fuerte impacto a energías por debajo de los $5\,\si{keV}$. En particular, por debajo de los $2\,\si{keV}$ la contribución del ruido de lectura de un CCD convencional a la determinación de estas cantidades puede superar el $30\,\%$. %Así es que en este trabajo se propone un estudio sistemático del Factor de Fano a bajas energías, entre $1486\,\si{eV}$ (rayos X del Al) y $677\,\si{eV}$ (rayos X del F).\\
+\indent Los sensores \textit{Skipper}-CCD's, por otro lado, permiten disminuir el ruido electrónico de lectura a niveles subelectrónicos gracias a que son capaces de medir la carga en los píxeles de forma no destructiva. Esto permite tomar tantas mediciones como sean necesarias de la carga y estimar la carga real a partir de un promedio sobre el número de mediciones tomadas. El prácticamente ausente ruido de lectura que hace posible la capacidad de medir repetidas veces y de forma no destructiva la carga en cada píxel de un sensor \textit{Skipper}-CCD, tiene un fuerte impacto a energías por debajo de los $5\,\si{keV}$. En particular, por debajo de los $2\,\si{keV}$ la contribución del ruido de lectura de un CCD convencional a la determinación de estas cantidades puede superar el $30\,\%$. %Así es que en este trabajo se propone un estudio sistemático del Factor de Fano a bajas energías, entre $1486\,\si{eV}$ (rayos X del Al) y $677\,\si{eV}$ (rayos X del F).\\
 
 
-Acá introducir a estos dispositivos, explicar las mejoras que implementa el skipper CCD e introducir conceptos importantes como el overscan (maybe prescan también)
+Acá introducir a estos dispositivos, explicar las mejoras que implementa el \textit{Skipper}-CCD e introducir conceptos importantes como el overscan (maybe prescan también)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Antecedentes}
 
-\noindent En trabajos previos\cite{Rodrigues} se estudiaron las ventajas de la utilización de la novedosa tecnología \textit{skipper} CCD, para lograr medir con precisión subelectrónica en regímenes de energía donde los sensores CCD convencionales más precisos sólo podrían alcanzar resoluciones del orden de los $2$ electrones. Por primera vez fue usada para poder medir el factor de Fano y la energía de creación electrón-hueco en el Silicio a una energía de $5.9\,\si{keV}$ a $123\,\si{K}$.\\
-\indent Para realizar esto, se logró implementar un método de calibración absoluta para determinar la relación entre el número de electrones en cada píxel y la lectura del valor en ADUs (Unidades analógico-digitales). El procedimiento para la calibración consistió en la utilización de un LED instalado en el \textit{dewar}, que emitía fotones en $405\,\si{nm}$ de longitud de onda, para poblar los píxeles del sensor con diferente cantidad de electrones. En este trabajo lograron poblar píxeles con un amplio rango de cantidades de carga al realizar varias mediciones aumentando el tiempo de exposición del sensor en cada una. Las mediciones se realizaron tomando $300$ lecturas de cada píxel, gracias a la tecnología \textit{skipper} que permite realizar estas lecturas de forma no destructiva, y que luego fueron promediadas reduciendo así el ruido de lectura en un factor $\sqrt{300}$. Como resultado de estas mediciones, se generaron distribuciones de carga Gaussianas en los píxeles, superpuestas entre sí y defasadas en valor medio con excelente resolución, haciendo posible distinguir entre picos consecutivos. De esta forma, mediante un ajuste gaussiano se pudo establecer el valor medio en ADUs para cada uno de estos picos, estableciendo como valor de carga el número de pico correspondiente. Así es que se obtuvo una relación $1$ a $1$ entre cantidad de carga por píxel y ADUs. Cabe destacar que para comenzar a numerar los picos, primero es necesario establecer el valor de $0$ carga, es decir, píxel vacío, lo cual no corresponde a un valor nulo en ADUs. \\
-\indent Por otro lado, por primera vez se midieron el factor de Fano $F$ de forma absoluta y la energía de creación electrón-hueco $\varepsilon_{\eh}$ utilizando esta tecnología. Esto se realizó midiendo rayos $X$ de $5.9\,\si{\mbox{keV}}$ emitidos por una fuente de $\prescript{55}{}{\mbox{Fe}}$. Más precisamente, rayos $X_{k}$, cuyas energías son los de la tabla \ref{tab:EnergiasXk}
+\noindent En trabajos previos\cite{Rodrigues} se han estudiado las ventajas de la utilización de la novedosa tecnología \textit{Skipper}-CCD, para lograr medir con precisión subelectrónica en regímenes de energía donde los sensores CCD convencionales más precisos sólo podrían alcanzar resoluciones del orden de los $2$ electrones. Por primera vez fue usada para poder medir el factor de Fano y la energía de creación electrón-hueco en el Silicio a una energía de $5.9\,\si{keV}$ a $123\,\si{K}$.\\
+\indent Para realizar esto, se logró implementar un método de calibración absoluta para determinar la relación entre el número de electrones en cada píxel y la lectura del valor en ADUs (Unidades analógico-digitales). El procedimiento para la calibración consistió en la utilización de un LED instalado en el \textit{dewar}, que emitía fotones en $405\,\si{nm}$ de longitud de onda, para poblar los píxeles del sensor con diferente cantidad de electrones. Así, lograron poblar píxeles con un amplio rango de cantidades de carga al realizar varias mediciones aumentando el tiempo de exposición del sensor en cada una. Las mediciones se realizaron tomando $300$ lecturas de cada píxel, gracias a la tecnología \textit{Skipper} que permite realizar estas lecturas de forma no destructiva, y que luego fueron promediadas reduciendo así el ruido de lectura en un factor $\sqrt{300}$. Como resultado de estas mediciones, se generaron distribuciones de carga Gaussianas en los píxeles, superpuestas entre sí y defasadas en valor medio con excelente resolución, haciendo posible distinguir entre picos consecutivos. De esta forma, mediante un ajuste gaussiano se pudo establecer el valor medio en ADUs para cada uno de estos picos, estableciendo como valor de carga el número de pico correspondiente. Así es que se obtuvo una relación $1$ a $1$ entre cantidad de carga por píxel y ADUs. Cabe destacar que para comenzar a numerar los picos, primero es necesario establecer el valor de $0$ carga, es decir, píxel vacío, lo cual no corresponde a un valor nulo en ADUs. \\
+\indent Por otro lado, por primera vez se midieron el factor de Fano $F$ de forma absoluta y la energía de creación electrón-hueco $\varepsilon_{\eh}$ utilizando esta tecnología. Esto se realizó midiendo rayos $X$ de $5.9\,\si{\mbox{keV}}$ emitidos por una fuente de $\prescript{55}{}{\mbox{Fe}}$. Más precisamente, rayos $X_{K}$, cuyas energías son los de la tabla \ref{tab:EnergiasXk}.
 \begin{table}[h]
 \centering
 \begin{tabular}{@{}ccc@{}}
 \toprule
-$X_{K}$      & Energía [keV] & Intensidad relativa \\ \hline \hline
-$\alpha_{2}$ & $5887.6$      & $8.5 (4)$           \\
-$\alpha_{1}$   & $5898.8$      & $16.9 (8)$          \\
-$\beta_{3}$  & $6490.4$      & $4.1 (11)$          \\ \bottomrule
+$X_{K}$         &   Energía [keV]   &   Intensidad relativa \\ \hline \hline
+$\alpha_{2}$    &   $5887.6$        &   $8.5 (4)$           \\
+$\alpha_{1}$    &   $5898.8$        &   $16.9 (8)$          \\
+$\beta_{3}$     &   $6490.4$        &   $4.1 (11)$          \\ \bottomrule
 \end{tabular}
 \caption{\footnotesize{Caption}}
 \label{tab:EnergiasXk}
 \end{table}
-Sobre los resultados de las mediciones realizadas para estos rayos $X$, se realizó un ajuste no bineado de los picos del espectro. Para realizar el ajuste se utilizó la verosimilitud de la expresión \eqref{ec:verosimilitud}, que surge de la convolución de dos distribuciones exponenciales y una distribución gaussiana
+Sobre los resultados de las mediciones realizadas para estos rayos $X$, se realizó un ajuste no bineado de los picos del espectro. Para realizar el ajuste se utilizó la verosimilitud, cuya expresión es la de la ecuación \eqref{ec:verosimilitud}, que surge de la convolución de dos distribuciones exponenciales y una distribución gaussiana
 {\small
 \begin{align}
     \Lagr(e|\mu_{1},
@@ -104,21 +104,20 @@ Sobre los resultados de las mediciones realizadas para estos rayos $X$, se reali
 \end{align}
 }
 donde $\mu_{j}$, $\sigma_{j}$ y $I_{j}$ representan el valor medio de carga, la desviación estándar del valor medio de carga y la intensidad relativa del pico $j$-ésimo con energía $E_{j}$, respectivamente. Además, $\lambda_{1}$ y $\lambda_{2}$ son parámetros de la distribuciones exponenciales y $\eta_{j}$ es el peso relativo entre ellas.\\
-\indent La figura 5 representa el ajuste no bineado por la verosimilitud de los picos de rayos $X$ para un total de $18085$ eventos. Lo resultados para la medición del factor de Fano, la energía de creación electrón-hueco y demás parámetros relevantes se encuentran en la tabla \ref{tab:ParametrosAjusteNoBineado}
-
+\indent La figura 5 representa el ajuste no bineado por la verosimilitud de los picos de rayos $X$ para un total de $18085$ eventos. Lo resultados para la medición del factor de Fano, la energía de creación electrón-hueco y demás parámetros relevantes se encuentran en la tabla \ref{tab:ParametrosAjusteNoBineado}.
 \begin{table}[h]
 \centering
 \begin{tabular*}{\textwidth}{c @{\extracolsep{\fill}} ccccccccc}%{@{}ccccccccc@{}}
 \toprule
-$X_{k}$ &
-  $\mu$ &
-  $\Delta \mu$ &
-  $\sigma$ &
-  $\Delta \sigma$ &
+$X_{K}$ &
+  $\mu\ [e^{-}]$ &
+  $\Delta \mu\ [e^{-}]$ &
+  $\sigma\ [e^{-}]$ &
+  $\Delta \sigma\ [e^{-}]$ &
   $F$ &
   $\Delta F$ &
-  $\varepsilon_{\eh}$ &
-  $\Delta \varepsilon_{\eh}$ \\ \hline\hline
+  $\varepsilon_{\eh}\ [\mbox{eV}/e^{-}]$ &
+  $\Delta \varepsilon_{\eh} \ [\mbox{eV}/e^{-}]$ \\ \hline\hline
 $\alpha_{2}$ &
   $1570.50$ &
   $0.18$ &
@@ -134,10 +133,110 @@ $\beta_{3}$  & $1730.50$ & $0.55$ & $14.36$ & $0.13$ &  &  & $3.751$ & $0.002$ \
 \caption{tabla}
 \label{tab:ParametrosAjusteNoBineado}
 \end{table}
+Estos constituyen los primeros resultados obtenidos de la utilización de la tecnología \textit{Skipper}-CCD para el cálculo del factor de Fano y de la energía de creación electrón-hueco para una temperatura de $123\,\si{K}$ y se encontraron en buen acuerdo con la bibliografía preexistente~\cite{Ryan}\cite{Alig}\cite{Kotov}.\\
+\indent Además, se avanzó en las primeras mediciones del factor de Fano y la energía de creación electrón-hueco para energías por debajo de los de $2\,\si{keV}$~\cite{TesisKevin}, más específicamente, para energías de $677\,\si{eV}$ y $1486\,\si{eV}$, que corresponden a los rayos $X$ de fluorescencia del Flúor y del Aluminio respectivamente. En la tabla \ref{tab:EnergiasFluorescenciaFAl} pueden verse las energías e intensidades relativas para los rayos $X$ de estos elementos. En este caso, utilizando toda la maquinaria desarrollada en el trabajo anterior, realizaron mediciones con una fuente de $\prescript{241}{}{\mbox{Am}}$ que emite partículas alfa con una energía de $\sim 5.9\,\si{MeV}$. A estas partículas luego se las hizo impactar contra una cinta de teflón y una barra de aluminio que por fluorescencia emitían rayos $X$ con las energías antes mencionadas. Cabe destacar que se trató de evitar que las partículas alfa alcanzaran el detector, dado que son partículas muy energéticas y por tanto no son eventos de interés.\\
+\indent Uno de los desafíos que surgieron en este otro trabajo fue que solo una fracción de los átomos que son impactados por las partículas alfa se desexcitan emitiendo fotones $X$ en las energías de interés. Es por esto que la tasa de eventos medidos es considerablemente menor en comparación a la que se obtuvo al medir con la fuente de $\prescript{55}{}{\mbox{Fe}}$.
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}cccc@{}}
+\toprule
+Elemento    &   $X_{K}$         &   Energía [eV]    &   Intensidad relativa \\ \hline \hline
+F           &   $\alpha_{1,2}$  &   $676.8$         &   $148$               \\
+Al          &   $\alpha_{2}$    &   $1486.3$        &   $50$                \\
+Al          &   $\alpha_{1}$    &   $1486.7$        &   $100$               \\
+Al          &   $\beta_{1}$     &   $1557.4$        &   $1$                 \\ \bottomrule
+\end{tabular}
+\caption{\footnotesize{Caption}}
+\label{tab:EnergiasFluorescenciaFAl}
+\end{table}
+Con los datos de estas mediciones se reconstruyeron los espectros para ambos picos y se les realizó un ajuste no bineado, similar al utilizado en los experimentos con $\prescript{55}{}{\mbox{Fe}}$, utilizando la verosimilitud descripta por la expresión \eqref{ec:verosimilitudF-Al}.
+\begin{align}
+    \Lagr(e|\mu,
+            \sigma,
+            \lambda_{1},
+            \lambda_{2},
+            \eta)
+    = &
+    \eta
+    \left\{
+        \frac{\lambda_{1}}{2}
+        \exp\left[
+                (e-\mu)\lambda_{1} + \frac{\sigma^{2}\lambda_{1}^{2}}{2}
+            \right]
+        \mbox{Erfc}
+        \left[
+            \frac{1}{\sqrt{2}}
+            \left(
+                \frac{e - \mu}{\sigma}
+                +\sigma\lambda_{1}
+            \right)
+        \right] \right\} \nonumber
+        \\
+        + &
+        (1-\eta)
+        \left\{
+        \frac{\lambda_{2}}{2}
+        \exp
+            \left[
+                 (e - \mu)\lambda_{2}
+                 + \frac{\sigma^{2}\lambda_{2}^{2}}{2}
+            \right]
+        \mbox{Erfc}
+        \left[
+            \frac{1}{\sqrt{2}}
+            \left(
+                \frac{e - \mu}{\sigma}
+                +\sigma\lambda_{2}
+            \right)
+        \right]
+    \right\}
+        \label{ec:verosimilitudF-Al}
+\end{align}
+En este caso, el ajuste no bineado resultó mucho más sensible a los cambios en el bineado del histograma, debido a que la tasa de eventos registrados para este experimento fue mucho menor. Los resultados obtenidos en este trabajo a partir de los ajustes de estas mediciones se encuentran en la tabla \ref{tab:ParametrosAjusteNoBineadoF-Al}.
+\begin{table}[h]
+\centering
+\begin{tabular*}{\textwidth}{c @{\extracolsep{\fill}} ccccccccc}%{@{}ccccccccc@{}}
+\toprule
+Elemento&
+  $\mu\ [e^{-}]$ &
+  $\Delta \mu\ [e^{-}]$ &
+  $\sigma\ [e^{-}]$ &
+  $\Delta \sigma\ [e^{-}]$ &
+  $F$ &
+  $\Delta F$ &
+  $\varepsilon_{\eh}\ [\mbox{eV}/e^{-}]$ &
+  $\Delta \varepsilon_{\eh} \ [\mbox{eV}/e^{-}]$ \\ \hline\hline
+  F &   $182.0$ &   $0.8$  &   $7.0$   &   $0.7$   &   $0.27$  &   $0.05$  &   $3.72$ &   $0.02$\\
+  Al&   $404.4$ &   $0.4$  &   $8.3$   &   $0.3$   &   $0.17$  &   $0.01$  &   $3.679$ &   $0.004$\\ \bottomrule
+\end{tabular*}
+\caption{tabla}
+\label{tab:ParametrosAjusteNoBineadoF-Al}
+\end{table}
+Hasta aquí los resultados previos obtenidos con la utilización de esta novedosa tecnología de \textit{Skipper}-CCD para la medición del factor de Fano y la energía de creación electrón hueco. Sin embargo, todavía se pueden mejorar los resultados aumentando la estadística de los eventos para las energías inferiores a $2\,\si{keV}$ caracterizando el fondo presente en las imágenes. Para lograr esto es necesario realizar un tratamiento sobre los datos existentes.
 
-Estos constituyen los primeros resultados obtenidos de la utilización de la tecnología \textit{Skipper} CCD para el cálculo del factor de Fano $F$ y de la energía de creación electrón-hueco $\varepsilon_{\eh}$ para una temperatura de $123\,\si{K}$ y se encontraron en buen acuerdo con la bibliografía preexistente\cite{Ryan, Alig, Kotov}.\\
-\indent Además, se avanzó en las primeras mediciones del factor de Fano y la energía de creación electrón-hueco para energías por debajo de los de $2\,\si{keV}$\cite{TesisKevin}, más específicamente, para energías de $677\,\si{eV}$ y $1486\,\si{eV}$, que corresponden a los rayos $X$ de fluorescencia del Flúor y el Aluminio respectivamente. En este caso, utilizando toda la maquinaria desarrollada en el trabajo anterior, realizaron mediciones con una fuente de $\prescript{241}{}{\mbox{Am}}$ que emite partículas alfa con una energía de $\sim 5.9\,\si{MeV}$. A estas partículas luego se las hizo impactar contra una cinta de teflón y una barra de aluminio que por fluorescencia emitían rayos $X$ con las energías antes mencionadas. Cabe destacar que se trató de evitar que las partículas alfa alcanzaran el detector, dado que son partículas muy energéticas y por tanto no son eventos de interés.\\
-\indent Uno de los desafíos planteados en este trabajo fue que, debido a que una fracción de los átomos que son impactados por las partículas alfa se desexcitan emitiendo fotones $X$ en las energías de interés. Es por esto que la tasa de eventos medidos es considerablemente menor en comparación a la que se obtuvo al medir con la fuente de $\prescript{55}{}{\mbox{Fe}}$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Motivación del análisis de imágenes}
+\noindent Este trabajo se centró en la determinación del factor de Fano y de la energía de creación electrón-hueco, para energías por debajo de los $2\,\si{keV}$, utilizando mediciones preexistentes. Más precisamente, para las energías de los rayos $X$ de fluorescencia del Aluminio de $1486\,\si{eV}$ y del Flúor de $677\,\si{eV}$. Con el fin de que la determinación de estas características esté lo menos sesgada posible debido al fondo presente en las imágenes, tanto por ruido del sensor, como por eventos que no son de interés, fue necesario realizar un análisis profundo de los datos.\\
+\indent El fondo presente en las imágenes consiste principalmente en píxeles cuya carga es producida por fluctuaciones térmicas en la red cristalina del Silicio del sensor (corrientes oscuras), por eventos de dispersión producidos por rebotes dentro del dispositivo de medición y que no deseados, y por eventos muy penetrantes provenientes del exterior, como por ejemplo, muones.\\
+\indent El análisis consistió estudiar el efecto que produce el fondo de las imágenes sobre los eventos de interés: la aglomeración de píxeles con cargas de entre $1$ y $2$ electrones al rededor de los clusters, y la carga extra añadida sobre ellos. En muchos casos resulta que los píxeles con fondo se aglutinan a los clusters, aumentando su tamaño y su carga, o incluso también haciendo de puente entre dos clusters vecinos. Estos son dos efectos indeseados, primero porque sesga la cantidad de carga real en un evento de interés y segundo porque los algoritmos de clusterizacion podrían ignorarlos al no cumplir con los cortes de calidad impuestos, tanto por forma como por cantidad de carga esperada.\\
+\indent Es entonces que es necesario utilizar un umbral de detección que ignore estos píxeles con carga menor o igual a $2$ electrones, de forma de evitar el aglutinamiento de píxeles con fondo a los clusters de interés y así aumentar la estadística en el conteo de eventos. Pero también es necesario lograr caracterizar este fondo para corregir el sesgo introducido por el nuevo umbral de detección, el cual, también eliminará píxeles con carga genuina. Es por eso que en este trabajo se propuso un análisis de las imágenes para poder determinar el umbral más conveniente a utilizar y recuperar la mayor cantidad de estadística posible, además de un método para estimar cuántos eventos genuinos son removidos y cuántos eventos espurios hay que remover de los clusters para mejorar así las incertezas del factor de Fano y la energía de creación electrón-hueco a bajas energías.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Organización de la tesis}
+Esto lo escribo al final y es un resumen de como está armada la tesis.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{SimulacionesMC}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Mediciones y configuración\\ experimental}
+
 \textcolor{red}{%
 \subsection{paper}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -145,22 +244,22 @@ Estos constituyen los primeros resultados obtenidos de la utilización de la tec
 %
 \subsubsection{Calibracion y linealidad}
 %Una calibración absoluta fue realizada para determinar la relación entre el número de electrones en cada píxel y la lectura del valor en ADUs. Un LED instalado en el \textit{Dewar} fue usado para poblar los píxeles del CCD con electrones, producidos por fotones de $405\,\si{nm}$ de longitud de onda. Para lograr poblar los píxeles con un amplio rango de electrones, se realizaron varias mediciones aumentando los tiempos de exposición en cada una. Se produjeron diferentes distribuciones poissonianas superpuestas y defasadas en valor medio, lo cual representa el incremento en el número de electrones por píxel. Estas mediciones se realizaron tomando $300$ lecturas a cada píxel. Como resultado, el ruido de lectura se redujo en un factor $\sqrt{300} \sim 17.3$, logrando un valor final de $0.2\,e^{-}$. Esto permitió distinguir entre ah picos consecutivos en todo el rango entre $0$ y $1900$ electrones. El valor medio en ADU para cada uno de esos picos fue determinado por medio un ajuste gaussiano. De esta forma, la calibración absoluta consistió en asignar para cada valor medio de ADU al número de pico correspondiente, el cual coincide con la cantidad de electrones de ese pico.\\
-\indent Respecto a las no linealidades, la figura \textbf{REFERENCIA A LA FIGURA} se observan las diferencias entre el número de electrones calculados a partir de una calibración absoluta lineal, respecto al número real de electrones por píxel (normalizado?). En contraste con las mediciones de CCDs convencionales, el \textit{skipper} CCD permite cuantificar las no linealidades para todas las ocupancias.
+\indent Respecto a las no linealidades, la figura \textbf{REFERENCIA A LA FIGURA} se observan las diferencias entre el número de electrones calculados a partir de una calibración absoluta lineal, respecto al número real de electrones por píxel (normalizado?). En contraste con las mediciones de CCDs convencionales, el \textit{Skipper}-CCD permite cuantificar las no linealidades para todas las ocupancias.
 %
 \subsubsection{Mediciones}
 Los rayos $X_{K}$ emitidos luego de la captura electrónica del $\prescript{55}{}{\mbox{Fe}}$ son ampliamente usados para calibración de CCDs. Sus energías, conocidas con excelente precisión, pueden verse en la tabla \ref{tab:EnergiasXk}. Para el propósito de este trabajo, se utilizó una fuente radioactiva de $\prescript{55}{}{\mbox{Fe}}$ electrodepositado, con un diámetro de $\sim 5\,\si{mm}$ y una actividad de $\sim 0.1\,\si{\mu Ci}$
-\begin{table}[h]
-\centering
-\begin{tabular}{@{}ccc@{}}
-\toprule
-$X_{K}$      & Energía [keV] & Intensidad relativa \\ \hline \hline
-$\alpha_{2}$ & $5887.6$      & $8.5 (4)$           \\
-$\alpha_{1}$   & $5898.8$      & $16.9 (8)$          \\
-$\beta_{3}$  & $6490.4$      & $4.1 (11)$          \\ \bottomrule
-\end{tabular}
-\caption{\footnotesize{Caption}}
-\label{tab:EnergiasXk}
-\end{table}
+% \begin{table}[h]
+% \centering
+% \begin{tabular}{@{}ccc@{}}
+% \toprule
+% $X_{K}$      & Energía [keV] & Intensidad relativa \\ \hline \hline
+% $\alpha_{2}$ & $5887.6$      & $8.5 (4)$           \\
+% $\alpha_{1}$   & $5898.8$      & $16.9 (8)$          \\
+% $\beta_{3}$  & $6490.4$      & $4.1 (11)$          \\ \bottomrule
+% \end{tabular}
+% \caption{\footnotesize{Caption}}
+% \label{tab:EnergiasXk}
+% \end{table}
 Esta fuente se posicionó enfrentando a la parte trasera del sensor y a unos $40\,\si{mm}$ de este.\\
 \indent En una fracción importante de los decaimientos del $\prescript{55}{}{\mbox{Fe}}$, la energía es transferida a electrones en otros orbitales en vez transferirse como emisión de rayos $X$. Estos electrones \textit{auger} abandonan los átomos con unos pocos $\si{eV}$ menos que los rayos $X$ debido a la energía de ionización y crean un espectro continuo de energía cuando interactúan con el CCD. Para evitar este fondo, se cubrió la fuente de $\prescript{55}{}{\mbox{Fe}}$ con $20\,\si{\mu m}$ de \textit{Mylar}, que logran frenar los electrones con esta energía y además tienen una muy baja probabilidad de producir dispersión por efecto Compton de los rayos $X$. El ancho total de las capas de material que cubren al sensor es de $160\,\si{\mu m}$, sin embargo, se induce una probabilidad de interacción con los fotones de $5.9\,\si{keV}$ de $\sim 1.4 \%$.\\
 \indent \textit{Procedimiento de adquisición de datos:} Para reducir el impacto de las corrientes oscuras se limitó la exposición y el tiempo de lectura al realizar la medición simultánea de los $4$ cuadrantes del CCD y restringiendo la adquisición a $50$ filas por cuadrante. Cada fila contiene $500$ píxeles ($7$ de prescan, $443$ de región activa y $50$ de overscan). Con lo cual, se tomaron imágenes con un área activa de $22150$ píxeles. La exposición a los rayos $X$ se realizó moviendo rápidamente las cargas en esos píxeles ($\sim 30\,\si{s}$ de exposición efectiva) de forma de conseguir una frecuencia de impacto de rayos $X$ de $\sim 4\,\si{Hz}$ en la región activa de cada imagen, resultando en $\sim 120$ eventos en promedio. Se realizaron $300$ mediciones por píxel, lo que corresponde a un tiempo de lectura de $\sim 10$ minutos por imagen. Luego de la lectura, las $300$ mediciones tomadas para cada píxel son promediadas y los píxeles vacíos del overscan son usados para calcular y extraer la linea de base (el offset de la medición o el $0$) de cada fila. La imagen resultante contiene $443 \times 50$ píxeles por cada cuadrante y la carga medida está en unidades electrónico digitales (ADU's), para posteriormente ser convertidas en electrones usando la auto-calibración.\\
@@ -170,14 +269,14 @@ Esta fuente se posicionó enfrentando a la parte trasera del sensor y a unos $40
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Análisis de los datos y resultados}
-\textit{Reconstrucción de eventos}: Las imágenes tomadas usando el procedimiento descripto antes contienen eventos producidos por la ionización de rayos $X$ emitidos por la fuente de $\prescript{55}{}{\mbox{Fe}}$ y radiación ambiental. Una parte de una imagen típica tomada por el CCD está en la figura \textbf{referencia}. Como el \textit{skipper} CCD usado es \textit{back iluminated} por los rayos $X$ de la fuente, las interacciones resultantes ocurrieron mayormente en los primeros $30\,\si{\mu m}$ de la parte trasera del sensor. Debido a la difusión de carga durante el proceso de colección, la carga de los eventos resultantes se distribuyó en varios píxeles, siguiendo una distribución gaussiana $2D$. El número total de electrones generados por cada rayo $X$ se reconstruyó utilizando un algoritmo de clusterización, donde todos los píxeles vecinos no vacíos son agrupados juntos y considerados como parte de un único evento.\\
-\indent Es importante destacar que el \textit{skipper} CCD permite la determinación de carga en clusters de diferente tamaño, introduciendo un muy pequeño error sistemático en la estimación del número total de electrones producidos por cada evento. Con un ruido de lectura de $0.2\,e^{-}$, los límites de cada cluster pueden ser determinados con una probabilidad de fallo en la determinación tan baja como $p = 0.062$ por cada píxel exterior. Además, esto también implica que la medición es robusta para las ineficiencias en la transferencia de carga que pudieran propagarla entre píxeles vecinos. La probabilidad de que algún electrón de un evento sea separado de otros electrones por uno o más píxeles vacíos es esencialmente nula para todos los fines prácticos.\\
+\textit{Reconstrucción de eventos}: Las imágenes tomadas usando el procedimiento descripto antes contienen eventos producidos por la ionización de rayos $X$ emitidos por la fuente de $\prescript{55}{}{\mbox{Fe}}$ y radiación ambiental. Una parte de una imagen típica tomada por el CCD está en la figura \textbf{referencia}. Como el \textit{Skipper}-CCD usado es \textit{back iluminated} por los rayos $X$ de la fuente, las interacciones resultantes ocurrieron mayormente en los primeros $30\,\si{\mu m}$ de la parte trasera del sensor. Debido a la difusión de carga durante el proceso de colección, la carga de los eventos resultantes se distribuyó en varios píxeles, siguiendo una distribución gaussiana $2D$. El número total de electrones generados por cada rayo $X$ se reconstruyó utilizando un algoritmo de clusterización, donde todos los píxeles vecinos no vacíos son agrupados juntos y considerados como parte de un único evento.\\
+\indent Es importante destacar que el \textit{Skipper}-CCD permite la determinación de carga en clusters de diferente tamaño, introduciendo un muy pequeño error sistemático en la estimación del número total de electrones producidos por cada evento. Con un ruido de lectura de $0.2\,e^{-}$, los límites de cada cluster pueden ser determinados con una probabilidad de fallo en la determinación tan baja como $p = 0.062$ por cada píxel exterior. Además, esto también implica que la medición es robusta para las ineficiencias en la transferencia de carga que pudieran propagarla entre píxeles vecinos. La probabilidad de que algún electrón de un evento sea separado de otros electrones por uno o más píxeles vacíos es esencialmente nula para todos los fines prácticos.\\
 \indent \textbf{Cortes de calidarks}: Para evitar contar eventos unidos, se filtraron aquellos con varianza relativamente grande o pequeña, tanto en dirección $x$ como en dirección $y$ y se contaron únicamente eventos relativamente circulares, compatibles con la forma de una gaussiana $2D$. Para filtrar eventos por producidos por efecto Compton en el bulk del ccd por radiación ambiente de alta energía, se estableció un corte de calidad en el tamaño de los clusters, para quedarse únicamente con los eventos producidos en los primeros $30\,\si{\mu m}$ de la parte trasera del CCD. El valor medio del tamaño de los clusters resultantes luego de estos cortes de calidad fue de $12.4 \pm 2.7$ píxeles.\\
 \indent \textit{Ruido de lectura} La probabilidad de contar un electrón más o menos (respecto del numero real de electrones) en los píxeles que constituyen los clusters es $p$. Teniendo en cuenta la distribución de tamaños de los clusters, eventual inner or external mis classification introduce un sesgo tan bajo como $0.1\,e^{-}$ y un ruido de lectura $\sigma_{RN} = 0.5\,e^{-}\si{rms/cluster}$. Sin embargo $\sigma_{RN}$ constituye la principal contribución a la incerteza de la energía de creación electrón-hueco.\\
 \indent \textit{Efecto de las corrientes oscuras:} Las corrientes oscuras fueron medidas en las mismas condiciones experimentales pero sin la fuente radioactiva de $\prescript{55}{}{\mbox{Fe}}$. Se calculó como la relación entre los eventos de $1$ electrón y los píxeles vacíos, resultando en $\sim 1 \times 10^{-5}$ electrones por píxel por segundo. Entonces, teniendo en cuenta el valor medio del tamaño de los clusters, se esperan solamente $(0.04 \pm 0.01)$ electrones extra debido a corrientes oscuras durante $10$ minutos  de exposición y lectura de cada imagen. Con lo cual, el efecto de las corrientes oscuras puede ser desestimado sin introducir un sesgo significativo en los resultados.\\
-\indent \textit{Eficiencia de la colección de carga:} Hay dos efectos responsables de degradar el CCE: la recombinación y las ineficiencias en la transferencia de carga. Como ya se discutió antes, el segundo efecto es insignificante cuando se utiliza un \textit{skipper} CCD. La baja temperatura de operación, el silicio muy poco dopado y el alto campo eléctrico ($\sim350\,\si{V/mm}$) en el bulk del CCD, logran prevenir la pérdida de carga por efecto de recombinación. Como resultado, en el volumen activo de un fully depleted detector CCD, CCE puede ser considerado esencialmente $1$ para todos los fines prácticos. Los CCD back iluminated en astronomía se tratan para tener una pequeña entrada de luz con muy baja reflecitividad\footnote{Acá van dos citaswe}\\
+\indent \textit{Eficiencia de la colección de carga:} Hay dos efectos responsables de degradar el CCE: la recombinación y las ineficiencias en la transferencia de carga. Como ya se discutió antes, el segundo efecto es insignificante cuando se utiliza un \textit{Skipper}-CCD. La baja temperatura de operación, el silicio muy poco dopado y el alto campo eléctrico ($\sim350\,\si{V/mm}$) en el bulk del CCD, logran prevenir la pérdida de carga por efecto de recombinación. Como resultado, en el volumen activo de un fully depleted detector CCD, CCE puede ser considerado esencialmente $1$ para todos los fines prácticos. Los CCD back iluminated en astronomía se tratan para tener una pequeña entrada de luz con muy baja reflecitividad\footnote{Acá van dos citaswe}\\
 \indent \textit{trampas:} El CCD puede sufrir la presencia de trampas capaces de introducir irregularidades durante el proceso de lectura. Dado que estas trampas liberan cargas con una distribución exponencial en el tiempo, se espera que esas columnas tengan un número alto de eventos de un electrón (hot columns). Para asegurarse que los resultados no están sesgados por este proceso, se identificaron y enmascararon todas las hot columns. A pesar de seguir esta regla, por demás conservadora, no hubo un impacto significativo en los resultados finales.\\
-\indent Más aún, como una forma de asegurarse, se realizó el cálculo del factor de Fano para $20$ intervalos de $20$ columnas cada uno. Como resultado, se observó la fluctuación esperada cercana a los valores globales sin puntos outliers. Esto también prueba que no hay un efecto significativo debido a las trampas en el serial register. Sin embargo, se compararon el número de cargas por píxel en la primera y segunda medición en el nodo de sensado, asegurando que no hayan cargas faltantes durante los skippering steps.\\
+\indent Más aún, como una forma de asegurarse, se realizó el cálculo del factor de Fano para $20$ intervalos de $20$ columnas cada uno. Como resultado, se observó la fluctuación esperada cercana a los valores globales sin puntos outliers. Esto también prueba que no hay un efecto significativo debido a las trampas en el serial register. Sin embargo, se compararon el número de cargas por píxel en la primera y segunda medición en el nodo de sensado, asegurando que no hayan cargas faltantes durante los Skippering steps.\\
 %\indent \textit{Ajuste no bineado de picos:} Los picos de los rayos $X$ $K_{\alpha}$ y $K_{\beta}$ se ajustaron usando la verosimilitud de la ecuación
 %
 % \begin{align*}
@@ -232,7 +331,7 @@ Esta fuente se posicionó enfrentando a la parte trasera del sensor y a unos $40
 % \centering
 % \begin{tabular}{@{}ccccccccc@{}}
 % \toprule
-% $X_{k}$ &
+% $X_{K}$ &
 %   $\mu$ &
 %   $\Delta \mu$ &
 %   $\sigma$ &
@@ -266,29 +365,6 @@ Los resultados están en acuerdo con trabajos pioneros como Ryan et al, que casi
 \indent Kotov et. al, usando CCD convencional a $185\,\si{K}$ ha reportado $(3.650 \pm 0.009)\,\si{eV}$ y $F = 0.128 \pm 0.001$. De acuerdo con el gradiente informado por Lowe et.al, el desacuerdo con los resultados presentados acá pueden ser solamente parcialmente explicados como consecuencia de las diferencias en la temperatura. Se observó un excelente acuerdo con los valores publicados por Lowe et. al. En su trabajo se midio la energía de creación electrón-hueco $\varepsilon_{\eh}$ como función de la temperatura y, de acuerdo con lo que reportan, $\varepsilon_{\eh} = (3.743 \pm 0.090)\,\si{eV}$ y $F = 0.118 \pm 0.004$ es lo que se debería esperar para $123\,\si{K}$.\\
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Motivación - buscar título}
-\noindent Este trabajo se centró en la determinación del factor de Fano y de la energía de creación electrón-hueco, para energías por debajo de los $2\,\si{keV}$, utilizando mediciones preexistentes. Más precisamente, para las energías de los rayos $X$ de fluorescencia del Aluminio de $1486\,\si{eV}$ y del Flúor de $677\,\si{eV}$. Con el fin de que la determinación de estas características esté lo menos sesgada posible debido al fondo presente en las imágenes, tanto por ruido del sensor, como por eventos que no son de interés, fue necesario realizar un análisis profundo de los datos.\\
-\indent El fondo presente en las imágenes consiste principalmente en píxeles cuya carga es producida por fluctuaciones térmicas en la red cristalina del Silicio del sensor (corrientes oscuras), por eventos de dispersión producidos por rebotes dentro del dispositivo de medición y que no deseados, y por eventos muy penetrantes provenientes del exterior, como por ejemplo, muones.\\
-\indent El análisis consistió estudiar el efecto que produce el fondo de las imágenes sobre los eventos de interés: la aglomeración de píxeles con cargas de entre $1$ y $2$ electrones al rededor de los clusters, y la carga extra añadida sobre ellos. En muchos casos resulta que los píxeles con fondo se aglutinan a los clusters, aumentando su tamaño y su carga, o incluso también haciendo de puente entre dos clusters vecinos. Estos son dos efectos indeseados, primero porque sesga la cantidad de carga real en un evento de interés y segundo porque los algoritmos de clusterizacion podrían ignorarlos al no cumplir con los cortes de calidad impuestos, tanto por forma como por cantidad de carga esperada.\\
-\indent Es entonces que es necesario utilizar un umbral de detección que ignore estos píxeles con carga menor o igual a $2$ electrones, de forma de evitar el aglutinamiento de píxeles con fondo a los clusters de interés y así aumentar la estadística en el conteo de eventos. Pero también es necesario lograr caracterizar este fondo para corregir el sesgo introducido por el nuevo umbral de detección, el cual, también eliminará píxeles con carga genuina. Es por eso que en este trabajo se propuso un análisis de las imágenes para poder determinar el umbral más conveniente a utilizar y recuperar la mayor cantidad de estadística posible, además de un método para estimar cuántos eventos genuinos son removidos y cuántos eventos espurios hay que remover de los clusters para mejorar así las incertezas del factor de Fano y la energía de creación electrón-hueco a bajas energías.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Organización de la tesis}
-Esto lo escribo al final y es un resumen de como está armada la tesis.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\input{SimulacionesMC}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Mediciones y configuración\\ experimental}
-Acá iria una descripción de cómo se realizaron las mediciones, ver paper de Darío. Configuración experimental, mediciones y resultados crudos.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -383,7 +459,7 @@ Una vez que se extraen los píxeles de mayor carga, se promedian todas las imág
 \end{itemize}
 
 \begin{figure}[h]
-%Para reproducir esta figura hay que ir al directorio /home/igna/Escritorio/Tesis2021/Figs/pys_para_plots y correr skipper_cuadrantes_plot.py
+%Para reproducir esta figura hay que ir al directorio /home/igna/Escritorio/Tesis2021/Figs/pys_para_plots y correr Skipper_cuadrantes_plot.py
     \centering
     \includegraphics[scale=0.4]{Figs/1ePromedio.pdf}
     \caption{\footnotesize{Imágenes promedio para los $4$ cuadrantes del sensor. Puede verse en la escala de la derecha que los valores más altos que se obtienen rondan el $0.3$, lo cual, interpretado como una probabilidad es un $30\,\%$ de probabilidad de que en ese píxel se encuentre un evento de un electrón. En general se ve que los promedios pueden estar entre $0.1$ y $0.2$ aproximadamente. Es decir, para los cuadrantes funcionales del sensor, cada pixel tiene una probabilidad de tener un único evento que ronda entre el $10\%$ y el $20\%$.}}
