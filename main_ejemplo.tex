@@ -1,0 +1,311 @@
+\documentclass[a4paper,12pt]{report}
+%Inicia preámbulo
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+%\usepackage[T1]{fontenc}
+\usepackage{titlesec}
+\usepackage{setspace}
+\setlength{\parskip}{1em}
+\usepackage{mathptmx}%tipografía 'Time' en texto y ecuaciones
+\usepackage[a4paper, hmargin=2.54 cm, vmargin= 2.54 cm]{geometry}
+\usepackage[draft]{graphicx}
+%\usepackage[final]{graphicx}
+% \usepackage{subfigure}
+\usepackage{subcaption}
+\usepackage{amsmath,amssymb}%escritura de ecuaciones
+\usepackage{afterpage}
+%\usepackage[labelfont=bf,centerlast,font=normalsize]{caption}
+\usepackage{color}
+\usepackage{enumerate}
+%\usepackage{enumitem}
+\usepackage{lscape}
+\usepackage{multicol}
+\usepackage{verbatim}
+\usepackage{appendix}
+\usepackage{array}
+\newcommand{\dr}[1]{\textcolor{red}{[DR: #1]}}
+\newcommand{\ka}[1]{\textcolor{blue}{[KA: #1]}}
+\newcommand{\Fe}{$^{55}$Fe}
+\renewcommand{\appendixname}{Apéndices}
+\renewcommand{\appendixtocname}{Apéndices}
+\renewcommand{\appendixpagename}{Apéndices}
+\usepackage{hyperref}%hyperlinking; should be loaded at the end of the preamble
+
+\addto\captionsspanish{\renewcommand*\contentsname{Indice}}
+\addto\captionsspanish{\renewcommand{\tablename}{Tabla}}
+\addto\captionsspanish{\renewcommand*{\bibname}{Referencias}}%cambia el nombre de la 'Bibliografía' por 'Referencias'
+\titleformat{\chapter}[hang]{\bfseries\Large}{\thechapter.}{12pt}{\bfseries\Large}
+\titleformat{\section}[hang]{\bfseries\large}{\thesection}{12pt}{\bfseries\large}
+\graphicspath{ {Graficos/} }
+\setlength{\parindent}{10pt}
+%Finaliza preámbulo
+
+\begin{document}
+
+%%%%%%%% carátula %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{titlepage}
+    \begin{center}
+    \doublespacing
+
+    \vspace*{150pt}
+    \textbf{Calibración absoluta de sensores CCD utilizando la tecnología Skipper}\\
+
+    \vspace*{20pt}
+    Kevin Daniel Andersson
+
+    \vspace{230pt}
+    Tesis de Licenciatura en Ciencias Físicas\\Facultad de Ciencias Exactas y Naturales\\Universidad de Buenos Aires\\\vspace{30pt}Marzo 2021
+    \end{center}
+
+%------PÁGINA VACIA ------------------
+\newpage
+\thispagestyle{empty} \mbox{}
+\thispagestyle{empty}
+%-------------------------------
+\end{titlepage}
+
+
+%%%%%%%%%%%%  segunda pagina %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{empty}
+TEMA: Física de partículas - Detectores Skipper CCD.
+
+ALUMNO: L.U. N$^\circ\ 218/15$
+
+LUGAR DE TRABAJO: Silicon Detector Facility (SiDet) - Fermi National Accelerator Laboratory
+
+DIRECTOR: Dr. Darío P. Rodrigues F. Maltéz
+
+CODIRECTOR: Juan Cruz Estrada Vigil
+
+FECHA DE INICIACIÓN: Septiembre de 2019
+
+FECHA DE FINALIZACIÓN:  2020 
+
+FECHA DE EXAMEN:  11 de Marzo de 2021
+
+INFORME FINAL APROBADO POR:
+\vfill
+\begin{multicols}{2}    
+\rule[0pt]{2.5in}{0.5pt}\\
+Autor: Kevin D. Andersson
+\vspace{3em}
+
+\rule[0pt]{2.5in}{0.5pt}\\
+Director: Dr. Dario Rodrigues
+\vspace{3em}
+   
+\rule[0pt]{2.5in}{0.5pt}\\
+Profesora de Tesis de Licenciatura
+    
+\columnbreak
+\rule[0pt]{2.5in}{0.5pt}\\
+Jurado 
+\vspace{3em}
+    
+\rule[0pt]{2.5in}{0.5pt}\\
+Jurado 
+\vspace{3em}
+    
+\rule[0pt]{2.5in}{0.5pt}\\
+Jurado 
+\end{multicols}  
+%------PÁGINA VACIA ------------------
+\newpage
+\thispagestyle{empty} \mbox{}
+\thispagestyle{empty}
+%%%%%%% fin segunda hoja %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%% dedicatoria %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\thispagestyle{empty}
+ \vspace*{150pt}
+\begin{flushright}
+\textit{A mis viejos}
+\end{flushright}
+%------PÁGINA VACIA ------------------
+\newpage
+\thispagestyle{empty} \mbox{}
+\thispagestyle{empty}
+%%%% fin dedicatoria %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%% resumen %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\thispagestyle{empty}
+\begin{center}\large{\textbf{Resumen}}\end{center}
+\spacing{1.30}
+\input{Resumen.tex}
+
+%------PÁGINA VACIA ------------------
+\newpage
+\thispagestyle{empty} \mbox{}
+\thispagestyle{empty}
+%-------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%% indice %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\pagenumbering{roman} %numero de pagina en números romanos
+\setcounter{page}{1}  %comienza a contar desde 1
+\tableofcontents % Indice
+%%% La siguiente página vacía se agregó para el
+% el siguiente capítulo comience en hoja impar.
+%------PÁGINA VACIA ------------------
+\newpage
+\thispagestyle{empty} \mbox{}
+\thispagestyle{empty}
+%-------------------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\pagenumbering{arabic}  %numero de pagina numeración arábiga
+\setcounter{page}{1}    %comienza a contar desde 1
+%------------------------------------------------------------------------------
+\singlespace
+\chapter{Introducción}
+\spacing{1.30}
+\input{CapIntroduccion.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\singlespace
+\chapter{Detectores Skipper-CCD}
+\label{cap:detectores}
+\spacing{1.30}
+\input{CapDetectores.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% La siguiente página vacía se agregó para el
+% el siguiente capítulo comience en hoja impar.
+%------PÁGINA VACIA ------------------
+% \newpage
+% \thispagestyle{empty} \mbox{}
+% \thispagestyle{empty}
+% %-------------------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\singlespace
+\chapter{Calibración absoluta de la relación ADU-electrón} \label{cap: calibracion}
+\spacing{1.3}
+\input{CapCalibracion.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\singlespace
+\chapter{Determinación absoluta del factor de Fano y la energía de creación e-h}
+\label{cap:fano}
+\spacing{1.3}
+\input{CapFano.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% La siguiente página vacía se agregó para el
+% el siguiente capítulo comience en hoja impar.
+%------PÁGINA VACIA ------------------
+%\newpage
+%\thispagestyle{empty} \mbox{}
+%\thispagestyle{empty}
+%-------------------------------
+\singlespace
+\chapter{Factor de Fano en energías por debajo de 2 keV} \label{cap:bajaenergia}
+\spacing{1.3}
+\input{CapBajaEnergia.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% La siguiente página vacía se agregó para el
+% el siguiente capítulo comience en hoja impar.
+%------PÁGINA VACIA ------------------
+% \newpage
+% \thispagestyle{empty} \mbox{}
+% \thispagestyle{empty}
+%-------------------------------
+\chapter{Conclusiones}\label{conclusiones}
+\spacing{1.3}
+\input{Conclusiones.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{99}
+\addcontentsline{toc}{chapter}{Referencias}%\addcontentsline:agrega una entrada a la lista especificada{extensión del archivo en el que se escribirá información: toc =table of contents}{nombre de la sección}{entrada}
+
+%Introducción:
+\bibitem{connie}
+A. Aguilar-Arevalo, X. Bertou, C. Bonifazi, G. Cancelo, A. Castañeda, B. Cervantes Vergara, C. Chavez, J. C. D’Olivo, J. C. dos Anjos, J. Estrada, and et al., \textit{Exploring low-energy neutrino physics with the coherent neutrino nucleus interaction experiment}, Physical Review D \textbf{100} (2019), 10.1103/physrevd.100.092005.
+\bibitem{sensei}
+O. Abramoff, L. Barak, I. M. Bloch, L. Chaplinsky, M. Crisler, Dawa, A. Drlica-Wagner, R. Essig, J. Estrada, E. Etzion, and et al., \textit{Sensei: Direct-detection constraints on sub-GeV dark matter from a shallow underground run using a prototype skipper ccd}, Physical Review Letters \textbf{122} (2019), 10.1103/physrevlett.122.161801.
+\bibitem{DESI}
+C.J. Bebek, J.H. Emes, D.E. Groom, S. Haque, S.E. Holland, A. Karcher et al., \textit{CCD development for the Dark Energy Spectroscopic Instrument}, 2015 JINST \textbf{10} C05026.
+\bibitem{DECam}
+DES collaboration, B. Flaugher et al., \textit{The Dark Energy Camera}, Astron. J. \textbf{150} (2015) 150
+\bibitem{e-h_1}
+R. D. Ryan, \textit{Precision measurements of the ionization energy and its temperature variation in high purity silicon radiation detectors}, IEEE Transactions on Nuclear Science \textbf{20}, 473–480 (1973).
+\bibitem{e-h_2}
+P. Lechner, R. Hartmann, H. Soltau, and L. Strüder, \textit{Pair creation energy and fano factor of silicon in the energy range of soft x-rays}, Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment \textbf{377}, 206 – 208 (1996), proceedings of the Seventh European Symposium on Semiconductor.
+\bibitem{e-h_3}
+F. Scholze, H. Rabus, and G. Ulm, \textit{Mean energy required to produce an electron-hole pair in silicon for photons of energies between 50 and 1500 ev}, Journal of Applied Physics \textbf{84}, 2926–2939 (1998),
+https://doi.org/10.1063/1.368398.
+\bibitem{skipper}
+James R. Janesick. \textit{Scientific Charge-Couple Devices}. Press Monographs. Society of Photo Optical, 2001.
+\bibitem{Fano_original}
+U. Fano, \textit{Ionization yield of radiations. ii. the fluctuations of the number of ions}, Phys. Rev. \textbf{72}, 26–29 (1947).
+%\bibitem{Si_band_gap}
+%http://hyperphysics.phy-astr.gsu.edu
+\bibitem{sensei2020}
+L. Barak, I. M. Bloch, M. Cababie, G. Cancelo, L. Chaplinsky, F. Chierchie, M. Crisler, A. Drlica-Wagner, R. Essig, J. Estrada, E. Etzion, G. Fernandez Moroni, D. Gift, S. Munagavalasa, A. Orly, D. Rodrigues, A. Singal, M. Sofo Haro, L. Stefanazzi, J. Tiffenberg, S. Uemura, T. Volansky, T. T. Yu, \textit{Direct-Detection Results on sub-GeV Dark Matter from a New Skipper-CCD} arXiv:2004.11378 (2020).
+
+\bibitem{moroni_2012}
+Moroni, G. F., Estrada, J., Cancelo, G., Holland, S. E., Paolini, E. E., Diehl, H. T. \textit{Subelectron readout noise in a skipper ccd fabricated on high resistivity silicon}. Experimental Astronomy, \textbf{34} (1), 43–64, 2012.
+%Detectores:
+\bibitem{MOS}
+Chenming Calvin Hu, \textit{Modern Semiconductor Devices for Integrated Circuits}, Ch. 5 2010
+\bibitem{correlated-double-sampling}
+White, M. H., Lampe, D. R., Blaha, F. C., Mack, I. A. \textit{Characterization of surface channel ccd image arrays at low light levels}. Solid-State Circuits, IEEE Journal of, \textbf{9} (1), 1–12, 1974.
+\bibitem{fully-depleted-CCD}
+Holland, S., Bebek, C., Kolbe, W., Lee, J. \textit{Physics of fully depleted ccds}. Journal of Instrumentation, \textbf{9} (03), C03057, 2014
+
+\bibitem{skipper_rn}
+J. Tiffenberg, M. Sofo-Haro, A. Drlica-Wagner, R. Essig, Y. Guardincerri, S. Holland, T. Volansky, and T.-T. Yu, \textit{Single-Electron and Single-Photon Sensitivity with a Silicon Skipper CCD}, Phys. Rev. Lett. \textbf{119}, 131802 (2017).
+
+%Calibracion:
+\bibitem{tesis_andre}
+Tesis de Licenciatura de André Donadon Servelle. \textit{Determinación del factor de Fano en Si utilizando un detector skipper CCD}. (2019). 
+\bibitem{linealidad_convencional}
+G. M. Bernstein, T. M. C. Abbott, S. Desai, D. Gruen, R. A. Gruendl, M. D. Johnson, H. Lin, F. Menanteau, E. Morganson, E. Neilsen, K. Paech, A. R. Walker, W. Wester, and B. Y. and, \textit{Instrumental response model and detrending for the dark energy camera}, Publications of the Astronomical Society of the Pacific \textbf{129}, 114502 (2017).
+
+%Fano:
+\bibitem{Fe_decaimiento}
+http://www.nucleide.org/
+\bibitem{Fe_table}
+J. W. Fowler, B. K. Alpert, D. A. Bennett, W. B. Doriese, J. D. Gard,
+G. C. Hilton, L. T. Hudson, Y.-I. Joe, K. M. Morgan, G. C. O’Neil, C. D.Reintsema, D. R. Schmidt, D. S. Swetz, C. I. Szabo, and J. N. Ullom, \textit{A reassessment of absolute energies of the x-ray l lines of lanthanide metals}, Metrologia \textbf{54}, 494–511 (2017).
+\bibitem{difusion}
+Guillermo Fernandez Moroni, Miguel Sofo Haro, Javier Tiffenberg, Gustavo Cancelo, Eduardo E. Paolini, Juan Estrada, Xavier Bertou, \textit{Mathematical model of point events in CCD images}. 2015 XVI Workshop on Information Processing and Control (publicado el 23 de Junio del 2016 en IEEE Xplore)
+\bibitem{difusion_eq}
+S. Holland, D. Groom, N. Palaio, R. Stover, and M. Wei, IEEE Trans. Electron Devices \textbf{50}, 225 (2003).
+\bibitem{antecedentes_25}
+B. Lowe and R. Sareen, \textit{A measurement of the electron–hole pair creation energy and the fano factor in silicon for 5.9kev x-rays and their temperature dependence in the range 80–270k}, Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment \textbf{576}, 367 – 370 (2007).
+\bibitem{antecedentes_26}
+K. J. McCarthy, A. Owens, A. Holland,  A. A. Wells, \textit{Modelling the X-ray response of charge coupled devices
+Author links open overlay panel}, Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment \textbf{362}, 538 (1995).
+\bibitem{antecedentes_27}
+A. Owens, G. Fraser, and K. J. McCarthy, \textit{On the experimental determination of the Fano factor in Si at soft X-ray wavelengths}, Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment \textbf{491}, 437 (2002).
+\bibitem{antecedentes_28}
+K. Ramanathan et al., \textit{Measurement of low energy ionization signals from Compton scattering in a charge-coupled device dark matter detector}, Phys. Rev. D \textbf{96}, 042002 (2017)
+\bibitem{paper_fano}
+D. Rodrigues, K. Andersson, M. Cababie, A. Donadon, G. Cancelo, J. Estrada, G. Fernandez-Moroni, R. Piegaia, M. Senger, M. Sofo Haro, L. Stefanazzi, J. Tiffenberg, S. Uemura, \textit{Absolute measurement of the Fano factor using a Skipper-CCD}, arXiv:2004.1149 (2020). Actualmente en revisión por la revista Nuclear Instrument and Method A.
+\bibitem{PCC}
+Guillermo Fernandez-Moroni, Kevin Andersson, Ana Botti, Juan Estrada, Dario Rodrigues, and Javier Tiffenberg. \textit{Charge collection efficiency in back-illuminated charge-coupled devices}, arXiv:2007.04201, (2020).
+\bibitem{Rodrigues2021}
+Rodrigues et al. \textit{On the pdf charge distribution in X-Ray measurements using CCD}. Comunicación interna.
+
+%Bajas Energías
+\bibitem{Kotov_2018}
+Kotov, Ivan V., Neal, H., and O'Connor, P. Thu. \textit{Pair creation energy and Fano factor of silicon measured at 185 K using 55Fe X-rays}. United States. doi:10.1016/j.nima.2018.06.022. %https://www.osti.gov/servlets/purl/1456908.
+\bibitem{kapton}
+https://physics.nist.gov/
+
+
+
+\end{thebibliography}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\singlespace
+\chapter*{Agradecimientos}
+\addcontentsline{toc}{chapter}{Agradecimientos}
+\spacing{1.00}
+\input{Agradecimientos.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
