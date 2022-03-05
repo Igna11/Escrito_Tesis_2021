@@ -1,43 +1,40 @@
-\documentclass[a4paper,12pt]{report}
+\documentclass[a4paper,12pt]{report} % ok
 %Inicia preámbulo
-\usepackage[utf8]{inputenc}
-\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc} % ok
+\usepackage[spanish]{babel} % ok
 %\usepackage[T1]{fontenc}
-\usepackage{titlesec}
-\usepackage{setspace}
-\setlength{\parskip}{1em}
-\usepackage{mathptmx}%tipografía 'Time' en texto y ecuaciones
-\usepackage[a4paper, hmargin=2.54 cm, vmargin= 2.54 cm]{geometry}
-\usepackage[draft]{graphicx}
-%\usepackage[final]{graphicx}
-% \usepackage{subfigure}
-\usepackage{subcaption}
-\usepackage{amsmath,amssymb}%escritura de ecuaciones
-\usepackage{afterpage}
-%\usepackage[labelfont=bf,centerlast,font=normalsize]{caption}
-\usepackage{color}
-\usepackage{enumerate}
-%\usepackage{enumitem}
-\usepackage{lscape}
-\usepackage{multicol}
-\usepackage{verbatim}
-\usepackage{appendix}
-\usepackage{array}
-\newcommand{\dr}[1]{\textcolor{red}{[DR: #1]}}
-\newcommand{\ka}[1]{\textcolor{blue}{[KA: #1]}}
-\newcommand{\Fe}{$^{55}$Fe}
-\renewcommand{\appendixname}{Apéndices}
-\renewcommand{\appendixtocname}{Apéndices}
-\renewcommand{\appendixpagename}{Apéndices}
-\usepackage{hyperref}%hyperlinking; should be loaded at the end of the preamble
+\usepackage{titlesec} % ok
+\usepackage{setspace} % ok 
+\setlength{\parskip}{1em} % ok
+\usepackage{mathptmx} %tipografía 'Time' en texto y ecuaciones NO WAY
+\usepackage[a4paper, hmargin=2.54 cm, vmargin= 2.54 cm]{geometry} % Ok (por ahora) Por qué 1 pulgada? por qué no 2cm? Negociar 
+\usepackage[draft]{graphicx} % ok
 
-\addto\captionsspanish{\renewcommand*\contentsname{Indice}}
-\addto\captionsspanish{\renewcommand{\tablename}{Tabla}}
-\addto\captionsspanish{\renewcommand*{\bibname}{Referencias}}%cambia el nombre de la 'Bibliografía' por 'Referencias'
-\titleformat{\chapter}[hang]{\bfseries\Large}{\thechapter.}{12pt}{\bfseries\Large}
-\titleformat{\section}[hang]{\bfseries\large}{\thesection}{12pt}{\bfseries\large}
-\graphicspath{ {Graficos/} }
-\setlength{\parindent}{10pt}
+\usepackage{afterpage} % ok
+\usepackage{subcaption} % ok 
+\usepackage{amsmath,amssymb} % ok escritura de ecuaciones
+\usepackage{color} % ok ya tengo xcolor
+\usepackage{enumerate} % ok, aunque no creo usarlo
+\usepackage{lscape} % ok
+\usepackage{multicol} % no lo voy a usar
+\usepackage{verbatim} % ok
+\usepackage{appendix} % ok
+\usepackage{array} % ok
+\newcommand{\dr}[1]{\textcolor{red}{[DR: #1]}} % esto para qué lo querría?
+\newcommand{\ka}[1]{\textcolor{blue}{[KA: #1]}} % idem el anterior
+\newcommand{\Fe}{$^{55}$Fe} % no hace falta
+\renewcommand{\appendixname}{Apéndices} % no sé bien a qué va
+\renewcommand{\appendixtocname}{Apéndices} % idem
+\renewcommand{\appendixpagename}{Apéndices} % idem
+\usepackage{hyperref}%hyperlinking; should be loaded at the end of the preamble: done
+
+\addto\captionsspanish{\renewcommand*\contentsname{Indice}} % ok
+\addto\captionsspanish{\renewcommand{\tablename}{Tabla}} % no hace falta
+\addto\captionsspanish{\renewcommand*{\bibname}{Referencias}} % cambia el nombre de la 'Bibliografía' por 'Referencias' ok
+\titleformat{\chapter}[hang]{\bfseries\Large}{\thechapter.}{12pt}{\bfseries\Large} % ok pero no sé si me gusta que tenga el mismo tamaño que las sections
+\titleformat{\section}[hang]{\bfseries\large}{\thesection}{12pt}{\bfseries\large} % ok
+\graphicspath{ {Graficos/} } % no hace falta
+\setlength{\parindent}{10pt} % ok, pero no sé si me gusta tan poca indentación
 %Finaliza preámbulo
 
 \begin{document}
@@ -45,16 +42,16 @@
 %%%%%%%% carátula %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{titlepage}
     \begin{center}
-    \doublespacing
-
-    \vspace*{150pt}
-    \textbf{Calibración absoluta de sensores CCD utilizando la tecnología Skipper}\\
-
-    \vspace*{20pt}
-    Kevin Daniel Andersson
-
-    \vspace{230pt}
-    Tesis de Licenciatura en Ciencias Físicas\\Facultad de Ciencias Exactas y Naturales\\Universidad de Buenos Aires\\\vspace{30pt}Marzo 2021
+        \doublespacing
+    
+        \vspace*{150pt}
+        \textbf{Calibración absoluta de sensores CCD utilizando la tecnología Skipper}\\
+    
+        \vspace*{20pt}
+        Kevin Daniel Andersson
+    
+        \vspace{230pt}
+        Tesis de Licenciatura en Ciencias Físicas\\Facultad de Ciencias Exactas y Naturales\\Universidad de Buenos Aires\\\vspace{30pt}Marzo 2021
     \end{center}
 
 %------PÁGINA VACIA ------------------

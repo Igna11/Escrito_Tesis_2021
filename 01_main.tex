@@ -1,0 +1,47 @@
+\input{02_Preambulo.tex}
+
+\pagestyle{fancy}
+\lhead{{\it Ignacio Martín\\ Gómez Florenciano}}
+\fancyhead[R]{\nouppercase{\slshape \leftmark}} % <- no sé qué es esto
+
+\setlength{\headheight}{16pt} %Soluciona el warning de " fancyhdr \headheight is to small. use at least 14.9999 o algo así decía << No de nuevo decía >>
+
+\marginsize{2cm}{2cm}{2cm}{2cm}
+\renewcommand{\baselinestretch}{1.3} % separa los renglones
+
+\input{03_Caratula}
+
+\begin{document}
+    
+    \maketitle
+
+    \input{04_HojadeFirmas}
+    
+    \input{05_Dedicatoria}
+
+	\input{06_Resumen}
+    
+    \input{07_Indice}
+
+    \input{08_Chap1_Introduccion}
+    
+    \input{08_Chap2_Simulaciones}
+    
+    \input{08_Chap3_Mediciones}
+    
+    \input{08_Chap4_Analisis}
+    
+    \input{08_Chap5_Resultados}
+    
+	\input{08_Chap6_Conclusiones}
+	
+	\input{Apendice.tex}
+	
+    \addcontentsline{toc}{chapter}{Referencias}
+    \bibliography{Bibliografia}% Produces the bibliography via BibTeX.
+    \bibliographystyle{unsrt}% Produces the bibliography via BibTeX.
+
+    \input{Agradecimientos}
+    %\pagestyle{empty}
+    
+\end{document}
