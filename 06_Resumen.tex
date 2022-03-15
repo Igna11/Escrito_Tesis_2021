@@ -3,22 +3,19 @@
     {\Large \textbf{Resumen}}
 \end{center}
 \spacing{1.3}
-\noindent Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas laoreet felis nunc, non
-imperdiet orci interdum nec. Sed faucibus tortor vel mauris pellentesque, condimentum feugiat
-tellus pharetra. Sed eget sodales tellus. In vitae convallis augue. Duis quis congue quam. Integer
-tristique mi quis congue iaculis. Phasellus lacinia nulla magna, eget consectetur nisi pharetra
-id. Phasellus lacinia dolor at tincidunt bibendum. Nunc ac dui ultricies, malesuada orci quis,
-vulputate ante.\\
-\indent In blandit congue hendrerit. Praesent fringilla varius elementum. Maecenas luctus sapien tor-
-tor. Suspendisse potenti. Nulla vestibulum, justo ac ultrices aliquam, leo tortor convallis odio,
-ut efficitur mi elit ultricies eros. Duis vel turpis dui. Sed sagittis magna sit amet mollis fer-
-mentum. Morbi aliquet, augue et fermentum hendrerit, urna tortor tincidunt dolor, eget tempus
-augue nisl vitae neque. Sed mattis gravida est sit amet consequat. Nulla molestie diam vel purus
-volutpat pellentesque.
+\noindent \textbf{<<Breve introducción>>} El ruido de lectura en los sensores CCDs ha sido una limitación inherente a la electrónica de estos dispositivos, imponiendo límites en la resolución con que podía medirse la carga en ellos generada. Los sensores \textit{Skipper} CCDs, por su parte, han logrado superar esta barrera impuesta por la electrónica al poder reducir el ruido de lectura tanto como se desee, haciendo desaparecer prácticamente por completo el límite en la resolución con la que puede medirse la carga.
 
-\begin{equation}
-    \sqrt{12382434198312389123012939123091}
-\end{equation}
+\textbf{<<Motivación>>} Sin embargo, el ruido de lectura no es el único factor que está en juego al momento de procesar mediciones realizadas con este tipo de sensores. En toda medición, inevitablemente, existe un fondo que proviene fuentes de que no son de interés para el experimento dado. Particularmente, para el caso de experimentos donde se quiere medir con precisión la energía entregada al material por medio de ionización de cargas de una determinada fuente radioactiva, es necesario poder reconocer y separar el fondo producto de eventos indeseados de los eventos de interés.
+
+\textbf{<<Objetivo de la tesis>>} En esta tesis se estudió el fondo presente en un conjunto de más de $900$ imágenes tomadas por el sensor \textit{Skipper} CCD de forma de caracterizarlo con precisión y reconocer cuándo los eventos son producto del fondo y cuándo son producto de la fuente de interés. Una vez logrado esto, se utilizó esta información para corregir el sesgo que el fondo supone en la determinación de magnitudes como el factor de Fano y la energía de creación electrón-hueco del silicio para energía inferiores a los $2\,\si{keV}$.
+
+\textbf{<<Trabajo realizado>>} Durante el desarrollo de este trabajo se estudió por medio de simulaciones Monte Carlo el fenómeno de ionización. Partiendo de un modelo muy sencillo para luego adoptar un modelo más sofisticado. De estas simulaciones se obtuvieron resultados para el factor de Fano semejantes a los medidos experimentalmente. En lo que respecta al tratamiento de datos, se probaron diferentes cortes de calidad sobre las imágenes, para la detección de eventos de interés, de forma de elegir el que maximice la estadística y minimice el sesgo añadido a estos eventos. Además se calcularon las correcciones a aplicarse sobre las magnitudes de interés para extraer el sesgo de las mismas a la vez que se mejoró su incerteza por el aumento en la estadística.
+
+\textbf{<<Resultados>>} Gracias a estos análisis, se determinaron magnitudes como el factor de Fano con una mejora en su incerteza del $N\,\%$ y la energía de creación electrón-hueco con una mejora del $M\,\%$.
+
+\textbf{<<Perspectivas a futuro?>>} Los resultados presentes en este trabajo para los magnitudes antes mencionadas presentan una mejora en su determinación, lo cual es de vital importancia en la caracterización de estos dispositivos en el rango de bajas energías, donde los CCDs convenciales presentan importantes barreras debido al ruido de lectura. Es por esto que la importancia de este trabajo radica en la combinación de la utilización de la tecnología \textit{Skipper} en los CCDs para superar la barrera del ruido por debajo de los $2\,\si{keV}$, a la vez del uso de técnicas de análisis que permitieron mejorar la incerteza de estas magnitudes que, hasta el momento, no había, podido medirse con esta precisión.
+
+
 
 %------PÁGINA VACIA ------------------
 \newpage
