@@ -53,7 +53,39 @@ Los CCD's convencionales son capaces de alcanzar ruidos de lectura del orden de 
 Los sensores \textit{Skipper}-CCD's, por otro lado, permiten disminuir el ruido electrónico de lectura a niveles subelectrónicos gracias a que son capaces de medir la carga en los píxeles de forma no destructiva. Esto permite tomar tantas mediciones como sean necesarias de la carga y estimar la carga real a partir de un promedio sobre el número de mediciones tomadas. El prácticamente ausente ruido de lectura que hace posible la capacidad de medir repetidas veces y de forma no destructiva la carga en cada píxel de un sensor \textit{Skipper}-CCD, tiene un fuerte impacto a energías por debajo de los $5\,\si{keV}$. En particular, por debajo de los $2\,\si{keV}$ la contribución del ruido de lectura de un CCD convencional a la determinación de estas cantidades puede superar el $30\,\%$. 
 Esta es la principal razón que motiva este trabajo, donde se realiza un estudio sistemático del Factor de Fano a bajas energías, entre $1486\,\si{eV}$ (rayos X del Al) y $677\,\si{eV}$ (rayos X del flúor).\\
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Eficiencia de colección de carga y colección parcial de carga}
+\noindent La Eficiencia de Colección de Carga o CCE (\textit{Charge Collection Efficiency}, por sus siglas en inglés) se define como la fracción del total de carga producida durante un evento de ionización que llega a la superficie del píxel del CCD y puede ser finalmente colectada durante el proceso de lectura. Para sensores del tipo \textit{fully depleted} CCD, a los que se les aplican grandes potenciales, la CCE es aproximadamente del $100\,\%$, es decir, toda la carga producida por ionización en el volumen del sensor logra ser colectada y medida. Sin embargo, existen casos donde la eficiencia no alcanza el $100\,\%$ y esto es debido al fenómeno de Colección Parcial de Carga o PCC (\textit{Partial Charge Collection}, por sus siglas en inglés). Este es un efecto que se debe a que en la región de los primeros micrones cercanos a la superficie existe una probabilidad no nula de que la carga generada por ionización sufra recombinación, es decir, que vuelva a enlazarse a un átomo en vez de ser colectada por el píxel del sensor. Este efecto produce una disminución en el número de cargas que finalmente son llevadas a la superficie del sensor. En el esquema de la figura \ref{fig:PCC} puede verse una vista en corte lateral de un CCD, donde debido al ángulo $\theta$ de incidencia de los rayos $X$ de la fuente, estos fotones generan cargas por ionización en la región donde hay recombinación. Una fracción de las cargas iniciales $q_{i}$ logran ser colectadas, dependiendo de la profundidad del sensor donde fue la interacción. También se muestra que si la interacción se da fuera de esta región, toda la carga generada por ionización es colectada y $q_{i} = q_{f}$.
+\begin{figure}[H]
+%Como reproducir este gráfico: correr el script NivelesOcupacionCarga.py ubicado en /Escritorio/Tesis2021/Figs/pys_para_plots y buscar la imagen en /home/igna/Escritorio/Tesis2021/Figs/
+    \centering
+        \includegraphics[scale=.8]{Figs/PCC.pdf}
+    \caption{\footnotesize{Esquema de un CCD con una fuente de rayos $X$. Los fotones penetran en el sensor produciendo una nube de cargas $q_{i}$, de las cuales solo una fracción logra ser colectada. Esta aumentan monótonamente dependiendo de la profundidad de penetración.}}
+    \label{fig:PCC}
+\end{figure}
+La profundidad de la interacción depende del ángulo de incidencia y distribución de probabilidad se puede escribir como
+\begin{equation*}
+    f_{z}(z|\theta) = \frac{\cos{(\theta)}}{\lambda}e^{-z\frac{\cos{(\theta)}}{\lambda}}
+\end{equation*}
+donde $\lambda$ es la longitud de atenuación del fotón y depende de su longitud de onda. $\varepsilon(z)$ es la función \textit{eficiencia de colección de carga}\\
+\indent Si el detector fuera perfecto, el factor de Fano existiría igual. Este no es un problema del detector, viene del proceso de interacción en sí mismo que a la larga es un fenómeno binomial. Sin embargo, lo que sí es un problema del detector es la PCC. Un fotón interactuando con materia es un experimento Bernoulli, una serie de procesos de interacción es un fenómeno binomial y, en consecuencia, en el límite de probabilidades pequeñas y gran número de repeticiones, de Poisson. Por lo tanto, cuán lejos llega es una variable aleatoria con distribución exponencia (La distancia entre dos eventos de poisson es exponencial). Si uno quiere saber cuál es la probabilidad de que un fotón penetre una dada distancia, hay que hacer
+\begin{equation*}
+    e^{-\frac{d}{\tau}}
+\end{equation*}
+con $\tau$ es la attenuation length. La eficiencia de colección de carga viene dada por 
+\begin{equation*}
+    E_{ff}(z) = 1 - e^{-\frac{z}{\tau_{\scaleto{CEE}{2pt}}}}
+\end{equation*}
+que quiere decir que si la interacción se realizó para un dado $z_{0}$, entonces por ejemplo el $70\%$ de la carga logró ser colectada. Para $Z_{0}$ muy chico, la eficiencia es muy chica, para $z_{0}$ creciente, la eficiencia es creciente.
 
+Dada la variable aleatoria: Longitud penetrada hasta interactuar, tiene una distribución exponencial. Dada una energía fija, la longitud que recorre hasta interactuar no es siempre la misma, hay una aleatoria inherente. La distribución de probabilidades de este experimento es exponencial. Si por ejemplo la probabilidad de interactuar en los primeros $3\,\si{\mu m}$ es del $50\%$, la probabilidad de interactuar recién luego de recorridos $80\,\si{\mu m}$ es $10^{-14}$. Esta variable aleatoria se inyecta dentro de la función $E_{ff}(z)$: Función a la que le digo hasta donde llegó la partícula antes de interactuar y devuelve con qué eficiencia colectó la carga.
+
+Se tiene la energía del fotón, se genera un evento aleatorio con distribución exponencial $z_{0}$ que dice qué distancia penetró el fotón antes de interactuar. Esa realización se usa como argumento de $E_{ff}(z) \longrightarrow E_{ff}(z_{0})$. Ese cambio de variables da como resultado 
+\begin{equation*}
+    f_{E_{ff}}(z) = \beta (1 - \varepsilon)^{\beta - 1}
+\end{equation*}
+donde $\beta = \frac{\tau_{\scaleto{CCE}{3pt}}}{\tau_{\scaleto{X}{3pt}}}$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Antecedentes}

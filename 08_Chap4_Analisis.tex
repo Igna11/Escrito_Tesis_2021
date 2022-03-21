@@ -184,24 +184,26 @@ con lo cual, la esperanza para los eventos genuinos es
 Teniendo estos valores puede corregirse el conteo de carga en los clusteres, tanto por exceso como por defecto y así tener una medición más precisa del factor de Fano y la energía de creación electrón-hueco.
 
 \subsection{Corrección del conteo de carga}
-\noindent El punto de todo el análisis anterior era poder generar las herramientas para corregir el conteo de carga que hace el programa de detección de clusters, luego de aplicar un umbral que podría eliminar carga genuina y además poder estimar cuánta carga excedente por corrientes oscuras tiene cada cluster.\\
-\indent Esta corrección se llevó a cabo modificando el código del programa que con \textit{Root} calcula el factor de Fano, la energía de creación electrón-hueco, y otras variables, por medio del ajuste de los espectros de carga. El programa se encarga de procesar todas las imágenes, desechar eventos que tengan carga menor a $2$ electrones (\verb|EPIX = 1.5|), filtrar eventos que no cumplan ciertos criterios (cortes de calidad), buscar los clusters, quedarse únicamente con aquellos que tengan cargas en el entorno de los $180$ electrones y calcular esos valores. Al contar la carga de estos clusters y conociendo el área de los mismos (cantidad de píxeles que los conforman), se agrega y se quita carga en función de los valores hallados antes.\\
-\indent Dado que la distribución de la variable aleatoria \textit{cantidad de eventos por píxel} sigue una distribución poissoniana, de esperanza $\mu$, para cada tipo evento (espurio, genuino o total) se tiene una esperanza. Para calcular la cantidad de carga que se espera que tenga un cluster de $N$ píxeles en el sensor, se puede hacer uso de las propiedades de la esperanza. Sea $Y = \sum\limits_{i = 1}^{N} X_{i}$, donde $X_{i}$ son distintas realizaciones de la variable aleatoria con distribución Poissoniana y $N$ es el número de píxeles del cluster, entonces la esperanza se calcula como
-\begin{equation*}
-    E(Y) = 
-    E
-    \left(
-        \sum\limits_{i=1}^{N} X_{i}
-    \right)
-    = \sum\limits_{i=1}^{N}E(X_{i})
-    = \sum\limits_{i=1}^{N}\mu_{i}
-\end{equation*}
-pero como $X_{i}$ son distintas realizaciones de la misma variable aleatoria, entonces tienen todas la misma esperanza, es decir $\mu_{i} = \mu\ \forall\ i$, con lo cual
-\begin{equation*}
-    E(Y) = N\mu
-\end{equation*}
-con lo cual, la cantidad de carga esperada para un cluster viene dada por la esperanza de la distribución, por la cantidad de píxeles. De esta forma, teniendo una esperanza total $\mu_{T} = \mu_{bgk} + \mu_{g}$, aplicando esta misma receta pueden corregirse los valores de carga por cluster. Si $n_{e}$ es la cantidad de carga medida en un dado cluster, la corrección de este valor de carga será $n_{c}$ y viene dado por
-\begin{equation*}
-    n_{c} = n_{e} + N\mu_{g} - N\mu_{bkg}
-\end{equation*}
-es decir, se agrega la cantidad de carga que se estima se pierde en los bordes por aplicar el umbral \verb|EPIX = 1.5| y se quita la carga estimada por ruido en el interior de los clusters. \textcolor{red}{Acá no me queda del todo claro como era el tema del redondeo: $N\mu_{g}$ y $N\mu_{bkg}$ claramente son float, pero la carga tiene que ser entera. El redondeo donde se hacía?}
+\noindent El punto de todo el análisis anterior era poder generar las herramientas para corregir el conteo de carga que hace el programa de detección de clusters, luego de aplicar un umbral que podría eliminar carga genuina y, además, poder estimar cuánta carga excedente proveniente de fondo tiene cada cluster.\\
+
+Esta va toda nueva. No me queda claro como era la correción
+%\indent Esta corrección se llevó a cabo modificando el código del programa que con \textit{Root} calcula el factor de Fano, la energía de creación electrón-hueco, y otras variables, por medio del ajuste de los espectros de carga. El programa se encarga de procesar todas las imágenes, desechar eventos que tengan carga menor a $2$ electrones (\verb|EPIX = 1.5|), filtrar eventos que no cumplan ciertos criterios (cortes de calidad), buscar los clusters, quedarse únicamente con aquellos que tengan cargas en el entorno de los $180$ electrones y calcular esos valores. Al contar la carga de estos clusters y conociendo el área de los mismos (cantidad de píxeles que los conforman), se agrega y se quita carga en función de los valores hallados antes.\\
+%\indent Dado que la distribución de la variable aleatoria \textit{cantidad de eventos por píxel} sigue una distribución poissoniana, de esperanza $\mu$, para cada tipo evento (espurio, genuino o total) se tiene una esperanza. Para calcular la cantidad de carga que se espera que tenga un cluster de $N$ píxeles en el sensor, se puede hacer uso de las propiedades de la esperanza. Sea $Y = \sum\limits_{i = 1}^{N} X_{i}$, donde $X_{i}$ son distintas realizaciones de la variable aleatoria con distribución Poissoniana y $N$ es el número de píxeles del cluster, entonces la esperanza se calcula como
+% \begin{equation*}
+%     E(Y) = 
+%     E
+%     \left(
+%         \sum\limits_{i=1}^{N} X_{i}
+%     \right)
+%     = \sum\limits_{i=1}^{N}E(X_{i})
+%     = \sum\limits_{i=1}^{N}\mu_{i}
+%\end{equation*}
+%pero como $X_{i}$ son distintas realizaciones de la misma variable aleatoria, entonces tienen todas la misma esperanza, es decir $\mu_{i} = \mu\ \forall\ i$, con lo cual
+%\begin{equation*}
+%    E(Y) = N\mu
+%\end{equation*}
+%con lo cual, la cantidad de carga esperada para un cluster viene dada por la esperanza de la distribución, por la cantidad de píxeles. De esta forma, teniendo una esperanza total $\mu_{T} = \mu_{bgk} + \mu_{g}$, aplicando esta misma receta pueden corregirse los valores de carga por cluster. Si $n_{e}$ es la cantidad de carga medida en un dado cluster, la corrección de este valor de carga será $n_{c}$ y viene dado por
+%\begin{equation*}
+%    n_{c} = n_{e} + N\mu_{g} - N\mu_{bkg}
+%\end{equation*}
+%es decir, se agrega la cantidad de carga que se estima se pierde en los bordes por aplicar el umbral \verb|EPIX = 1.5| y se quita la carga estimada por ruido en el interior de los clusters. \textcolor{red}{Acá no me queda del todo claro como era el tema del redondeo: $N\mu_{g}$ y $N\mu_{bkg}$ claramente son float, pero la carga tiene que ser entera. El redondeo donde se hacía?}
