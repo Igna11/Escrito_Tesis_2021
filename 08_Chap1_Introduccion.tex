@@ -29,7 +29,7 @@ Para el caso particular de una distribución de Poisson, la varianza y la espera
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{CCD y Skipper CCD}
 \noindent Los dispositivos CCD (\textit{Charge Coupled Devices}) fueron inventados en 1969 en los Laboratorios Bell, por Willard Boyle y George Smith, en su búsqueda por fabricar dispositivos de memoria. Finalmente, los CCD's no cumplieron este objetivo pero sí demostraron un gran potencial como sensores de luz y partículas. Tal es así que en el año 2010 sus inventores recibieron el premio Nobel de física\cite{Boyle, Smith}.\\
-\indent Estos dispositivos están hechos esencialmente de Silicio y sus elementos constitutivos fundamentales son capacitores MOS (por \textit{metal-oxide-semiconductor}). Estos conforman los píxeles del detector, siendo por lo general millones y ocupando casi la totalidad de la superficie del sensor. Los capacitores MOS se componen generalmente de un sustrato semiconductor dopado, sobre el cual se deposita una delgada capa de óxido y a su vez sobre esta se coloca un metal de contacto. Este contacto metálico se encuentra a un voltaje $V_{G}$ y debajo del semiconductor se encuentra otro contacto que se encuentra a tierra. Dependiendo del valor de $V_{G}$ se obtienen distintos regímenes del MOS\cite{Chenming} donde, en particular, uno de ellos genera una región de depleción cerca del óxido, el cual permite acumular carga minoritaria.\\
+\indent Estos dispositivos están hechos esencialmente de silicio y sus elementos constitutivos fundamentales son capacitores MOS (por \textit{metal-oxide-semiconductor}). Estos conforman los píxeles del detector, siendo por lo general millones y ocupando casi la totalidad de la superficie del sensor. Los capacitores MOS se componen generalmente de un sustrato semiconductor dopado, sobre el cual se deposita una delgada capa de óxido y a su vez sobre esta se coloca un metal de contacto. Este contacto metálico se encuentra a un voltaje $V_{G}$ y debajo del semiconductor se encuentra otro contacto que se encuentra a tierra. Dependiendo del valor de $V_{G}$ se obtienen distintos regímenes del MOS\cite{Chenming} donde, en particular, uno de ellos genera una región de depleción cerca del óxido, el cual permite acumular carga minoritaria.\\
 \begin{figure}%[H]
     \centering
         \includegraphics[scale=.35]{Figs/PixelCrossSection.pdf}
@@ -50,42 +50,90 @@ Los CCD's convencionales son capaces de alcanzar ruidos de lectura del orden de 
     \caption{\footnotesize{Valores que se obtendrían de medir el factor de Fano con un sensor CCD convencional (puntos negros), debido a la contribución del ruido de lectura constante de $30\,\si{eV}$ (linea punteada horizontal). La linea recta continua representa un valor de factor de Fano constante.}}
     \label{fig:Fano_y_ruido}
 \end{figure}
-Los sensores \textit{Skipper}-CCD's, por otro lado, permiten disminuir el ruido electrónico de lectura a niveles subelectrónicos gracias a que son capaces de medir la carga en los píxeles de forma no destructiva. Esto permite tomar tantas mediciones como sean necesarias de la carga y estimar la carga real a partir de un promedio sobre el número de mediciones tomadas. El prácticamente ausente ruido de lectura que hace posible la capacidad de medir repetidas veces y de forma no destructiva la carga en cada píxel de un sensor \textit{Skipper}-CCD, tiene un fuerte impacto a energías por debajo de los $5\,\si{keV}$. En particular, por debajo de los $2\,\si{keV}$ la contribución del ruido de lectura de un CCD convencional a la determinación de estas cantidades puede superar el $30\,\%$. 
-Esta es la principal razón que motiva este trabajo, donde se realiza un estudio sistemático del Factor de Fano a bajas energías, entre $1486\,\si{eV}$ (rayos X del Al) y $677\,\si{eV}$ (rayos X del flúor).\\
+Los sensores \textit{Skipper}-CCD's, por otro lado, permiten disminuir el ruido electrónico de lectura a niveles subelectrónicos gracias a que son capaces de medir la carga en los píxeles de forma no destructiva. Esto permite tomar tantas mediciones como sean necesarias de la carga y estimar la carga real a partir de un promedio sobre el número de mediciones tomadas. El prácticamente ausente ruido de lectura que hace posible la capacidad de medir repetidas veces y de forma no destructiva la carga en cada píxel de un sensor \textit{Skipper}-CCD, tiene un fuerte impacto a energías por debajo de los $5\,\si{keV}$. En particular, por debajo de los $2\,\si{keV}$ la contribución del ruido de lectura de un CCD convencional a la determinación de estas cantidades puede superar el $30\,\%$, como se esquematiza en la figura \ref{fig:Fano_y_ruido}. 
+Esta es la principal razón que motiva este trabajo, donde se realiza un estudio sistemático del factor de Fano a bajas energías, entre $1486\,\si{eV}$ (rayos X del Al) y $677\,\si{eV}$ (rayos X del flúor).\\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Eficiencia de colección de carga y colección parcial de carga}
-\noindent La Eficiencia de Colección de Carga o CCE (\textit{Charge Collection Efficiency}, por sus siglas en inglés) se define como la fracción del total de carga producida durante un evento de ionización que llega a la superficie del píxel del CCD y puede ser finalmente colectada durante el proceso de lectura. Para sensores del tipo \textit{fully depleted} CCD, a los que se les aplican grandes potenciales, la CCE es aproximadamente del $100\,\%$, es decir, toda la carga producida por ionización en el volumen del sensor logra ser colectada y medida. Sin embargo, existen casos donde la eficiencia no alcanza el $100\,\%$ y esto es debido al fenómeno de Colección Parcial de Carga o PCC (\textit{Partial Charge Collection}, por sus siglas en inglés). Este es un efecto que se debe a que en la región de los primeros micrones cercanos a la superficie existe una probabilidad no nula de que la carga generada por ionización sufra recombinación, es decir, que vuelva a enlazarse a un átomo en vez de ser colectada por el píxel del sensor. Este efecto produce una disminución en el número de cargas que finalmente son llevadas a la superficie del sensor. En el esquema de la figura \ref{fig:PCC} puede verse una vista en corte lateral de un CCD, donde debido al ángulo $\theta$ de incidencia de los rayos $X$ de la fuente, estos fotones generan cargas por ionización en la región donde hay recombinación. Una fracción de las cargas iniciales $q_{i}$ logran ser colectadas, dependiendo de la profundidad del sensor donde fue la interacción. También se muestra que si la interacción se da fuera de esta región, toda la carga generada por ionización es colectada y $q_{i} = q_{f}$.
-\begin{figure}[H]
+\noindent La Eficiencia de Colección de Carga o CCE (\textit{Charge Collection Efficiency}, por sus siglas en inglés) se define como la fracción del total de carga producida durante un evento de ionización que llega a la superficie del píxel del CCD y puede ser finalmente colectada durante el proceso de lectura. Para sensores del tipo \textit{fully depleted} CCD, a los que se les aplican grandes potenciales, la CCE es aproximadamente del $100\,\%$, es decir, toda la carga producida por ionización en el volumen del sensor logra ser colectada y medida. Sin embargo, existen casos donde la eficiencia no alcanza el $100\,\%$ y esto es debido al fenómeno de Colección Parcial de Carga o PCC (\textit{Partial Charge Collection}, por sus siglas en inglés)\cite{PCC-CCE}. Este es un efecto que se debe a que en la región de los primeros micrones cercanos a la superficie existe una probabilidad no nula de que la carga generada por ionización sufra recombinación, es decir, que vuelva a enlazarse a un átomo en vez de ser colectada por el píxel del sensor. Este efecto produce una disminución en el número de cargas que finalmente son llevadas a la superficie del sensor. En el esquema de la figura \ref{fig:PCC} puede verse una vista en corte lateral de un CCD, donde debido al ángulo $\theta$ de incidencia de los rayos $X$ de la fuente, estos fotones generan cargas por ionización en la región donde hay recombinación. Una fracción de las cargas generadas $q_{i}$ logran ser colectadas, dependiendo de la profundidad del sensor donde se produjo la interacción. También se muestra que si la interacción se da fuera de esta región, toda la carga generada por ionización es colectada y $q_{i} = q_{f}$ y la eficiencia es máxima.
+\begin{figure}%[H]
 %Como reproducir este gráfico: correr el script NivelesOcupacionCarga.py ubicado en /Escritorio/Tesis2021/Figs/pys_para_plots y buscar la imagen en /home/igna/Escritorio/Tesis2021/Figs/
     \centering
         \includegraphics[scale=.8]{Figs/PCC.pdf}
     \caption{\footnotesize{Esquema de un CCD con una fuente de rayos $X$. Los fotones penetran en el sensor produciendo una nube de cargas $q_{i}$, de las cuales solo una fracción logra ser colectada. Esta aumentan monótonamente dependiendo de la profundidad de penetración.}}
     \label{fig:PCC}
 \end{figure}
-La profundidad de la interacción depende del ángulo de incidencia y distribución de probabilidad se puede escribir como
+La colección parcial de carga es un problema propio de los sensores y de su fabricación. Sin embargo, existen procesos de fabricación que pueden realizarse sobre la superficie trasera de estos para reducir su efecto, como por ejemplo, los procesos utilizados en la fabricación de CCDs para toma de imágenes astronómicas. Además, mientras más delgado sea el detector, en general menor es el efecto.
+
+El efecto que provoca la colección parcial de carga en las mediciones es el de agregar eventos con menor cantidad de carga de la que deberían, generando así colas a la izquierda de los picos de interés en los espectros y, por ende, agregando otro sesgo a la determinación de magnitudes dependientes del valor medio de los picos, como el factor de Fano.
+
+%Por otro lado, la profundidad de la interacción depende del ángulo de incidencia y su distribución de probabilidad se puede escribir como
+%\begin{equation*}
+%    f_{Z}(z) = \frac{\cos{(\theta)}}{\lambda}e^{-z\frac{\cos{(\theta)}}{\lambda}}
+%\end{equation*}
+%donde $\lambda$ es la longitud de atenuación del fotón y depende de su longitud de onda. $\varepsilon(z)$ es la función \textit{eficiencia de colección de carga}
+%\textcolor{red}{Reformulo lo anterior sin la dependencia con $\theta$}:
+
+La física de los fenómenos antes mencionados puede comenzar a modelarse estudiando la distancia que recorren los fotones dentro del sensor hasta interactuar. Esta es una variable aleatoria de distribución exponencial, que viene dada por
 \begin{equation*}
-    f_{z}(z|\theta) = \frac{\cos{(\theta)}}{\lambda}e^{-z\frac{\cos{(\theta)}}{\lambda}}
+    f_{Z}(z) = \frac{1}{\tau_{X}}\exp(-\frac{z}{\tau_{X}})
 \end{equation*}
-donde $\lambda$ es la longitud de atenuación del fotón y depende de su longitud de onda. $\varepsilon(z)$ es la función \textit{eficiencia de colección de carga}\\
-\indent Si el detector fuera perfecto, el factor de Fano existiría igual. Este no es un problema del detector, viene del proceso de interacción en sí mismo que a la larga es un fenómeno binomial. Sin embargo, lo que sí es un problema del detector es la PCC. Un fotón interactuando con materia es un experimento Bernoulli, una serie de procesos de interacción es un fenómeno binomial y, en consecuencia, en el límite de probabilidades pequeñas y gran número de repeticiones, de Poisson. Por lo tanto, cuán lejos llega es una variable aleatoria con distribución exponencia (La distancia entre dos eventos de poisson es exponencial). Si uno quiere saber cuál es la probabilidad de que un fotón penetre una dada distancia, hay que hacer
-\begin{equation*}
-    e^{-\frac{d}{\tau}}
-\end{equation*}
-con $\tau$ es la attenuation length. La eficiencia de colección de carga viene dada por 
+donde $\tau_{X}$ es la longitud de atenuación, que es la distancia promedio para la cual de una población de fotones incidentes solo quede una fracción de $1/e$ de todos ellos. Este es un valor tabulado tanto para la energía de los fotones como para el material. Realizaciones de la variable aleatoria de esta distribución son las diferentes distancias que puede alcanzar un fotón que penetra en el sensor hasta generar cargas por ionización.
+
+También existe una función para caracterizar la eficiencia de la colección de carga, tal que para una dada distancia de penetración $z$, indica qué porcentaje de la carga logra ser colectada y viene dada por
 \begin{equation*}
     E_{ff}(z) = 1 - e^{-\frac{z}{\tau_{\scaleto{CEE}{2pt}}}}
 \end{equation*}
-que quiere decir que si la interacción se realizó para un dado $z_{0}$, entonces por ejemplo el $70\%$ de la carga logró ser colectada. Para $Z_{0}$ muy chico, la eficiencia es muy chica, para $z_{0}$ creciente, la eficiencia es creciente.
+donde $\tau_{CCE} = 1 - \tau_{X}$, es decir, es la distancia para la cual (estoy quemado, no sé como era esto. ver mañana). 
 
-Dada la variable aleatoria: Longitud penetrada hasta interactuar, tiene una distribución exponencial. Dada una energía fija, la longitud que recorre hasta interactuar no es siempre la misma, hay una aleatoria inherente. La distribución de probabilidades de este experimento es exponencial. Si por ejemplo la probabilidad de interactuar en los primeros $3\,\si{\mu m}$ es del $50\%$, la probabilidad de interactuar recién luego de recorridos $80\,\si{\mu m}$ es $10^{-14}$. Esta variable aleatoria se inyecta dentro de la función $E_{ff}(z)$: Función a la que le digo hasta donde llegó la partícula antes de interactuar y devuelve con qué eficiencia colectó la carga.
-
-Se tiene la energía del fotón, se genera un evento aleatorio con distribución exponencial $z_{0}$ que dice qué distancia penetró el fotón antes de interactuar. Esa realización se usa como argumento de $E_{ff}(z) \longrightarrow E_{ff}(z_{0})$. Ese cambio de variables da como resultado 
+Si se inyecta la variable aleatoria $z$ que viene de realizaciones de la distribución $f_{Z}$ dentro de la función $E_{ff}(z)$, mediante un cambio de variables la nueva distribución puede reescribirse como
 \begin{equation*}
     f_{E_{ff}}(z) = \beta (1 - \varepsilon)^{\beta - 1}
 \end{equation*}
-donde $\beta = \frac{\tau_{\scaleto{CCE}{3pt}}}{\tau_{\scaleto{X}{3pt}}}$
+donde el parámetro $\beta = \frac{\tau_{\scaleto{CCE}{3pt}}}{\tau_{X}}$. Esta es la distribución de probabilidad de colectar la carga producida por un fotón de una dada energía.
+
+Sin embargo, para terminar de modelar todos los efectos que contribuyen a la dispersión de la carga generada por la interacción de fotones con el material, hay que considerar que, omitiendo todos los efectos anteriores, para una dada energía no siempre se producirán la misma cantidad de ionizaciones. Este efecto es descripto por el factor de Fano. Dado que cada proceso de ionización puede considerarse como un experimento de Bernoulli, una sucesión de interacciones puede pensarse como un fenomeno binomal. En el límite, donde la probabilidad de ionización es baja y la cantidad de veces que puede haber interacciones es muy alta, el proceso se vuelve Poissoniano, más aún, incluso Gaussino. De aquí viene que para agregar esta última contribución al modelado del fenómeno es necesario realizar la convolución ambas distribuciones. De hacer este cálculo se obtiene la siguiente expresión
+\begin{equation*}
+    f_{Q_{f}}(q_{f}) = 
+    \int\limits_{0}^{1}
+    \frac{\beta}{\sqrt{2\pi \sigma^{2}}\varepsilon}
+    \exp[%
+    -\frac{(q_{f}-\varepsilon\mu)^{2}}{2\sigma^{2}\varepsilon^{2}}
+    ](1-\varepsilon)^{\beta - 1}
+    d\varepsilon
+\end{equation*}
+que es la verosimilitud. Esta expresión modela etc no doy más. Mañana veo.
+
+%\indent Si el detector fuera perfecto, el factor de Fano existiría igual. Este no es un problema del detector, viene del proceso de interacción en sí mismo que a la larga es un fenómeno binomial. Sin embargo, lo que sí es un problema del detector es la PCC. Un fotón interactuando con materia es un experimento Bernoulli, una serie de procesos de interacción es un fenómeno binomial y, en consecuencia, en el límite de probabilidades pequeñas y gran número de repeticiones, de Poisson. Por lo tanto, cuán lejos llega es una variable aleatoria con distribución exponencia (La distancia entre dos eventos de poisson es exponencial). Si uno quiere saber cuál es la probabilidad de que un fotón penetre una dada distancia, hay que hacer
+%\begin{equation*}
+%    e^{-\frac{d}{\tau}}
+%\end{equation*}
+%con $\tau$ es la attenuation length. La eficiencia de colección de carga viene dada por 
+%\begin{equation*}
+%    E_{ff}(z) = 1 - e^{-\frac{z}{\tau_{\scaleto{CEE}{2pt}}}}
+%\end{equation*}
+%que quiere decir que si la interacción se realizó para un dado $z_{0}$, entonces por ejemplo el $70\%$ de la carga logró ser colectada. Para $Z_{0}$ muy chico, la eficiencia es muy chica, para $z_{0}$ creciente, la eficiencia es creciente.
+
+%Dada la variable aleatoria: Longitud penetrada hasta interactuar, tiene una distribución exponencial. Dada una energía fija, la longitud que recorre hasta interactuar no es siempre la misma, hay una aleatoria inherente. La distribución de probabilidades de este experimento es exponencial. Si por ejemplo la probabilidad de interactuar en los primeros $3\,\si{\mu m}$ es del $50\%$, la probabilidad de interactuar recién luego de recorridos $80\,\si{\mu m}$ es $10^{-14}$. Esta variable aleatoria se inyecta dentro de la función $E_{ff}(z)$: Función a la que le digo hasta donde llegó la partícula antes de interactuar y devuelve con qué eficiencia colectó la carga.
+
+%Se tiene la energía del fotón, se genera un evento aleatorio con distribución exponencial $z_{0}$ que dice qué distancia penetró el fotón antes de interactuar. Esa realización se usa como argumento de $E_{ff}(z) \longrightarrow E_{ff}(z_{0})$. Ese cambio de variables da como resultado 
+%\begin{equation*}
+%    f_{E_{ff}}(z) = \beta (1 - \varepsilon)^{\beta - 1}
+%\end{equation*}
+%donde $\beta = \frac{\tau_{\scaleto{CCE}{3pt}}}{\tau_{\scaleto{X}{3pt}}}$. La probabilidad de recuperar la carga de un fotón de una dada energía sigue esa distribución.
+
+%Todavía no entró el Fano. A esto hay que agregarle que además de haber una distribución de carga para la profundidad, además de haber una función que dice cuánta carga se logra colectar con esa profundidad, hay otra variable aleatoria que es cuántos electrones se ionizan cuando se interactúa, que viene de una poissoniana, pero en el límite se puede pensar como una gaussiana. Entonces, a la función anterior hay que convolucionarla con una gaussiana. El efecto de convolucionar una gaussiana con esta distribución es añadirle una cola del lado izquierdo a la gaussiana. De hacer esa convolución se obtiene
+%\begin{equation*}
+%     f_{Q_{f}}(q_{f}) = 
+%     \int\limits_{0}^{1}
+%     \frac{\beta}{\sqrt{2\pi \sigma^{2}}\varepsilon}
+%     \exp[%
+%     -\frac{(q_{f}-\varepsilon\mu)^{2}}{2\sigma^{2}\varepsilon^{2}}
+%     ](1-\varepsilon)^{\beta - 1}
+%     d\varepsilon
+% \end{equation*}
+%La cola que aparece a la izquierda es culpa de la PCC, debido a que hay eventos con menor carga generada debido a este fenómeno de recombinación para los eventos que suceden en los primeros micrones del detector. Del lado derecho no hay nada porque no hay un fenómeno que genere más carga de la que el proceso de ionización puede generar.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Antecedentes}
@@ -281,9 +329,11 @@ Elemento&
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Motivación del análisis de imágenes}
 %\noindent Este trabajo se centró en la determinación del factor de Fano y de la energía de creación electrón-hueco, para energías por debajo de los $2\,\si{keV}$, utilizando mediciones preexistentes. Más precisamente, para las energías de los rayos $X$ de fluorescencia del aluminio de $1486\,\si{eV}$ y del flúor de $677\,\si{eV}$. Con el fin de que la determinación de estas características esté lo menos sesgada posible debido al fondo presente en las imágenes, fue necesario realizar un análisis profundo de los datos.\\
-\noindent El fondo presente en las imágenes consiste principalmente en píxeles cuya carga es producida por fluctuaciones térmicas en la red cristalina del Silicio del sensor (corrientes oscuras), por eventos de dispersión producidos por rebotes dentro del dispositivo de medición y que no deseados, o producidos por fotones infrarrojos emitidos desde los materiales que rodean al detector y por eventos muy penetrantes provenientes del exterior, como por ejemplo, muones.\\
-\indent El análisis consistió en estudiar el efecto que produce el fondo de las imágenes sobre los eventos de interés: la aglomeración de píxeles con cargas entre $1$ y $2$ electrones alrededor de los clusters, y la carga extra añadida sobre ellos. En muchos casos resulta que los píxeles con eventos de fondo se aglutinan a los clusters, aumentando su tamaño y su carga, o incluso también haciendo de puente entre dos clusters vecinos. Estos son dos efectos indeseados, primero porque sesga la cantidad de carga real en un evento de interés y segundo porque los algoritmos de clusterizacion podrían ignorarlos al no cumplir con los cortes de calidad impuestos, tanto por forma como por cantidad de carga esperada, disminuyendo así la estadística.\\
-\indent Es entonces necesario utilizar un umbral de detección que ignore estos píxeles con carga menor o igual a $2$ electrones, de forma de evitar el aglutinamiento de píxeles con eventos producto de fondo a los clusters de interés y así aumentar la estadística en el conteo de eventos. Pero también es necesario lograr caracterizar este fondo para corregir el sesgo introducido por el nuevo umbral de detección, el cual, también eliminará píxeles con carga genuina. Es por eso que en este trabajo se propuso un análisis de las imágenes que pueda determinar el umbral más conveniente a utilizar y recuperar la mayor cantidad de estadística posible, además de un método para estimar cuántos eventos genuinos son removidos y cuántos eventos espurios hay que remover de los clusters para mejorar así las incertezas del factor de Fano y la energía de creación electrón-hueco a bajas energías.
+\noindent El fondo presente en las imágenes consiste principalmente en píxeles cuya carga es producida por fluctuaciones térmicas en la red cristalina del Silicio del sensor (corrientes oscuras), por eventos de dispersión producidos por rebotes dentro del dispositivo de medición y que no deseados, o producidos por fotones infrarrojos emitidos desde los materiales que rodean al detector y por eventos muy penetrantes provenientes del exterior, como por ejemplo, muones.
+
+El análisis consistió en estudiar el efecto que produce el fondo de las imágenes sobre los eventos de interés: la aglomeración de píxeles con cargas entre $1$ y $2$ electrones alrededor de los clusters, y la carga extra añadida sobre ellos. En muchos casos resulta que los píxeles con eventos de fondo se aglutinan a los clusters, aumentando su tamaño y su carga, o incluso también haciendo de puente entre dos clusters vecinos. Estos son dos efectos indeseados, primero porque sesga la cantidad de carga real en un evento de interés y segundo porque los algoritmos de clusterizacion podrían ignorarlos al no cumplir con los cortes de calidad impuestos, tanto por forma como por cantidad de carga esperada, disminuyendo así la estadística.
+
+Es entonces necesario utilizar un umbral de detección que ignore estos píxeles con carga menor o igual a $2$ electrones, de forma de evitar el aglutinamiento de píxeles con eventos producto de fondo a los clusters de interés y así aumentar la estadística en el conteo de eventos. Pero también es necesario lograr caracterizar este fondo para corregir el sesgo introducido por el nuevo umbral de detección, el cual, también eliminará píxeles con carga genuina. Es por eso que en este trabajo se propuso un análisis de las imágenes que pueda determinar el umbral más conveniente a utilizar y recuperar la mayor cantidad de estadística posible, además de un método para estimar cuántos eventos genuinos son removidos y cuántos eventos espurios hay que remover de los clusters para mejorar así las incertezas del factor de Fano y la energía de creación electrón-hueco a bajas energías.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Organización de la tesis}
