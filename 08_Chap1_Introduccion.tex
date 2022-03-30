@@ -2,28 +2,28 @@
 \pagenumbering{arabic}  %numero de pagina numeración arábiga
 \setcounter{page}{1}    %comienza a contar desde 1
 
-\chapter{Introducción y objetivos}
+\chapter{Introducción}
 
-\noindent Como parte de este trabajo se propuso el uso de técnicas de análisis de imágenes y procesamiento de datos propias de la física de partículas experimental. %, lo que llevó al fortalecimiento de conocimientos de estadística y la familiarización con el trabajo científico en un tema de creciente interés. 
-Las metas propuestas en este trabajo son:
-\begin{enumerate}
-    \item Analizar las mediciones con luz LED para obtener una calibración absoluta de carga del detector a baja ocupancia y a diferentes temperaturas.
-    \item Analizar las mediciones de rayos X producidos por desexcitación del flúor y aluminio, con el objetivo de determinar la energía de creación electrón hueco y el factor de Fano a $677\,\si{eV}$ y $1486\,\si{eV}$, respectivamente.
-    \item Estudiar de la dependencia con la temperatura en el rango de $123$ a $160\,\si{K}$ de las cantidades anteriormente mencionadas.
-    \item Estudiar la influencia de otras fuentes de fotones en la construcción de eventos y en la determinación del factor de Fano y energía de creación electrón hueco.
-    \item Corregir el efecto que la luz espuria tiene sobre el valor medio de carga y su distribución.
-\end{enumerate}
+% \noindent Como parte de este trabajo se propuso el uso de técnicas de análisis de imágenes y procesamiento de datos propias de la física de partículas experimental. %, lo que llevó al fortalecimiento de conocimientos de estadística y la familiarización con el trabajo científico en un tema de creciente interés. 
+% Las metas propuestas en este trabajo son:
+% \begin{enumerate}
+%     \item Analizar las mediciones con luz LED para obtener una calibración absoluta de carga del detector a baja ocupancia y a diferentes temperaturas.
+%     \item Analizar las mediciones de rayos X producidos por desexcitación del flúor y aluminio, con el objetivo de determinar la energía de creación electrón hueco y el factor de Fano a $677\,\si{eV}$ y $1486\,\si{eV}$, respectivamente.
+%     \item Estudiar de la dependencia con la temperatura en el rango de $123$ a $160\,\si{K}$ de las cantidades anteriormente mencionadas.
+%     \item Estudiar la influencia de otras fuentes de fotones en la construcción de eventos y en la determinación del factor de Fano y energía de creación electrón hueco.
+%     \item Corregir el efecto que la luz espuria tiene sobre el valor medio de carga y su distribución.
+% \end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Factor de Fano y energía de creación electrón-hueco}
-\noindent El factor de Fano mide la dispersión de una distribución de carga producida en un detector y se define como
+\noindent El factor de Fano mide la relación entre la dispersión de una distribución de carga producida en un detector y su media, es
 \begin{equation*}
     F = \frac{\sigma^{2}}{\mu}
 \end{equation*}
 donde $\sigma^{2}$ es la varianza de la distribución y $\mu$ es la media. 
 Para el caso particular de una distribución de Poisson, la varianza y la esperanza coinciden, de forma que el factor de Fano equivale a $1$. Estas distribuciones de carga son el producto de la interacción de fotones de cierta energía con el detector, entre otros factores, que van depositando energía en el material ionizando cargas a su paso. El origen de dicha distribución radica en que la energía transferida en cada interacción no es constante y, por lo tanto, para una dada energía inicial de la partícula incidente, tampoco será constante el número de cargas generadas.\\
-\indent Por otro lado, la energía de creación electrón-hueco $\varepsilon_{\eh}$ es, en valor medio, la energía necesaria para poder producir un par electrón-hueco en el interior del detector de Silicio. Así, esta puede ser calculada a través del cociente entre la energía entregada al detector y la carga producida en él. Además, esta está relacionada con la energía del gap del silicio, entre la banda de valencia y la banda de conducción, que es $E_{g}\sim 1.1\,\si{eV}$\cite{Janesick}. Sin embargo, debido a que durante el proceso de interacción parte de la energía que entregada material puede disiparse emitiendo fonones, la energía de creación electrón-hueco resulta ser mayor, en promedio, que la energía del gap.\\
+\indent Por otro lado, la energía de creación electrón-hueco $\varepsilon_{\eh}$ es, en valor medio, la energía necesaria para poder producir un par electrón-hueco en el interior del detector de Silicio. Así, esta puede ser calculada a través del cociente entre la energía entregada al detector y la carga producida en él. Además, esta está relacionada con la energía del gap del silicio, entre la banda de valencia y la banda de conducción, que es $E_{g}\sim 1.1\,\si{eV}$\cite{Janesick}. Sin embargo, debido a que durante el proceso de interacción parte de la energía entregada al material puede disiparse emitiendo fonones, la energía de creación electrón-hueco resulta ser mayor, en promedio, que la energía del gap.\\
 \indent La estimación precisa de ambas magnitudes es de vital importancia en la caracterización de este tipo de detectores, debido a que, por ejemplo, parámetros como la eficiencia cuántica dependen fuertemente de ellos. Además es importante determinar la dependencia de estas magnitudes con la energía ya que, en particular, el factor de Fano a energías por debajo de $1\,\si{keV}$ es clave para el cálculo de sensibilidad en experimentos de materia oscura liviana, como es caso del experimento SENSEI (\textit{Sub-Electron Noise Skipper-CCD Experiment Instrument})\cite{barak}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -43,15 +43,14 @@ Para el caso particular de una distribución de Poisson, la varianza y la espera
     \item Transferencia: Dado que la medición de los píxeles se realiza de forma secuencial, la carga en cada uno de ellos debe ser transferida de un píxel a otro.
     \item Medición de la carga: A medida que se desplaza la carga, esta es llevada hacia el nodo de sensado donde finalmente es medida.
 \end{itemize}
-Los CCD's convencionales son capaces de alcanzar ruidos de lectura del orden de los $2\,e^{-}\si{rms/pix}$, gracias a la técnica de muestreo doblemente correlacionado\cite{Tiffenberg}. Sin embargo, en aplicaciones de bajas energías, el ruido electrónico de lectura presupone una barrera al límite de energías que pueden medirse con estos sensores para mantener la precisión deseada. La imagen \ref{fig:Fano_y_ruido} pretende mostrar este efecto. La linea punteada representa el ruido constante de lectura presente en estos sensores y la recta representa un valor constante del factor de Fano para todo el rango de energías. Sobre la curva se ven los puntos que representan los valores del factor de Fano que se medirían si se utilizaran estos sensores debido a la suma de contribuciones del ruido sobre un factor de Fano constante de $0.1$.
+Los CCD's convencionales son capaces de alcanzar ruidos de lectura del orden de los $2\,e^{-}\si{rms/pix}$, gracias a la técnica de muestreo doblemente correlacionado\cite{Tiffenberg}. Sin embargo, en aplicaciones de bajas energías, el ruido electrónico de lectura presupone una barrera al límite de energías que pueden medirse con estos sensores para mantener la precisión deseada. Por debajo de los $2\,\si{keV}$ la contribución del ruido de lectura a la determinación de estas cantidades puede superar el $30\,\%$, como se esquematiza en la figura \ref{fig:Fano_y_ruido}. La linea punteada representa el ruido constante de lectura presente en estos sensores y la recta representa un valor constante del factor de Fano para todo el rango de energías. Sobre la curva se ven los puntos que representan los valores del factor de Fano que se medirían si se utilizaran estos sensores debido a la suma de contribuciones del ruido sobre un factor de Fano constante de $0.1$.
 \begin{figure}[H]
     \centering
         \includegraphics[scale=.5]{Figs/fano_y_ruido.pdf}
-    \caption{\footnotesize{Valores que se obtendrían de medir el factor de Fano con un sensor CCD convencional (puntos negros), debido a la contribución del ruido de lectura constante de $30\,\si{eV}$ (linea punteada horizontal). La linea recta continua representa un valor de factor de Fano constante.}}
+    \caption{\footnotesize{Valores queque ta se obtendrían de medir el factor de Fano con un sensor CCD convencional (puntos negros), debido a la contribución del ruido de lectura constante de $30\,\si{eV}$ (linea punteada horizontal). La linea recta continua representa un valor de factor de Fano constante.}}
     \label{fig:Fano_y_ruido}
 \end{figure}
-Los sensores \textit{Skipper}-CCD's, por otro lado, permiten disminuir el ruido electrónico de lectura a niveles subelectrónicos gracias a que son capaces de medir la carga en los píxeles de forma no destructiva. Esto permite tomar tantas mediciones como sean necesarias de la carga y estimar la carga real a partir de un promedio sobre el número de mediciones tomadas. El prácticamente ausente ruido de lectura que hace posible la capacidad de medir repetidas veces y de forma no destructiva la carga en cada píxel de un sensor \textit{Skipper}-CCD, tiene un fuerte impacto a energías por debajo de los $5\,\si{keV}$. En particular, por debajo de los $2\,\si{keV}$ la contribución del ruido de lectura de un CCD convencional a la determinación de estas cantidades puede superar el $30\,\%$, como se esquematiza en la figura \ref{fig:Fano_y_ruido}. 
-Esta es la principal razón que motiva este trabajo, donde se realiza un estudio sistemático del factor de Fano a bajas energías, entre $1486\,\si{eV}$ (rayos X del Al) y $677\,\si{eV}$ (rayos X del flúor).\\
+Los sensores \textit{Skipper}-CCD's, por otro lado, permiten disminuir el ruido electrónico de lectura a niveles subelectrónicos gracias a que son capaces de medir la carga en los píxeles de forma no destructiva. Esto permite tomar tantas mediciones como sean necesarias de la carga y estimar la carga real a partir de un promedio sobre el número de mediciones tomadas. Esta es la principal razón que motiva este trabajo, donde se realiza un estudio sistemático del factor de Fano a bajas energías, entre $1486\,\si{eV}$ (rayos X del Al) y $677\,\si{eV}$ (rayos X del flúor).\\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -64,7 +63,7 @@ Esta es la principal razón que motiva este trabajo, donde se realiza un estudio
     \caption{\footnotesize{Esquema de un CCD con una fuente de rayos $X$. Los fotones penetran en el sensor produciendo una nube de cargas $q_{i}$, de las cuales solo una fracción logra ser colectada. Esta aumentan monótonamente dependiendo de la profundidad de penetración.}}
     \label{fig:PCC}
 \end{figure}
-La colección parcial de carga es un problema propio de los sensores y de su fabricación. Sin embargo, existen procesos de fabricación que pueden realizarse sobre la superficie trasera de estos para reducir su efecto, como por ejemplo, los procesos utilizados en la fabricación de CCDs para toma de imágenes astronómicas. Además, mientras más delgado sea el detector, en general menor es el efecto.
+La colección parcial de carga es un problema propio de los sensores y de su fabricación. Sin embargo, existen procesos de fabricación que pueden realizarse sobre la superficie trasera de estos para reducir su efecto, como por ejemplo, los procesos utilizados en la fabricación de CCDs para toma de imágenes astronómicas. %Además, mientras más delgado sea el detector, en general menor es el efecto.
 
 El efecto que provoca la colección parcial de carga en las mediciones es el de agregar eventos con menor cantidad de carga de la que deberían, generando así colas a la izquierda de los picos de interés en los espectros y, por ende, agregando otro sesgo a la determinación de magnitudes dependientes del valor medio de los picos, como el factor de Fano.
 
@@ -93,7 +92,7 @@ Si se inyecta la variable aleatoria $z$ que viene de realizaciones de la distrib
 \end{equation*}
 donde el parámetro $\beta = \frac{\tau_{\scaleto{CCE}{3pt}}}{\tau_{X}}$. Esta es la distribución de probabilidad de colectar la carga producida por un fotón de una dada energía.
 
-Sin embargo, para terminar de modelar todos los efectos que contribuyen a la dispersión de la carga generada por la interacción de fotones con el material, hay que considerar que, omitiendo todos los efectos anteriores, para una dada energía no siempre se producirán la misma cantidad de ionizaciones. Este efecto es descripto por el factor de Fano. Dado que cada proceso de ionización puede considerarse como un experimento de Bernoulli, una sucesión de interacciones puede pensarse como un fenomeno binomal. En el límite, donde la probabilidad de ionización es baja y la cantidad de veces que puede haber interacciones es muy alta, el proceso se vuelve Poissoniano, más aún, incluso Gaussino. De aquí viene que para agregar esta última contribución al modelado del fenómeno es necesario realizar la convolución ambas distribuciones. De hacer este cálculo se obtiene la siguiente expresión
+Sin embargo, para terminar de modelar todos los efectos que contribuyen a la dispersión de la carga generada por la interacción de fotones con el material, hay que considerar que, omitiendo todos los efectos anteriores, para una dada energía no siempre se producirán la misma cantidad de ionizaciones. Este efecto es descripto por el factor de Fano. Dado que cada proceso de ionización puede considerarse como un experimento de Bernoulli, una sucesión de interacciones puede pensarse como un fenómeno binomal. En el límite, donde la probabilidad de ionización es baja y la cantidad de veces que puede haber interacciones es muy alta, el proceso se vuelve Poissoniano. Cuando la esperanza de dicha distribución es alta (mayor a 100 en los casos de interes en esta tesis), el límite gaussiano dado por el teorema central del límite se cumple en excelente aproximación. De aquí viene que para agregar esta última contribución al modelado del fenómeno es necesario realizar la convolución de ambas distribuciones. De hacer este cálculo se obtiene la siguiente expresión
 \begin{equation*}
     f_{Q_{f}}(q_{f}) = 
     \int\limits_{0}^{1}
@@ -103,7 +102,7 @@ Sin embargo, para terminar de modelar todos los efectos que contribuyen a la dis
     ](1-\varepsilon)^{\beta - 1}
     d\varepsilon
 \end{equation*}
-que es la verosimilitud. Esta expresión modela etc no doy más. Mañana veo.
+para la distribución teórica de carga debido a los efectos del factor de Fano y la colección parcial de carga actuando conjuntamente.
 
 %\indent Si el detector fuera perfecto, el factor de Fano existiría igual. Este no es un problema del detector, viene del proceso de interacción en sí mismo que a la larga es un fenómeno binomial. Sin embargo, lo que sí es un problema del detector es la PCC. Un fotón interactuando con materia es un experimento Bernoulli, una serie de procesos de interacción es un fenómeno binomial y, en consecuencia, en el límite de probabilidades pequeñas y gran número de repeticiones, de Poisson. Por lo tanto, cuán lejos llega es una variable aleatoria con distribución exponencia (La distancia entre dos eventos de poisson es exponencial). Si uno quiere saber cuál es la probabilidad de que un fotón penetre una dada distancia, hay que hacer
 %\begin{equation*}
@@ -329,7 +328,7 @@ Elemento&
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Motivación del análisis de imágenes}
 %\noindent Este trabajo se centró en la determinación del factor de Fano y de la energía de creación electrón-hueco, para energías por debajo de los $2\,\si{keV}$, utilizando mediciones preexistentes. Más precisamente, para las energías de los rayos $X$ de fluorescencia del aluminio de $1486\,\si{eV}$ y del flúor de $677\,\si{eV}$. Con el fin de que la determinación de estas características esté lo menos sesgada posible debido al fondo presente en las imágenes, fue necesario realizar un análisis profundo de los datos.\\
-\noindent El fondo presente en las imágenes consiste principalmente en píxeles cuya carga es producida por fluctuaciones térmicas en la red cristalina del Silicio del sensor (corrientes oscuras), por eventos de dispersión producidos por rebotes dentro del dispositivo de medición y que no deseados, o producidos por fotones infrarrojos emitidos desde los materiales que rodean al detector y por eventos muy penetrantes provenientes del exterior, como por ejemplo, muones.
+\noindent El fondo presente en las imágenes consiste principalmente en píxeles cuya carga es producida por fluctuaciones térmicas en la red cristalina del silicio del sensor (corrientes oscuras), por eventos de dispersión producidos por rebotes dentro del dispositivo de medición y que no deseados, o producidos por fotones infrarrojos emitidos desde los materiales que rodean al detector y por eventos muy penetrantes provenientes del exterior, como por ejemplo, muones.
 
 El análisis consistió en estudiar el efecto que produce el fondo de las imágenes sobre los eventos de interés: la aglomeración de píxeles con cargas entre $1$ y $2$ electrones alrededor de los clusters, y la carga extra añadida sobre ellos. En muchos casos resulta que los píxeles con eventos de fondo se aglutinan a los clusters, aumentando su tamaño y su carga, o incluso también haciendo de puente entre dos clusters vecinos. Estos son dos efectos indeseados, primero porque sesga la cantidad de carga real en un evento de interés y segundo porque los algoritmos de clusterizacion podrían ignorarlos al no cumplir con los cortes de calidad impuestos, tanto por forma como por cantidad de carga esperada, disminuyendo así la estadística.
 
