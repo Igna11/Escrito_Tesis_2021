@@ -1,0 +1,65 @@
+\chapter{Modelado analítico de la PCC \label{chap:ModeloPCC}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent La física de los fenómenos antes mencionados puede comenzar a modelarse estudiando la distancia que recorren los fotones dentro del sensor hasta interactuar. Esta es una variable aleatoria de distribución exponencial, que viene dada por
+\begin{equation*}
+    f_{Z}(z) = \frac{1}{\tau_{X}}\exp(-\frac{z}{\tau_{X}})
+\end{equation*}
+donde $\tau_{X}$ es la longitud de atenuación, que es la distancia promedio para la cual de una población de fotones incidentes solo quede una fracción de $1/e$ de todos ellos. Este es un valor tabulado tanto para la energía de los fotones como para el material. Realizaciones de la variable aleatoria de esta distribución son las diferentes distancias que puede alcanzar un fotón que penetra en el sensor hasta generar cargas por ionización.
+
+También existe una función para caracterizar la eficiencia de la colección de carga, tal que para una dada distancia de penetración $z$, indica qué porcentaje de la carga logra ser colectada y viene dada por
+\begin{equation*}
+    E_{ff}(z) = 1 - e^{-\frac{z}{\tau_{\scaleto{CEE}{2pt}}}}
+\end{equation*}
+donde $\tau_{CCE} = 1 - \tau_{X}$, es decir, es la distancia para la cual (estoy quemado, no sé como era esto. ver mañana). 
+
+Si se inyecta la variable aleatoria $z$ que viene de realizaciones de la distribución $f_{Z}$ dentro de la función $E_{ff}(z)$, mediante un cambio de variables la nueva distribución puede reescribirse como
+\begin{equation*}
+    f_{E_{ff}}(z) = \beta (1 - \varepsilon)^{\beta - 1}
+\end{equation*}
+donde el parámetro $\beta = \frac{\tau_{\scaleto{CCE}{3pt}}}{\tau_{X}}$. Esta es la distribución de probabilidad de colectar la carga producida por un fotón de una dada energía.
+
+Sin embargo, para terminar de modelar todos los efectos que contribuyen a la dispersión de la carga generada por la interacción de fotones con el material, hay que considerar que, omitiendo todos los efectos anteriores, para una dada energía no siempre se producirán la misma cantidad de ionizaciones. Este efecto es descripto por el factor de Fano. Dado que cada proceso de ionización puede considerarse como un experimento de Bernoulli, una sucesión de interacciones puede pensarse como un fenómeno binomal. En el límite, donde la probabilidad de ionización es baja y la cantidad de veces que puede haber interacciones es muy alta, el proceso se vuelve Poissoniano. Cuando la esperanza de dicha distribución es alta (mayor a 100 en los casos de interes en esta tesis), el límite gaussiano dado por el teorema central del límite se cumple en excelente aproximación. De aquí viene que para agregar esta última contribución al modelado del fenómeno es necesario realizar la convolución de ambas distribuciones. De hacer este cálculo se obtiene la siguiente expresión
+\begin{equation*}
+    f_{Q_{f}}(q_{f}) = 
+    \int\limits_{0}^{1}
+    \frac{\beta}{\sqrt{2\pi \sigma^{2}}\varepsilon}
+    \exp[%
+    -\frac{(q_{f}-\varepsilon\mu)^{2}}{2\sigma^{2}\varepsilon^{2}}
+    ](1-\varepsilon)^{\beta - 1}
+    d\varepsilon
+\end{equation*}
+para la distribución teórica de carga debido a los efectos del factor de Fano y la colección parcial de carga actuando conjuntamente.
+
+%\indent Si el detector fuera perfecto, el factor de Fano existiría igual. Este no es un problema del detector, viene del proceso de interacción en sí mismo que a la larga es un fenómeno binomial. Sin embargo, lo que sí es un problema del detector es la PCC. Un fotón interactuando con materia es un experimento Bernoulli, una serie de procesos de interacción es un fenómeno binomial y, en consecuencia, en el límite de probabilidades pequeñas y gran número de repeticiones, de Poisson. Por lo tanto, cuán lejos llega es una variable aleatoria con distribución exponencia (La distancia entre dos eventos de poisson es exponencial). Si uno quiere saber cuál es la probabilidad de que un fotón penetre una dada distancia, hay que hacer
+%\begin{equation*}
+%    e^{-\frac{d}{\tau}}
+%\end{equation*}
+%con $\tau$ es la attenuation length. La eficiencia de colección de carga viene dada por 
+%\begin{equation*}
+%    E_{ff}(z) = 1 - e^{-\frac{z}{\tau_{\scaleto{CEE}{2pt}}}}
+%\end{equation*}
+%que quiere decir que si la interacción se realizó para un dado $z_{0}$, entonces por ejemplo el $70\%$ de la carga logró ser colectada. Para $Z_{0}$ muy chico, la eficiencia es muy chica, para $z_{0}$ creciente, la eficiencia es creciente.
+
+%Dada la variable aleatoria: Longitud penetrada hasta interactuar, tiene una distribución exponencial. Dada una energía fija, la longitud que recorre hasta interactuar no es siempre la misma, hay una aleatoria inherente. La distribución de probabilidades de este experimento es exponencial. Si por ejemplo la probabilidad de interactuar en los primeros $3\,\si{\mu m}$ es del $50\%$, la probabilidad de interactuar recién luego de recorridos $80\,\si{\mu m}$ es $10^{-14}$. Esta variable aleatoria se inyecta dentro de la función $E_{ff}(z)$: Función a la que le digo hasta donde llegó la partícula antes de interactuar y devuelve con qué eficiencia colectó la carga.
+
+%Se tiene la energía del fotón, se genera un evento aleatorio con distribución exponencial $z_{0}$ que dice qué distancia penetró el fotón antes de interactuar. Esa realización se usa como argumento de $E_{ff}(z) \longrightarrow E_{ff}(z_{0})$. Ese cambio de variables da como resultado 
+%\begin{equation*}
+%    f_{E_{ff}}(z) = \beta (1 - \varepsilon)^{\beta - 1}
+%\end{equation*}
+%donde $\beta = \frac{\tau_{\scaleto{CCE}{3pt}}}{\tau_{\scaleto{X}{3pt}}}$. La probabilidad de recuperar la carga de un fotón de una dada energía sigue esa distribución.
+
+%Todavía no entró el Fano. A esto hay que agregarle que además de haber una distribución de carga para la profundidad, además de haber una función que dice cuánta carga se logra colectar con esa profundidad, hay otra variable aleatoria que es cuántos electrones se ionizan cuando se interactúa, que viene de una poissoniana, pero en el límite se puede pensar como una gaussiana. Entonces, a la función anterior hay que convolucionarla con una gaussiana. El efecto de convolucionar una gaussiana con esta distribución es añadirle una cola del lado izquierdo a la gaussiana. De hacer esa convolución se obtiene
+%\begin{equation*}
+%     f_{Q_{f}}(q_{f}) = 
+%     \int\limits_{0}^{1}
+%     \frac{\beta}{\sqrt{2\pi \sigma^{2}}\varepsilon}
+%     \exp[%
+%     -\frac{(q_{f}-\varepsilon\mu)^{2}}{2\sigma^{2}\varepsilon^{2}}
+%     ](1-\varepsilon)^{\beta - 1}
+%     d\varepsilon
+% \end{equation*}
+%La cola que aparece a la izquierda es culpa de la PCC, debido a que hay eventos con menor carga generada debido a este fenómeno de recombinación para los eventos que suceden en los primeros micrones del detector. Del lado derecho no hay nada porque no hay un fenómeno que genere más carga de la que el proceso de ionización puede generar.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+$\tau_{X}$ modelala exponencial que dice la distancia que recorre el fotón cuando entra. Camino libre medio. Es la profundidad que se espera que recorra el fotón antes de que caiga a $1/e$ la cantidad de fotones inicial.
