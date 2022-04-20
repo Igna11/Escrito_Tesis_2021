@@ -1,16 +1,21 @@
 \chapter{Modelado analítico de la PCC \label{chap:ModeloPCC}}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\noindent La física de los fenómenos antes mencionados puede comenzar a modelarse estudiando la distancia que recorren los fotones dentro del sensor hasta interactuar. Esta es una variable aleatoria de distribución exponencial, que viene dada por
+\noindent Además de los sesgos que añaden el fondo y el umbral utilizado sobre la determinación de las magnitudes del factor de Fano y la energía de creación electrón hueco, la colección parcial de carga y la eficiencia de colección de carga juegan un rol fundamental en la determinación precisa de estas magnitudes. Particularmente para las mediciones de flúor y aluminio, donde la tasa de eventos es mucho menor a la que se obtuvo en los trabajos previos\cite{TesisAndi,TesisKevin,Rodrigues} con el hierro, más apreciable es el efecto de estos fenómenos.
+
+La física detrás de ellos puede comenzar a modelarse estudiando la distancia que recorren los fotones dentro del sensor hasta que interactúan con él. Esta es una variable aleatoria de distribución exponencial, que viene dada por
 \begin{equation*}
     f_{Z}(z) = \frac{1}{\tau_{X}}\exp(-\frac{z}{\tau_{X}})
 \end{equation*}
-donde $\tau_{X}$ es la longitud de atenuación, que es la distancia promedio para la cual de una población de fotones incidentes solo quede una fracción de $1/e$ de todos ellos. Este es un valor tabulado tanto para la energía de los fotones como para el material. Realizaciones de la variable aleatoria de esta distribución son las diferentes distancias que puede alcanzar un fotón que penetra en el sensor hasta generar cargas por ionización.
+donde $\tau_{X}$ es la longitud de atenuación, que es la distancia promedio para la cual una cantidad de fotones incidentes reduce su cantidad a una fracción de $1/e$ de la población original. Este es un valor tabulado tanto para la energía de los fotones como para el material. Realizaciones de la variable aleatoria de esta distribución son las diferentes distancias que puede alcanzar un fotón que penetra en el sensor hasta generar cargas por ionización.
 
-También existe una función para caracterizar la eficiencia de la colección de carga, tal que para una dada distancia de penetración $z$, indica qué porcentaje de la carga logra ser colectada y viene dada por
+También existe una función para caracterizar la eficiencia de la colección de carga, tal que para una dada distancia de penetración $z$ se tiene qué porcentaje de la carga logra ser colectada y viene dada por
 \begin{equation*}
-    E_{ff}(z) = 1 - e^{-\frac{z}{\tau_{\scaleto{CEE}{2pt}}}}
+    E_{ff}(z) = 1 - 
+    \exp
+    \left(
+        -\frac{z}{\tau_{CEE}}
+    \right)
 \end{equation*}
-donde $\tau_{CCE} = 1 - \tau_{X}$, es decir, es la distancia para la cual (estoy quemado, no sé como era esto. ver mañana). 
+donde $\tau_{CCE}$ ahora es la distancia media para la cual la cantidad de carga ionizada que sufre recombinación cae a $1/e$ del total de carga inicial.
 
 Si se inyecta la variable aleatoria $z$ que viene de realizaciones de la distribución $f_{Z}$ dentro de la función $E_{ff}(z)$, mediante un cambio de variables la nueva distribución puede reescribirse como
 \begin{equation*}
@@ -18,7 +23,7 @@ Si se inyecta la variable aleatoria $z$ que viene de realizaciones de la distrib
 \end{equation*}
 donde el parámetro $\beta = \frac{\tau_{\scaleto{CCE}{3pt}}}{\tau_{X}}$. Esta es la distribución de probabilidad de colectar la carga producida por un fotón de una dada energía.
 
-Sin embargo, para terminar de modelar todos los efectos que contribuyen a la dispersión de la carga generada por la interacción de fotones con el material, hay que considerar que, omitiendo todos los efectos anteriores, para una dada energía no siempre se producirán la misma cantidad de ionizaciones. Este efecto es descripto por el factor de Fano. Dado que cada proceso de ionización puede considerarse como un experimento de Bernoulli, una sucesión de interacciones puede pensarse como un fenómeno binomal. En el límite, donde la probabilidad de ionización es baja y la cantidad de veces que puede haber interacciones es muy alta, el proceso se vuelve Poissoniano. Cuando la esperanza de dicha distribución es alta (mayor a 100 en los casos de interes en esta tesis), el límite gaussiano dado por el teorema central del límite se cumple en excelente aproximación. De aquí viene que para agregar esta última contribución al modelado del fenómeno es necesario realizar la convolución de ambas distribuciones. De hacer este cálculo se obtiene la siguiente expresión
+Sin embargo, para terminar de modelar todos los efectos que contribuyen a la dispersión de la carga generada por la interacción de fotones con el material, hay que considerar que, además de todos los efectos anteriores, para una dada energía no siempre se producirán la misma cantidad de ionizaciones. Este efecto es descripto por el factor de Fano. Dado que cada proceso de ionización puede considerarse como un experimento de Bernoulli, una sucesión de interacciones puede pensarse como un fenómeno binomial. En el límite, donde la probabilidad de ionización es baja y la cantidad de veces que puede haber interacciones es muy alta, el proceso se vuelve Poissoniano. Cuando la esperanza de dicha distribución es alta (mayor a $100$ en los casos de interés en este trabajo), el límite gaussiano dado por el teorema central del límite se cumple en excelente aproximación. Con lo cual, la distribución de carga para los eventos de interés puede modelarse sin pérdida de precisión con una distribución gaussiana. De aquí viene que para agregar esta última contribución al modelado del fenómeno es necesario realizar la convolución de ambas distribuciones. De hacer este cálculo se obtiene la siguiente expresión
 \begin{equation*}
     f_{Q_{f}}(q_{f}) = 
     \int\limits_{0}^{1}
@@ -29,6 +34,9 @@ Sin embargo, para terminar de modelar todos los efectos que contribuyen a la dis
     d\varepsilon
 \end{equation*}
 para la distribución teórica de carga debido a los efectos del factor de Fano y la colección parcial de carga actuando conjuntamente.
+
+Utilizar este modelo para ajustar los picos de los histogramas de carga tiene la ventaja de que los parámetros que obtienen del ajuste, como el valor medio $\mu$ y su dispersión $\sigma$, son los valores que se obtendrían si la colección parcial de carga fuera totalmente nula. Es decir, este modelo logra obtener estas magnitudes disociando totalmente el efecto de la PCC. 
+
 
 %\indent Si el detector fuera perfecto, el factor de Fano existiría igual. Este no es un problema del detector, viene del proceso de interacción en sí mismo que a la larga es un fenómeno binomial. Sin embargo, lo que sí es un problema del detector es la PCC. Un fotón interactuando con materia es un experimento Bernoulli, una serie de procesos de interacción es un fenómeno binomial y, en consecuencia, en el límite de probabilidades pequeñas y gran número de repeticiones, de Poisson. Por lo tanto, cuán lejos llega es una variable aleatoria con distribución exponencia (La distancia entre dos eventos de poisson es exponencial). Si uno quiere saber cuál es la probabilidad de que un fotón penetre una dada distancia, hay que hacer
 %\begin{equation*}
@@ -61,5 +69,3 @@ para la distribución teórica de carga debido a los efectos del factor de Fano 
 %La cola que aparece a la izquierda es culpa de la PCC, debido a que hay eventos con menor carga generada debido a este fenómeno de recombinación para los eventos que suceden en los primeros micrones del detector. Del lado derecho no hay nada porque no hay un fenómeno que genere más carga de la que el proceso de ionización puede generar.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-$\tau_{X}$ modelala exponencial que dice la distancia que recorre el fotón cuando entra. Camino libre medio. Es la profundidad que se espera que recorra el fotón antes de que caiga a $1/e$ la cantidad de fotones inicial.
