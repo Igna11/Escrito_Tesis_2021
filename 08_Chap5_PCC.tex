@@ -1,29 +1,48 @@
 \chapter{Modelado analítico de la PCC \label{chap:ModeloPCC}}
 \noindent Además de los sesgos que añaden el fondo y el umbral utilizado sobre la determinación de las magnitudes del factor de Fano y la energía de creación electrón hueco, la colección parcial de carga y la eficiencia de colección de carga juegan un rol fundamental en la determinación precisa de estas magnitudes. Particularmente para las mediciones de flúor y aluminio, donde la tasa de eventos es mucho menor a la que se obtuvo en los trabajos previos\cite{TesisAndi,TesisKevin,Rodrigues} con el hierro, más apreciable es el efecto de estos fenómenos.
 
-La física detrás de ellos puede comenzar a modelarse estudiando la distancia que recorren los fotones dentro del sensor hasta que interactúan con él. Esta es una variable aleatoria de distribución exponencial, que viene dada por
+La física detrás de ellos puede comenzar a modelarse estudiando la distancia que recorren los fotones dentro del material del sensor hasta que interactúan con él. Esta es una variable aleatoria de distribución exponencial, que viene dada por
 \begin{equation*}
-    f_{Z}(z) = \frac{1}{\tau_{X}}\exp(-\frac{z}{\tau_{X}})
+    f_{Z}(z) = \frac{1}{\tau_{\scaleto{X}{4pt}}}\exp(-\frac{z}{\tau_{\scaleto{X}{4pt}}})
 \end{equation*}
-donde $\tau_{X}$ es la longitud de atenuación, que es la distancia promedio para la cual una cantidad de fotones incidentes reduce su cantidad a una fracción de $1/e$ de la población original. Este es un valor tabulado tanto para la energía de los fotones como para el material. Realizaciones de la variable aleatoria de esta distribución son las diferentes distancias que puede alcanzar un fotón que penetra en el sensor hasta generar cargas por ionización.
+donde $\tau_{X}$ es la longitud de atenuación, que es la distancia promedio para la cual una cantidad de fotones incidentes reduce su cantidad a una fracción de $1/e$ de la población original. Este es un valor tabulado tanto para la energía de los fotones como para el material. Para el caso del silicio, puede verse en el gráfico de la figura \ref{fig:Attenuation} la relación entre la longitud de atenuación $\tau_{\scaleto{X}{4pt}}$ y la energía de un fotón incidente. Por ejemplo, para el caso de la energía correspondiente a los rayos $X$ del flúor, $677\,\si{eV}$, se tiene que la longitud de atenuación es aproximadamente $1\,\si{\mu m}$, mientras que para los rayos $X$ del aluminio, $\sim 1500\,\si{eV}$, la longitud de atenuación ronda los $20\,\si{\mu m}$.
+\begin{figure}[h]
+    \centering
+        \includegraphics[scale=0.5]{Figs/AttenuationLength.pdf}
+    \caption{\footnotesize{Longitud de atenuación para el silicio en función de la energía de un fotón que incide con un ángulo de $90\,^{\circ}$ sobre el material. Datos obtenidos de \textit{The Center for X-Ray Optics}\cite{AttenuationLength}.}}
+    \label{fig:Attenuation}
+\end{figure}
 
-También existe una función para caracterizar la eficiencia de la colección de carga, tal que para una dada distancia de penetración $z$ se tiene qué porcentaje de la carga logra ser colectada y viene dada por
+Realizaciones de la variable aleatoria de esta distribución son las diferentes distancias que puede alcanzar un fotón que penetra en el sensor hasta generar cargas por ionización.
+ \ref{fig:FotoelectricoComptonPares}
+\begin{figure}[h]
+    \centering
+        \includegraphics[scale=0.5]{Figs/FotoelectricoComptonPares_enSilicio.pdf}
+    \caption{\footnotesize{Diferentes contribuciones al coefieciente de atenuación del Silicio. CHAMUYO PRELIMINAR. Cita\cite{FotoComptPar} de donde saco los datos para el plot}}
+    \label{fig:FotoelectricoComptonPares}
+\end{figure}
+También se tiene una función para caracterizar la eficiencia de la colección de carga, tal que para una dada distancia de penetración $z$ se tiene qué porcentaje de la carga logra ser colectada y viene dada por
 \begin{equation*}
     E_{ff}(z) = 1 - 
     \exp
     \left(
-        -\frac{z}{\tau_{CEE}}
+        -\frac{z}{\tau_{\scaleto{CCE}{4pt}}}
     \right)
 \end{equation*}
-donde $\tau_{CCE}$ ahora es la distancia media para la cual la cantidad de carga ionizada que sufre recombinación cae a $1/e$ del total de carga inicial.
-
+donde $\tau_{CCE}$ ahora es la distancia media para la cual la cantidad de carga ionizada que sufre recombinación cae a $1/e$ del total de carga inicial. En el gráfico de la figura \ref{fig:EficienciaCC} se ven los datos obtenidos de mediciones de \textbf{DE QUÉ} y su ajuste a partir de esta función.
+\begin{figure}[H]
+    \centering
+        \includegraphics[scale=0.4]{pngs/CCE_plot.png}
+    \caption{\footnotesize{Curva de datos y ajuste de la función de la eficiencia de la colección de carga. Se ve como el modelo ajusta muy bien a los datos obtenidos de mediciones de \textbf{DE QUÉ} y como luego de los primeros $\sim 400\,\si{nm}$ ya colecta casi el $100\,\%$ de la carga ionizada.}}
+    \label{fig:EficienciaCC}
+\end{figure}
 Si se inyecta la variable aleatoria $z$ que viene de realizaciones de la distribución $f_{Z}$ dentro de la función $E_{ff}(z)$, mediante un cambio de variables la nueva distribución puede reescribirse como
 \begin{equation*}
     f_{E_{ff}}(z) = \beta (1 - \varepsilon)^{\beta - 1}
 \end{equation*}
-donde el parámetro $\beta = \frac{\tau_{\scaleto{CCE}{3pt}}}{\tau_{X}}$. Esta es la distribución de probabilidad de colectar la carga producida por un fotón de una dada energía.
+donde se definió el parámetro $\beta$ como $\beta = \frac{\tau_{\scaleto{CCE}{2pt}}}{\tau_{\scaleto{X}{2pt}}}$. Esta es la distribución de probabilidad de colectar la carga producida por un fotón de una dada energía.
 
-Sin embargo, para terminar de modelar todos los efectos que contribuyen a la dispersión de la carga generada por la interacción de fotones con el material, hay que considerar que, además de todos los efectos anteriores, para una dada energía no siempre se producirán la misma cantidad de ionizaciones. Este efecto es descripto por el factor de Fano. Dado que cada proceso de ionización puede considerarse como un experimento de Bernoulli, una sucesión de interacciones puede pensarse como un fenómeno binomial. En el límite, donde la probabilidad de ionización es baja y la cantidad de veces que puede haber interacciones es muy alta, el proceso se vuelve Poissoniano. Cuando la esperanza de dicha distribución es alta (mayor a $100$ en los casos de interés en este trabajo), el límite gaussiano dado por el teorema central del límite se cumple en excelente aproximación. Con lo cual, la distribución de carga para los eventos de interés puede modelarse sin pérdida de precisión con una distribución gaussiana. De aquí viene que para agregar esta última contribución al modelado del fenómeno es necesario realizar la convolución de ambas distribuciones. De hacer este cálculo se obtiene la siguiente expresión
+Sin embargo, para terminar de modelar todos los efectos que contribuyen a la dispersión de la carga generada por ionización en el material, hay que considerar que, además de los efectos anteriores, para una dada energía no siempre se producirán la misma cantidad de carga. Este efecto es descripto por el factor de Fano. Dado que cada proceso de ionización puede considerarse como un experimento de Bernoulli, una sucesión de interacciones puede pensarse como un fenómeno binomial. En el límite, donde la probabilidad de ionización es baja y la cantidad de veces que puede haber interacciones es muy alta, el proceso se vuelve Poissoniano. Cuando la esperanza de dicha distribución es alta (mayor a $100$ en los casos de interés en este trabajo), el límite gaussiano dado por el teorema central del límite se cumple en excelente aproximación. Con lo cual, la distribución de carga para los eventos de interés puede modelarse sin perder precisión con una distribución gaussiana. Para agregar esta última contribución al modelado del fenómeno es necesario realizar la convolución de ambas distribuciones: La distribución de probabilidad de colectar carga dada una distancia de penetración $z$ y la distribución de probabilidad de generar carga dada una energía inicial. De hacer este cálculo se obtiene la siguiente expresión
 \begin{equation*}
     f_{Q_{f}}(q_{f}) = 
     \int\limits_{0}^{1}
