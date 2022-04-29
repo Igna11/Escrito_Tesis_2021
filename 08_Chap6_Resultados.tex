@@ -1,5 +1,7 @@
 \chapter{Resultados \label{chap:Resultados}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Ajuste de espectros}
 \noindent Habiendo calculado y aplicado los valores de expectación, $\mu_{g}$ y $\mu_{bkg}$, para corregir la carga sobre los clusters y habiendo introducido el modelo de la colección parcial de carga, que es usado en el ajuste de los espectros, ya se pueden obtener los resultados derivados de las correcciones.
 
 En principio se quieren ver los resultados que se obtienen al realizar los ajustes de los picos de los histogramas de carga, para el caso del aluminio, sin aplicar ni el umbral \verb|EPIX = 0.5| ni las correcciones calculadas anteriormente, con el fin de poder comparar resultados. El ajuste puede verse en la figura \ref{fig:Al_OHDU1_EPIX05}, \textit{para el primer cuadrante del sensor}, del cual se obtiene un valor para el factor de Fano de $F = 0.1322 \pm 0.0022$ y la energía de creación electrón hueco $\varepsilon_{\eh} = 3.7141 \pm 0.0019$
@@ -55,5 +57,14 @@ EPIX 1.5 100c Corr& $0.1701 \pm 0.0141$ & $3.7485 \pm 0.0039$ & $0.1933 \pm 0.01
 \label{tab:FanoEehOHDU3y4}
 \end{table}
 
-el modelo de la verosimilitud va a ir en esta sección. y me va a pasar el beta con sus errores con su teoria de fondo pero no necesariamente en este capitulo.
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Valores de \texorpdfstring{$\beta$}{beta}}
+\noindent Los valores del parámetro $\beta$ junto con su error se determinaron utilizando el método de la máxima verosimilitud como se detalla en la sección \ref{sec:MaximaVerosimilitud}. De realizar este procedimiento se obtuvo el gráfico de la verosimilitud que se ve en la figura \ref{fig:LL_beta} y que se ajustó con una función cuadrática para \textbf{para qué?}. Se puede observar la intersección entre la recta que se encuentra a una distancia $a=1/2$ por debajo del máximo y la curva obtenida del barrido en $\beta$ para la verosimilitud. De estos se obtuvo el intervalo $[0.00396, 0.01144]$ para un $68.3\,\%$ de probabilidad de contener a $beta$, para el \textbf{cual?} cuadrante del sensor y el caso de los rayos $X$ del aluminio.
+\begin{figure}[H]
+    \centering
+        \includegraphics[scale=0.4]{pngs/LL_beta.png}
+    \caption{\footnotesize{asd.}}
+    \label{fig:LL_beta}
+\end{figure}
+También se logra observar lo que se esperaba respecto a la intensidad de del parámetro $\beta$: Para los picos de los rayos $X$ del flúor, las colas en los picos de los histogramas son apreciablemente más pronunciadas que para los picos de los rayos $X$ del aluminio. Esto se debe a que $\beta_{F} = 0.008$ mientras que $\beta_{Al} = 0.001$, siendo el efecto de la PCC 8 veces más pronunciado para el caso del flúor.

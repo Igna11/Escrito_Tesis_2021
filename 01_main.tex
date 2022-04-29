@@ -5,10 +5,10 @@
 %%% Dario: Te gusta como queda lo que hace la linea anterior? aparece tu nombre en todas las hojas, es medio mucho no? no lo vi en otras tesis creo. Me gusta más que aparezca el nombre de la sección en la que estas, que es lo que hace si lo dejas comentado.
 %\fancyhead[L]{\nouppercase{\slshape \leftmark}} % Parte izquierda del encabezado
 %\fancyhead[C]{\nouppercase{\slshape \leftmark}} % Medio del encabezado
-\fancyhead[R]{\nouppercase{\slshape \leftmark}} % Parte derecha del encabezado
+\fancyhead[R]{\nouppercase{\slshape\leftmark}} % Parte derecha del encabezado
 
 \setlength{\headheight}{16pt} %Soluciona el warning de " fancyhdr \headheight is to small. use at least 14.9999 o algo así decía << No de nuevo decía >>
-
+\fancyheadoffset{0cm} % 29/04/2022 Hace que la linea de arriba del header ocupe el mismo espacio de ambos lados
 \marginsize{2cm}{2cm}{2cm}{2cm}
 \renewcommand{\baselinestretch}{1.3} % separa los renglones
 
@@ -20,7 +20,7 @@
 
     \input{04_HojadeFirmas}
     
-    \input{05_Dedicatoria}
+    %\input{05_Dedicatoria}
 
 	\input{06_Resumen}
     

@@ -1,7 +1,9 @@
 \chapter{Modelado analítico de la PCC \label{chap:ModeloPCC}}
 \noindent Además de los sesgos que añaden el fondo y el umbral utilizado sobre la determinación de las magnitudes del factor de Fano y la energía de creación electrón hueco, la colección parcial de carga y la eficiencia de colección de carga juegan un rol fundamental en la determinación precisa de estas magnitudes. Particularmente para las mediciones de flúor y aluminio, donde la tasa de eventos es mucho menor a la que se obtuvo en los trabajos previos\cite{TesisAndi,TesisKevin,Rodrigues} con el hierro, más apreciable es el efecto de estos fenómenos.
-
-La física detrás de ellos puede comenzar a modelarse estudiando la distancia que recorren los fotones dentro del material del sensor hasta que interactúan con él. Esta es una variable aleatoria de distribución exponencial, que viene dada por
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introducción del modelo}
+\noindent La física detrás de ellos puede comenzar a modelarse estudiando la distancia que recorren los fotones dentro del material del sensor hasta que interactúan con él. Esta es una variable aleatoria de distribución exponencial, que viene dada por
 \begin{equation*}
     f_{Z}(z) = \frac{1}{\tau_{\scaleto{X}{4pt}}}\exp(-\frac{z}{\tau_{\scaleto{X}{4pt}}})
 \end{equation*}
@@ -14,14 +16,8 @@ donde $\tau_{X}$ es la longitud de atenuación, que es la distancia promedio par
 \end{figure}
 
 Realizaciones de la variable aleatoria de esta distribución son las diferentes distancias que puede alcanzar un fotón que penetra en el sensor hasta generar cargas por ionización.
- \ref{fig:FotoelectricoComptonPares}
-\begin{figure}[h]
-    \centering
-        \includegraphics[scale=0.5]{Figs/FotoelectricoComptonPares_enSilicio.pdf}
-    \caption{\footnotesize{Diferentes contribuciones al coefieciente de atenuación del Silicio. CHAMUYO PRELIMINAR. Cita\cite{FotoComptPar} de donde saco los datos para el plot}}
-    \label{fig:FotoelectricoComptonPares}
-\end{figure}
-También se tiene una función para caracterizar la eficiencia de la colección de carga, tal que para una dada distancia de penetración $z$ se tiene qué porcentaje de la carga logra ser colectada y viene dada por
+
+Por otro lado, se puede caracterizar la eficiencia de colección de carga con una función que para una dada distancia de penetración $z$ devuelve qué fracción de la carga inicial logra ser colectada. Dicha función viene dada por
 \begin{equation*}
     E_{ff}(z) = 1 - 
     \exp
@@ -29,33 +25,121 @@ También se tiene una función para caracterizar la eficiencia de la colección 
         -\frac{z}{\tau_{\scaleto{CCE}{4pt}}}
     \right)
 \end{equation*}
-donde $\tau_{CCE}$ ahora es la distancia media para la cual la cantidad de carga ionizada que sufre recombinación cae a $1/e$ del total de carga inicial. En el gráfico de la figura \ref{fig:EficienciaCC} se ven los datos obtenidos de mediciones de \textbf{DE QUÉ} y su ajuste a partir de esta función.
+donde $\tau_{\scaleto{CCE}{4pt}}$ es la distancia media para la cual la cantidad de carga ionizada que sufre recombinación cae a $1/e$ del total de carga inicial. En el gráfico de la figura \ref{fig:EficienciaCC} se ven los datos obtenidos de mediciones realizadas utilizando el pico de $677\,\si{eV}$ de los rayos $X$ del flúor y su ajuste a partir del uso de esta función.
 \begin{figure}[H]
     \centering
-        \includegraphics[scale=0.4]{pngs/CCE_plot.png}
-    \caption{\footnotesize{Curva de datos y ajuste de la función de la eficiencia de la colección de carga. Se ve como el modelo ajusta muy bien a los datos obtenidos de mediciones de \textbf{DE QUÉ} y como luego de los primeros $\sim 400\,\si{nm}$ ya colecta casi el $100\,\%$ de la carga ionizada.}}
+        \includegraphics[scale=0.3]{pngs/CCE_plot.png}
+    \caption{\footnotesize{Mediciones de la eficiencia de colección de carga como función de la profundidad y ajuste de los mismos utilizando la función de eficiencia de la colección de carga. Datos obtenidos de mediciones con rayos $X$ del flúor de $677\,\si{eV}$. Se ve como luego de los primeros $\sim 400\,\si{nm}$ ya es colectada casi el $100\,\%$ de la carga producida por ionización.}}
     \label{fig:EficienciaCC}
 \end{figure}
-Si se inyecta la variable aleatoria $z$ que viene de realizaciones de la distribución $f_{Z}$ dentro de la función $E_{ff}(z)$, mediante un cambio de variables la nueva distribución puede reescribirse como
+Se busca combinar ambas expresiones, donde la primera de ellas es una distribución y describe un proceso estocástico mientras que la segunda es una función convencional. Entonces se obtiene una dependencia funcional de una nueva variable $\varepsilon = \varepsilon(z)$ y definida por $E_{ff}(z) = \varepsilon$. En este sentido, dada una correspondencia uno a uno entre la vieja y la nueva variable, entonces la probabilidad en un intervalo diferencial tiene que conservarse, con lo cual, dada la distribución $f_{Z}(z)$ inicial y la distribución final $f_{E_{ff}}(\varepsilon)$, tiene que valer que
 \begin{equation*}
-    f_{E_{ff}}(z) = \beta (1 - \varepsilon)^{\beta - 1}
+    f_{Z}(z)\,dz = f_{E_{ff}}(\varepsilon)\,d\varepsilon
 \end{equation*}
-donde se definió el parámetro $\beta$ como $\beta = \frac{\tau_{\scaleto{CCE}{2pt}}}{\tau_{\scaleto{X}{2pt}}}$. Esta es la distribución de probabilidad de colectar la carga producida por un fotón de una dada energía.
-
-Sin embargo, para terminar de modelar todos los efectos que contribuyen a la dispersión de la carga generada por ionización en el material, hay que considerar que, además de los efectos anteriores, para una dada energía no siempre se producirán la misma cantidad de carga. Este efecto es descripto por el factor de Fano. Dado que cada proceso de ionización puede considerarse como un experimento de Bernoulli, una sucesión de interacciones puede pensarse como un fenómeno binomial. En el límite, donde la probabilidad de ionización es baja y la cantidad de veces que puede haber interacciones es muy alta, el proceso se vuelve Poissoniano. Cuando la esperanza de dicha distribución es alta (mayor a $100$ en los casos de interés en este trabajo), el límite gaussiano dado por el teorema central del límite se cumple en excelente aproximación. Con lo cual, la distribución de carga para los eventos de interés puede modelarse sin perder precisión con una distribución gaussiana. Para agregar esta última contribución al modelado del fenómeno es necesario realizar la convolución de ambas distribuciones: La distribución de probabilidad de colectar carga dada una distancia de penetración $z$ y la distribución de probabilidad de generar carga dada una energía inicial. De hacer este cálculo se obtiene la siguiente expresión
+de esta forma se puede escribir $f_{E_{ff}}$ en términos de la distribución inicial como sigue
 \begin{equation*}
+    f_{E_{ff}} 
+    = f_{Z}
+    \left|
+        \frac{dz}{d\varepsilon}
+    \right|
+\end{equation*}
+Donde aparece un Jacobiano que viene de agregar el módulo a los diferenciales para asegurar una dependencia no negativa. Como la nueva variable $\varepsilon$ es función de $z$, $E_{ff}(z) = \varepsilon$, entonces $E_{ff}^{-1}(\varepsilon) = z$ y se puede escribir la última en términos de $\varepsilon$
+\begin{equation*}
+    f_{E_{ff}}(\varepsilon) 
+    = f_{Z}
+    \left(
+        E_{ff}^{-1}(\varepsilon)
+    \right)
+    \left|
+        \frac{dE_{ff}^{-1}(\varepsilon)}{d\varepsilon}
+    \right|
+\end{equation*}
+finalmente, resolviendo esta última se obtiene la expresión para la nueva distribución, que resulta ser una Beta de parámetro $\alpha = 1$ y $\beta$ libre.
+\begin{equation*}
+    f_{E_{ff}}(\varepsilon) = \beta (1 - \varepsilon)^{\beta - 1}
+\end{equation*}
+donde además se definió el parámetro $\beta$ como $\beta = \frac{\tau_{\scaleto{CCE}{3pt}}}{\tau_{\scaleto{X}{3pt}}}$. Esta es la distribución de probabilidad de colectar la carga producida por un fotón de una dada energía y puede verse un ejemplo de ajuste a un conjunto de datos simulados con estad distribución en la figura \ref{fig:BetaDistyAjuste}.
+\begin{figure}[h]
+    \centering
+        \includegraphics[scale=0.5]{Figs/BetaDistyAjuste.pdf}
+    \caption{\footnotesize{asd.}}
+    \label{fig:BetaDistyAjuste}
+\end{figure}
+
+Sin embargo, para terminar de modelar todos los efectos que contribuyen a la dispersión de la carga generada por ionización en el material, hay que considerar que, además de los efectos anteriores, para una dada energía no siempre se producirán la misma cantidad de carga. Este efecto es descripto por el factor de Fano. Dado que cada proceso de ionización puede considerarse como un experimento de Bernoulli, una sucesión de interacciones puede pensarse como un fenómeno binomial. En el límite, donde la probabilidad de ionización es baja y la cantidad de veces que puede haber interacciones es muy alta, el proceso se vuelve Poissoniano. Cuando la esperanza de dicha distribución es alta (mayor a $100$ en los casos de interés en este trabajo), el límite gaussiano dado por el teorema central del límite se cumple en excelente aproximación. Con lo cual, la distribución de carga para los eventos de interés puede modelarse sin perder precisión con una distribución gaussiana de la siguiente forma
+\begin{equation*}
+    N(\mu|\sigma) = 
+    \frac{1}{\sqrt{2\pi \sigma^{2}}}\,
+    \exp
+        \left[
+            -\frac{1}{2}
+            \left(
+                \frac{q_{i} - \mu}{\sigma}
+            \right)^{2}
+        \right]
+\end{equation*}
+Para agregar esta última contribución al modelado del fenómeno, combinando todas las contribuciones, es necesario realizar la convolución de ambas distribuciones: La distribución de probabilidad de colectar carga dada una distancia de penetración $z$ y la distribución de probabilidad de generar carga dada una energía inicial. Entonces, se escribe la probabilidad unión de ambas
+\begin{equation*}
+    f_{E_{ff}} \times Q_{i}(\varepsilon, q_{i})
+    = \frac{1}{\sqrt{2\pi \sigma^{2}}}\,
+    \exp
+        \left[
+            -\frac{1}{2}
+            \left(
+                \frac{q_{i} - \mu}{\sigma}
+            \right)^{2}
+        \right]
+    \times
+    \beta(1-\varepsilon)^{\beta - 1}
+\end{equation*}
+que luego de hacer un cambio de variables $q_{i}\longrightarrow q_{f}/\varepsilon$ e integrando en el dominio de la beta se obtiene finalmente el modelo
+\begin{equation}
     f_{Q_{f}}(q_{f}) = 
     \int\limits_{0}^{1}
-    \frac{\beta}{\sqrt{2\pi \sigma^{2}}\varepsilon}
-    \exp[%
-    -\frac{(q_{f}-\varepsilon\mu)^{2}}{2\sigma^{2}\varepsilon^{2}}
-    ](1-\varepsilon)^{\beta - 1}
+    \frac{\beta}{\sqrt{2\pi \sigma^{2}\varepsilon^{2}}}
+    \exp
+        \left[
+            -\frac{1}{2}
+            \left(
+                \frac{q_{f} - \varepsilon\mu}{\sigma\varepsilon}
+            \right)^{2}
+        \right]
+    (1-\varepsilon)^{\beta - 1}
     d\varepsilon
+    \label{ec:UnbinnedFit}
+\end{equation}
+el cual fue específicamente desarrollado para la distribución teórica de carga debido a los efectos del factor de Fano y la colección parcial de carga actuando conjuntamente.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Máxima verosimilitud y determinación de la incerteza de \texorpdfstring{$\beta$}{beta}\label{sec:MaximaVerosimilitud}}
+\noindent Para obtener los parámetros $\mu$, $\sigma$ y $\beta$ del modelo lo que se hace es fijar un valor para el parámetro $\beta$ y luego ajustar los datos para obtener $\mu$ y $\sigma$. Una vez ajustados estos parámetros, se calcula la verosimilitud a partir de la distribución de probabilidad resultante. Realizando un barrido en valores del parámetro $\beta$ se obtienen diferentes ajustes y a su vez diferentes valores de la verosimilitud resultante para cada $\beta$. De esta forma, se busca el $\hat{\beta}$ que maximiza el valor de la verosimilitud y de ese ajuste se obtienen los parámetros $\mu$ y $\sigma$ óptimos. 
+
+Los errores para $\mu$ y $\sigma$ se obtienen de \textbf{DONDE?}. Sin embargo, debido a que el efecto que introduce en las mediciones la colección parcial de carga es pequeño, se espera que la estadística sea baja en las colas de los picos. Es por esa razón, el análisis de la incerteza del parámetro $\beta$ requiere del uso de otras herramientas de cálculo. Este se obtiene del análisis gráfico de la verosimilitud. Se busca el intervalo de la verosimilitud de $68.3\,\%$ de probabilidad que contenga al parámetro $\beta$. Para obtener este intervalo, lo que se debe hacer es tomar el máximo valor del logaritmo de la verosimilitud en función de $\beta$ y obtener la intersección con la parábola formada por esta con una recta que se encuentra a una distancia $a$ por debajo del máximo, donde $a = 1/2$, es decir
+\begin{equation*}
+    \ln{
+        \left(
+            L(\hat{\beta})
+        \right)
+        } - \frac{1}{2}
 \end{equation*}
-para la distribución teórica de carga debido a los efectos del factor de Fano y la colección parcial de carga actuando conjuntamente.
+Los $\beta$ donde la recta y la parábola se tocan corresponden a los límites izquierdos y derechos del intervalo de $68.3\,\%$ deseado\cite{Frodesen}.
 
-Utilizar este modelo para ajustar los picos de los histogramas de carga tiene la ventaja de que los parámetros que obtienen del ajuste, como el valor medio $\mu$ y su dispersión $\sigma$, son los valores que se obtendrían si la colección parcial de carga fuera totalmente nula. Es decir, este modelo logra obtener estas magnitudes disociando totalmente el efecto de la PCC. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Características del modelo}
+\noindent Utilizar este modelo para ajustar los picos de los histogramas de carga tiene la ventaja de que los parámetros que se obtienen del ajuste, como el valor medio $\mu$ y su dispersión $\sigma$, son los valores que se obtendrían si la colección parcial de carga fuera totalmente nula. Es decir, este modelo logra obtener estas magnitudes disociando totalmente el efecto de la PCC. A su vez, también se obtiene el parámetro $\beta$, el cuál venía definido como la relación entre $\tau_{\scaleto{CCE}{4pt}}$ y $\tau_{\scaleto{X}{4pt}}$, donde el primero es un parámetro intrínseco del material del detector y, por ende, está fijo, mientras que el segundo es una magnitud que varía dependiendo de la energía incidente y del material. Más aún, $\tau_{\scaleto{CCE}{4pt}}$ puede definirse como el ancho de la región de colección parcial de carga del detector, de forma que obteniendo $\beta$ a partir de un ajuste del modelo y $\tau_{\scaleto{X}{4pt}}$ a partir de tablas, se puede saber el tamaño de la región de PCC. Con lo cual, este modelo es capaz de determinar el espesor de la región del sensor donde hay probabilidad de tener recombinación de carga.
 
+También es importante destacar que este modelo se enfoca en capturar el efecto que provoca la colección parcial de carga en los picos de los histogramas, pero ignora otros fenómenos que que en general podrían introducir fondo, como ser la dispersión por efecto Compton o la generación de pares. Esto se debe a que en las escalas de energía en las que se trabajó, los efectos de estos fenómenos son despreciables o, más aún, imposibles para el caso de generación de pares. 
+\begin{figure}[h]
+    \centering
+        \includegraphics[scale=0.5]{Figs/FotoelectricoComptonPares_enSilicio.pdf}
+    \caption{\footnotesize{Diferentes contribuciones al coeficiente de atenuación del Silicio. Se observa que el efecto fotoeléctrico es la contribución preponderante en los órdenes de energía estudiados en este trabajo.}}
+    \label{fig:FotoelectricoComptonPares}
+\end{figure}
+En el gráfico de la figura \ref{fig:FotoelectricoComptonPares} se encuentran las curvas de los coeficientes de atenuación para el silicio dependiendo del tipo de proceso de dispersión, obtenidas del \textit{National Institute of Standards and Technology}\cite{FotoComptPar}, como ser, el efecto fotoeléctrico, el efecto Compton, la generación de pares y la suma de los tres efectos. Se observa de la figura \ref{fig:FotoelectricoComptonPares} que para energías menores a los $1000\,\si{eV}$ la contribución del efecto Compton es totalmente despreciable frente a la del efecto fotoeléctrico, la cual domina en todo el rango de energías de estudiado en este trabajo.
+
+Resulta importante notar que, debido a que la longitud de atenuación $\tau_{\scaleto{X}{4pt}}$ depende de la energía del fotón incidente (entre otros), para el caso de los rayos $X$ del flúor cuya energía es menor a la de los rayos $X$ del aluminio, la longitud de atenuación es menor. Por otro lado, como $\tau_{\scaleto{CCE}{4pt}}$ es una característica del detector y no depende de ningún parámetro, y como $\beta = \tau_{\scaleto{CCE}{4pt}}/\tau_{\scaleto{X}{4pt}}$, entonces se espera que el valor de $\beta$ sea mucho mayor en el caso del flúor respecto del aluminio. Con lo cual, el efecto de la colección parcial carga debería ser más pronunciado en esos picos. Esto implica que debería poder apreciarse colas más pronunciadas a la izquierda los picos.
 
 %\indent Si el detector fuera perfecto, el factor de Fano existiría igual. Este no es un problema del detector, viene del proceso de interacción en sí mismo que a la larga es un fenómeno binomial. Sin embargo, lo que sí es un problema del detector es la PCC. Un fotón interactuando con materia es un experimento Bernoulli, una serie de procesos de interacción es un fenómeno binomial y, en consecuencia, en el límite de probabilidades pequeñas y gran número de repeticiones, de Poisson. Por lo tanto, cuán lejos llega es una variable aleatoria con distribución exponencia (La distancia entre dos eventos de poisson es exponencial). Si uno quiere saber cuál es la probabilidad de que un fotón penetre una dada distancia, hay que hacer
 %\begin{equation*}
