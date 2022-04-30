@@ -93,7 +93,7 @@ Para agregar esta última contribución al modelado del fenómeno, combinando to
     \times
     \beta(1-\varepsilon)^{\beta - 1}
 \end{equation*}
-que luego de hacer un cambio de variables $q_{i}\longrightarrow q_{f}/\varepsilon$ e integrando en el dominio de la beta se obtiene finalmente el modelo
+de igual manera que antes, se aplica un cambio de variables $q_{i}\longrightarrow q_{f}/\varepsilon$ e integrando en el dominio de la beta se obtiene finalmente el modelo
 \begin{equation}
     f_{Q_{f}}(q_{f}) = 
     \int\limits_{0}^{1}
@@ -115,13 +115,19 @@ el cual fue específicamente desarrollado para la distribución teórica de carg
 \section{Máxima verosimilitud y determinación de la incerteza de \texorpdfstring{$\beta$}{beta}\label{sec:MaximaVerosimilitud}}
 \noindent Para obtener los parámetros $\mu$, $\sigma$ y $\beta$ del modelo lo que se hace es fijar un valor para el parámetro $\beta$ y luego ajustar los datos para obtener $\mu$ y $\sigma$. Una vez ajustados estos parámetros, se calcula la verosimilitud a partir de la distribución de probabilidad resultante. Realizando un barrido en valores del parámetro $\beta$ se obtienen diferentes ajustes y a su vez diferentes valores de la verosimilitud resultante para cada $\beta$. De esta forma, se busca el $\hat{\beta}$ que maximiza el valor de la verosimilitud y de ese ajuste se obtienen los parámetros $\mu$ y $\sigma$ óptimos. 
 
-Los errores para $\mu$ y $\sigma$ se obtienen de \textbf{DONDE?}. Sin embargo, debido a que el efecto que introduce en las mediciones la colección parcial de carga es pequeño, se espera que la estadística sea baja en las colas de los picos. Es por esa razón, el análisis de la incerteza del parámetro $\beta$ requiere del uso de otras herramientas de cálculo. Este se obtiene del análisis gráfico de la verosimilitud. Se busca el intervalo de la verosimilitud de $68.3\,\%$ de probabilidad que contenga al parámetro $\beta$. Para obtener este intervalo, lo que se debe hacer es tomar el máximo valor del logaritmo de la verosimilitud en función de $\beta$ y obtener la intersección con la parábola formada por esta con una recta que se encuentra a una distancia $a$ por debajo del máximo, donde $a = 1/2$, es decir
+Los errores para $\mu$ y $\sigma$ se obtienen de \textbf{DONDE?}. Sin embargo, debido a que el efecto que introduce en las mediciones la colección parcial de carga es pequeño, se espera que la estadística sea baja en las colas de los picos. Es por esa razón que el análisis de la incerteza del parámetro $\beta$ requiere del uso de otras herramientas de cálculo, en particular, esta se obtiene gráficamente de la curva de la verosimilitud. Se busca el intervalo de confianza de la verosimilitud de $68.3\,\%$ de probabilidad que contenga al parámetro $\beta$. Para obtener este intervalo, lo que se debe hacer es tomar el máximo valor del logaritmo de la verosimilitud en función de $\beta$ y obtener la intersección de la parábola formada por esta con una recta que se encuentra a una distancia $a$ por debajo del máximo, donde $a = 1/2$, es decir, los valores
 \begin{equation*}
-    \ln{
-        \left(
-            L(\hat{\beta})
-        \right)
-        } - \frac{1}{2}
+    \left\{
+        \beta\ \in\ R\ /\ 
+        \ln{(L(\hat{\beta}))}
+        -
+        \ln{
+            \left(
+                L(\beta)
+            \right)
+            }
+        = 1/2
+    \right\}
 \end{equation*}
 Los $\beta$ donde la recta y la parábola se tocan corresponden a los límites izquierdos y derechos del intervalo de $68.3\,\%$ deseado\cite{Frodesen}.
 

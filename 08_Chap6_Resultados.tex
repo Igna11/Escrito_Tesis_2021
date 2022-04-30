@@ -4,6 +4,34 @@
 \section{Ajuste de espectros}
 \noindent Habiendo calculado y aplicado los valores de expectación, $\mu_{g}$ y $\mu_{bkg}$, para corregir la carga sobre los clusters y habiendo introducido el modelo de la colección parcial de carga, que es usado en el ajuste de los espectros, ya se pueden obtener los resultados derivados de las correcciones.
 
+A continuación se presentan los resultados tanto para el pico del flúor como los picos del aluminio. Para ambos casos se muestran los histogramas con sus respectivos ajustes y los resultados para cada uno de los pasos del análisis con el fin de poder comprar los resultados de unos con otros: Primero utilizando el umbral \verb|EPIX = 0.5|, luego aumentando el umbral a \verb|EPIX = 1.5| y sin aplicar las correcciones y, por último, los resultados con el umbral \verb|EPIX = 1.5| aplicando las correcciones.
+
+Para el caso del pico del flúor, se ve en el gráfico de la figura \ref{fig:F_OHDU0_EPIX05} el ajuste del histograma utilizando este modelo para el primer cuadrante del sensor y con \verb|EPIX=0.5|. Se ve como el modelo ajusta muy bien los datos. Además es importante destacar la cantidad de eventos que reconoció el programa fue $677$. 
+\begin{figure}[h]
+    \centering
+        \includegraphics[scale=0.4]{pngs/F_OHDU0_EPIX05.png}
+    \caption{\footnotesize{asd.}}
+    \label{fig:F_OHDU0_EPIX05}
+\end{figure}
+De este ajuste se desprenden los valores de los parámetros de interés que son $\beta = 0.0078 \pm 0.0065$, el factor de Fano $F = 0.1302 \pm 0.0216$ y la energía de creación electrón hueco $\eh = 3.5195 \pm 0.0193$.
+
+En el gráfico de la figura \ref{fig:F_OHDU0_EPIX15conCorr} se encuentra el ajuste de los datos para el caso en el que se utilizó el umbral \verb|EPIX=1.5| sin aplicar correcciones. El conteo de eventos en este caso aumentó a $1977$, casi tres veces más que antes.
+\begin{figure}[h]
+    \centering
+        \includegraphics[scale=0.4]{pngs/F_OHDU0_EPIX15_sinCorr.png}
+    \caption{\footnotesize{asd.}}
+    \label{fig:F_OHDU0_EPIX15sinCorr}
+\end{figure}
+En este caso aumento se observa un aumento de $\beta$, obteniéndose $\beta = 0.0104 \pm 0.0055$, lo cual también es apreciable en el gráfico porque se observa mayor incidencia de eventos en la cola izquierda del pico. El factor de Fano resultó $F = 0.1225 \pm 0.0114$ y la energía de creación electrón hueco $\eh = 3.5867 \pm 0.0111$. Las incertezas de todos estos parámetros se redujeron sensiblemente respecto al caso anterior con menor estadística.
+
+
+\begin{figure}[h]
+    \centering
+        \includegraphics[scale=0.4]{pngs/F_OHDU0_EPIX15_conCorr.png}
+    \caption{\footnotesize{asd.}}
+    \label{fig:F_OHDU0_EPIX15conCorr}
+\end{figure}
+
 En principio se quieren ver los resultados que se obtienen al realizar los ajustes de los picos de los histogramas de carga, para el caso del aluminio, sin aplicar ni el umbral \verb|EPIX = 0.5| ni las correcciones calculadas anteriormente, con el fin de poder comparar resultados. El ajuste puede verse en la figura \ref{fig:Al_OHDU1_EPIX05}, \textit{para el primer cuadrante del sensor}, del cual se obtiene un valor para el factor de Fano de $F = 0.1322 \pm 0.0022$ y la energía de creación electrón hueco $\varepsilon_{\eh} = 3.7141 \pm 0.0019$
 \begin{figure}[H]
     \centering
