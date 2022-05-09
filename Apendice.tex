@@ -1,5 +1,5 @@
 \appendix
-\chapter{Implementación del codigo de la simulación}
+\chapter{Implementación del código de la simulación \label{app:Implementación}}
 %\section{Implementación del código de la simulación}
 \noindent La implementación de los códigos que ejecutan la simulación Montecarlo se realizó con los lenguajes C y Python. Con C se realiza todo el trabajo de alto costo computacional, mientras que Python cumple un rol de interfaz de entrada para los parámetros de la simulación, de procesamiento de los datos obtenidos de ella y de visualización de resultados por medio de gráficos.\\
 \indent A grandes rasgos, en el código en C están implementadas las funciones que hacen los cálculos antes mencionados: El cálculo de la probabilidad de ionización $P_{eh}$ a partir de la expresión \eqref{ec:ProbabilidadIonizacion}, el cálculo del parámetro $\alpha = \alpha(E_{R})$ para la distribución Beta, a partir de la cual se genera una realización de la variable aleatoria de la que se puede despejar la energía transferida a un par electrón-hueco por ionización. Finalmente, por recursión, se simulan los procesos de ionización en cascada y se cuenta la cantidad final de electrones ionizados.\\
