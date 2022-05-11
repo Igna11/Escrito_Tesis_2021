@@ -27,10 +27,10 @@ Por otro lado, se puede caracterizar la eficiencia de colección de carga con un
         \label{ec:funcionCCE}
 \end{equation}
 donde $\tau_{\scaleto{CCE}{4pt}}$ es la distancia media para la cual la cantidad de carga ionizada que sufre recombinación cae a $1/e$ del total de carga inicial. En el gráfico de la figura \ref{fig:EficienciaCC} se ven los datos obtenidos de mediciones realizadas utilizando el pico de los rayos $X$ del flúor y su ajuste a partir del uso de esta función.
-\begin{figure}[H]
+\begin{figure}[h]
     \centering
-        \includegraphics[scale=0.3]{pngs/CCE_plot.png}
-    \caption{\footnotesize{Mediciones de la eficiencia de colección de carga como función de la profundidad y ajuste de los mismos utilizando la función de eficiencia de la colección de carga. Datos obtenidos de mediciones con rayos $X$ del flúor de $677\,\si{eV}$. Se ve como luego de los primeros $\sim 400\,\si{nm}$ ya es colectada casi el $100\,\%$ de la carga producida por ionización.}}
+        \includegraphics[scale=0.5]{Figs/CCE_vs_z.pdf}
+    \caption{\footnotesize{Mediciones de la eficiencia de colección de carga como función de la profundidad y ajuste de los mismos utilizando la función de eficiencia de la colección de carga. Datos obtenidos de mediciones con rayos $X$ del $\Fe{55}$ de $5900\,\si{eV}$. Se ve como luego de los primeros $\sim 400\,\si{nm}$ ya es colectada casi el $100\,\%$ de la carga producida por ionización.}}
     \label{fig:EficienciaCC}
 \end{figure}
 Se busca combinar ambas expresiones, donde la primera de ellas es una distribución y describe un proceso estocástico mientras que la segunda es una función convencional. Para esto es necesario lograr incorporar la variable aleatoria $z$, que viene de la distribución \ref{ec:DistribucionDistancias}, dentro de la función de eficiencia \ref{ec:funcionCCE}, de modo de obtener una nueva distribución $f_{E_{ff}}$ para la eficiencia o probabilidad de colectar carga. La nueva variable $\varepsilon$ tiene una dependencia funcional conocida y es $\varepsilon = \varepsilon(z)$ y viene definida por $E_{ff}(z) = \varepsilon$. En este sentido, dada una correspondencia uno a uno entre la vieja y la nueva variable, la probabilidad en un intervalo diferencial tiene que conservarse, con lo cual, dada la distribución $f_{Z}(z)$ inicial y la distribución final $f_{E_{ff}}(\varepsilon)$, tiene que valer que
