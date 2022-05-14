@@ -3,11 +3,12 @@
 \setcounter{page}{1}    %comienza a contar desde 1
 
 \chapter{Introducción}
-\noindent La radiación incidente en los sensores es capaz de ionizar carga en los píxeles de los sensores. Es por esto que la energía necesaria para producir un par electrón-hueco en el sensor resulta ser la conversión natural entre la energía de la radiación incidente y la carga generada. 
+\noindent La radiación incidente en los sensores es capaz de ionizar electrones del Si.  
+La relación entre la carga producida y la energía incidente, es decir la energía necesaria para producir un par electrón-hueco resulta ser fundamental importancia para traducir espectros de carga en espectros de energía.
 
-Por otro lado, existen diferentes fenómenos que modifican la forma de los espectros de carga producidos por la radiación incidente en los sensores. Entre ellos se encuentran el factor de Fano, que cuantifica la dispersión de carga, y las deficiencias en la colección de carga, que tienden a producir colas a baja energía en los picos producidos por eventos monoenergéticos.
+Por otro lado, existen diferentes fenómenos que modifican la forma de los espectros de carga producidos por la radiación incidente en los sensores. Entre ellos, los dos más importantes sonn: el factor de Fano, que cuantifica la dispersión de carga; y las deficiencias en la colección de carga, que tienden a producir colas a baja energía en los picos producidos por eventos monoenergéticos.
 
-En este capítulo se desarrollarán estos tres puntos, que constituyen propiedades del silicio, estudiadas en el marco de esta tesis, yendo mas allá del ruido de lectura gracias a la tecnología Skipper-CCD.
+En este capítulo se describen estas tres cantidades, que constituyen propiedades del silicio y del sensor estudiadas en el marco de esta tesis, yendo mas allá del ruido de lectura gracias a la tecnología Skipper-CCD.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -16,11 +17,18 @@ En este capítulo se desarrollarán estos tres puntos, que constituyen propiedad
 \begin{equation*}
     F = \frac{\sigma^{2}}{\mu}
 \end{equation*}
-donde $\sigma^{2}$ es la varianza de la distribución y $\mu$ es la media. Para el caso particular de una distribución de Poisson, la varianza y la esperanza coinciden, de forma que el factor de Fano equivale a $1$. Estas distribuciones de carga son el producto de la interacción de fotones de cierta energía con el detector, entre otros factores, que van depositando energía en el material ionizando cargas a su paso. El origen de dicha distribución radica en que la energía transferida en cada interacción no es constante y, por lo tanto, para una dada energía inicial de la partícula incidente, tampoco será constante el número de cargas generadas.
+donde $\sigma^{2}$ es la varianza de la distribución de carga y $\mu$ es la media. 
+Para el caso particular de una distribución de Poisson, la varianza y la esperanza coinciden, de forma que el factor de Fano equivale a $1$. 
+Estas distribuciones de carga son el producto de la interacción de fotones de cierta energía con el detector, entre otros factores, que van depositando energía en el material ionizando cargas a su paso. 
+\textcolor{red}{ASI PARECIERA QUE LOS FOTONES SON QUIENES IONIZAN A SU PASO, PERO EN REALIDAD SON LOS ELECTRONES QUE GANARON ENERGIA DE ESOS FOTONES, ARREGLAR.}
 
-Por otro lado, la energía de creación electrón-hueco $\varepsilon_{\eh}$ es, en valor medio, la energía necesaria para poder producir un par electrón-hueco en el interior del detector de silicio. Así, esta puede ser calculada a través del cociente entre la energía entregada al detector y la carga producida en él. Además, esta está relacionada con la energía del gap del silicio, entre la banda de valencia y la banda de conducción, que es $E_{g}\sim 1.1\,\si{eV}$\cite{Janesick}. Sin embargo, debido a que durante el proceso de interacción parte de la energía entregada al material puede disiparse emitiendo fonones, la energía de creación electrón-hueco resulta ser mayor, en promedio, que la energía del gap.
+Dicha distribución tiene origen en que la energía transferida en cada interacción no es constante y, por lo tanto, para una dada energía inicial de la partícula incidente, tampoco será constante el número de cargas generadas.
+
+Por otro lado, la energía de creación electrón-hueco $\varepsilon_{\eh}$ es medida en valor medio, ya que es calculada a través del cociente entre la energía entregada al detector y la carga en él producida. 
+Además, se encuentra está relacionada con la energía del \textit{band gap} del silicio, entre la banda de valencia y la banda de conducción, que es $E_{g}\sim 1.1\,\si{eV}$\cite{Janesick}. Sin embargo, debido a que durante el proceso de interacción parte de la energía entregada al material puede disiparse emitiendo fonones, la energía de creación electrón-hueco resulta ser mayor, en promedio, que la energía del \textit{gap}.
 
 La estimación precisa de ambas magnitudes es de vital importancia en la caracterización de este tipo de detectores, debido a que, por ejemplo, parámetros como la eficiencia cuántica dependen fuertemente de ellos. Además es importante determinar la dependencia de estas magnitudes con la energía ya que, en particular, el factor de Fano a energías por debajo de $1\,\si{keV}$ es clave para el cálculo de sensibilidad en experimentos de materia oscura liviana, como es caso del experimento SENSEI (\textit{Sub-Electron Noise Skipper-CCD Experiment Instrument})\cite{barak}.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{CCD y Skipper CCD}

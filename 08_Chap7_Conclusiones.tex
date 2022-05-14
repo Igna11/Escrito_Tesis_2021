@@ -1,3 +1,24 @@
 \chapter{Conclusiones}
-Cabe destacar que la última permitió incrementar la estadística disponible en las imágenes. Esto se debe a que, los cortes de calidad utilizados hasta el momento descartaban eventos que se superponían debido al puente generado por los electrones que induce la luz espuria, transformando así dos o más eventos reales en uno solo. Mitigar este problema generó un mayor aprovechamiento de la estadística disponible y con ello una reducción de las incertezas finales.
+%<De qué fue la tesis>
+\noindent En este trabajo se realizó la determinación del factor de Fano y la energía de creación electrón-hueco en el silicio para energías inferiores de $2\,\si{keV}$, el cual es un rango de energías prácticamente inexplorado hasta el momento.
+
+%utilizando un umbral de detección que permitió aumentar la estadística de los eventos sobre mediciones existentes. Además de la implementación de un método de corrección para los sesgos presentes en los datos antes y después de la aplicación del umbral. También se implementó satisfactoriamente la aplicación de un nuevo modelo de ajuste que permitió obtener el ancho de la región de colección parcial de carga del detector.
+
+%<Qué se hizo: Simulaciones, Análisis de imágenes, implementacion de correciones>
+Se lograron obtener resultados consistentes con mediciones experimentales para el factor de Fano a partir de simulaciones muy simples con el método de Monte Carlo, para las cuales el valor del factor de Fano resultó independiente de la energía de las fuentes.
+
+Por otro lado, se realizó un análisis cualitativo profundo de las imágenes, pudiendo determinar características importantes en ellas que provocan efectos indeseados en las mediciones, como ser \textit{hot pixels} y \textit{hot columns} entre otras, lo cual permitió elegir los cuadrantes del sensor más aptos para realizar los ajustes.
+
+Se desarrolló un método de corrección de la carga en los eventos, con el fin de eliminar el sesgo presente en ellos debido al fondo inherente en los datos y al sesgo agregado por utilizar un umbral que elimina carga sobre sus bordes. Este método de corrección permitió poder utilizar este umbral que trajo como ventaja el aumento de aproximadamente tres veces la estadística y con ellos, la disminución de las incertezas, lo cual finalmente no sucedió.
+
+%<Qué resultados se obtuvieron>
+Se obtuvo que el factor de Fano para los rayos $X$ del aluminio fue de $F = 0.1464 \pm 0.0096$ para el primer cuadrante y $F = 0.1504 \pm 0.0011$ para el tercer cuadrante, donde sus errores solapan. Por otro lado se tuvo que para los rayos $X$ del flúor el valor fue mayor, siendo $F = 0.1648 \pm 0.0085$ para el primer cuadrante y $F = 0.1813 \pm 0.0161$ para el tercero, donde los errores entre cuadrantes también solapan. De aquí se obtuvo un incremento en el valor del factor de Fano para flúor.
+
+Se logró determinar el ancho de la región de colección parcial de carga del sensor mediante la utilización del nuevo modelo de ajuste de los picos, que fue de $\tau_{\scaleto{CCE}{4pt}} = algo$ que coincide con el valor de $\tau_{\scaleto{CCE}{4pt}} = otra\ cosa$ obtenido mediante otro método.
+
+%<Perspectivas a futuro>
+No sé
+
+
+%Cabe destacar que la última permitió incrementar la estadística disponible en las imágenes. Esto se debe a que, los cortes de calidad utilizados hasta el momento descartaban eventos que se superponían debido al puente generado por los electrones que induce la luz espuria, transformando así dos o más eventos reales en uno solo. Mitigar este problema generó un mayor aprovechamiento de la estadística disponible y con ello una reducción de las incertezas finales.
 

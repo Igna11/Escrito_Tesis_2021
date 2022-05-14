@@ -126,7 +126,7 @@ En la Figura \ref{fig:Eventos1e} se tiene una imagen por cada cuadrante del sens
 De la Figura \ref{fig:Eventos1e} pueden destacarse algunas características:
 \begin{itemize}
     \item La carga prácticamente nula (en promedio) en las regiones del pre-scan (región izquierda de $7$ columnas de píxeles de extensión) y del over-scan (región derecha de 50 columnas de píxeles de extensión), lo cual es totalmente esperable dado que estas son áreas del sensor que no se encuentran colectando cargas durante la medición. Esto se ve para todos los cuadrantes menos el segundo;
-    \item El primer cuadrante es en promedio más brillante que el resto, y se observa un ligero gradiente de intensidad entre las filas inferiores y superiores. Esto se repite, pero en menor medida en los demás cuadrantes pero no necesariamente se observa a simple vista;
+    \item El primer cuadrante es en promedio más brillante que el resto, y se observa un ligero gradiente de intensidad entre las filas inferiores y superiores. Esto se repite, pero en menor medida en los demás cuadrantes pero no necesariamente se observa a simple. Este efecto se aprecia con mayor claridad en los gráficos de la Figura \ref{fig:GradienteProb};
     \item El segundo cuadrante (OHDU 2) capta en promedio muy poca carga. Este cuadrante del sensor no funciona correctamente;
     \item En los cuadrantes $3$ y $4$ se pueden ver columnas enteras de píxeles oscurecidas, que captaron muchísima menos carga que podrían deberse a defectos del sensor;
     \item En todos los cuadrantes (menos el segundo), se observa un único píxel (posición $x = 2$, $y = 0$) donde el promedio de carga es mucho mayor al resto. Además, la primera columna de píxeles luego del pre-scan también tiene tendencia a captar más carga que el resto;
@@ -150,7 +150,8 @@ Este gradiente que se observa se debe a que, dado que la medición de carga del 
     \label{fig:GradienteProb}
 \end{figure}
 
-Todos los análisis subsiguientes fueron realizados principalmente con el primer cuadrante del sensor, dado que es el cuadrante que mejor funciona.
+Para los análisis realizaron en este trabajo fueron utilizados el primer y tercer cuadrante del sensor, dado que son los cuadrantes que mejor funcionan. El segundo cuadrante es defectuoso y el cuarto cuadrante, si bien funciona, presenta muchas \textit{hot columns} y muchas columnas oscuras, por lo que se decidió omitirlo de los análisis de los histogramas de carga.
+Por otro lado, los análisis que siguen en esta sección se centraron sobre el primer cuadrante dado que es el que mejor funciona de los cuatro.
 
 Teniendo entonces una imagen del promedio de la cantidad de eventos de un electrón por píxel, en la búsqueda por caracterizar el fondo del sensor, lo que se hizo posteriormente fue promediar todos los elementos de esta, de forma de obtener un promedio total y poder interpretarlo como una \textit{probabilidad} general de que en un píxel haya un evento de un electrón. Entonces, para el primer cuadrante y considerando solo la región activa del sensor, se obtuvo una probabilidad $p = 0.1802 \pm 0.0213$, es decir, que con esta primera manera de caracterizar el fondo, hay aproximadamente un $18\,\%$ de probabilidad de que un dado píxel de la región activa del sensor tenga un electrón.
 
