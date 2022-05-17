@@ -10,7 +10,7 @@ A su vez, es este programa el que se encarga de restar la linea de base, utiliza
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.4]{Figs/skipper2root_scheme.pdf}
-    \caption{Ejemplo de la imagen resultante de medir con un sensor de $4\times4$ píxeles utilizando un muestreo de $3$ lecturas por píxel. La imagen resultante es de $4\times 12$ píxeles.}
+    \caption{Ejemplo de la imagen obtenida de medir con un sensor de $4\times4$ píxeles utilizando un muestreo de $3$ lecturas por píxel, antes de realizar el promediado de la carga. La imagen resultante es de $4\times 12$ píxeles.}
     \label{fig:Skipper2root_esquema}
 \end{figure}
 
@@ -81,7 +81,7 @@ En la Figura \ref{fig:ClusterPegoteado} se muestra un ejemplo de un evento de $1
 %Para modificar este plot hay que ir a Escritorio/Tesis2021/Figs/pys_para_plots y modificar clusters_no_pegoteados.py
     \centering
     \includegraphics[scale=0.4]{Figs/despegoteo_clusters.pdf}
-    \caption{Ejemplo del caso de un de un evento cercano a los $180$ electrones de carga, que son los eventos de interés. En la imagen de la izquierda se ve la medición sin alterar (ya convertida a unidades de carga). En la imagen del centro se ve en blanco y en un degrade muy tenue de rojos los diferentes clusters que el algoritmo logra reconocer. Lo importante de esta imagen es notar que el algoritmo reconoce como un único cluster (blanco) a un número de píxeles muy grande debido justamente a que píxeles con una única carga generan la unión entre todos ellos. Por último, la imagen de la derecha contiene el cluster de interés una vez que los eventos de un electrón son desechados del análisis, haciendo que ahora sí se contabilice correctamente.}
+    \caption{Ejemplo del caso de un evento cercano a los $180$ electrones de carga, que son los eventos de interés. En la imagen de la izquierda se ve la medición sin alterar (ya convertida a unidades de carga). En la imagen del centro se ve en blanco y en un degrade muy tenue de rojos los diferentes clusters que el algoritmo logra reconocer. Lo importante de esta imagen es notar que el algoritmo reconoce como un único cluster (blanco) a un número de píxeles muy grande debido justamente a que píxeles con una única carga generan la unión entre todos ellos. Por último, la imagen de la derecha contiene el cluster de interés una vez que los eventos de un electrón son desechados del análisis, haciendo que pueda contabilizarse correctamente.}
     \label{fig:ClusterPegoteado}
 \end{figure}
 
@@ -108,7 +108,7 @@ Debe tenerse presente que estos son resultados preliminares, ya que la aplicaci�
   $-$ &
   $+$ \\ \bottomrule
 \end{tabular*}
-\caption{Efectos en el sesgo de los resultado con la aplicación de diferentes umbrales. En todos los casos el sesgo por eventos espurios en el interior de los clusters no puede ser eliminado con este umbral, mientras que el sesgo de los eventos espurios en sus bordes desaparece dado que el umbral elimina los bordes de los clusters. Por otro lado la aplicación de estos umbrales introduce un nuevo sesgo al eliminar carga de los bordes que es genuina.}
+\caption{Efectos en el sesgo de los resultado con la aplicación de diferentes umbrales. En todos los casos el sesgo por eventos espurios en el interior de los clusters no puede ser eliminado por la aplicación de un umbral, mientras que el sesgo de los eventos espurios en sus bordes desaparece dado que el umbral elimina los bordes de los clusters. Por otro lado la aplicación de estos umbrales introduce un nuevo sesgo al eliminar carga de los bordes que es genuina.}
 \label{tab:SesgosyEpix}
 \end{table}
 Esto se hizo para tres de los cuatro cuadrantes del sensor y para la suma de estos, dado que el segundo cuadrante no funciona correctamente.
@@ -121,7 +121,7 @@ En el gráfico de la Figura \ref{fig:EntradasVsEpix} se observa un drástico aum
 %Para hacer estas figs hay que ir a /home/igna/Escritorio/Tesis2021/Figs/pys_para_plots y correr plots_entries_fano_eh.py que usa los datos que están en /home/igna/Escritorio/Tesis2021/Figs/txts_para_plots y se llaman Entries_count.txt
     \centering
     \includegraphics[scale=0.5]{Figs/Entradas_vs_Epix.pdf}
-    \caption{Gráfico de barras para las diferentes cantidad de entradas contabilizadas por el programa, tanto para valores diferentes de EPIX como para los diferentes cuadrantes del sensor. OHDUT hace referencia a la suma de las entradas del resto de los cuadrantes funcionales ($1$, $3$ y $4$). Se observa un aumento de más del doble en la cantidad en la cantidad de entradas para el primer cuadrante, y un aumento importante pero menos pronunciado para el resto de los cuadrantes.}
+    \caption{Gráfico de barras para la diferente cantidad de entradas contabilizadas por el programa, tanto para valores diferentes de EPIX como para los diferentes cuadrantes del sensor. OHDUT hace referencia a la suma de las entradas del resto de los cuadrantes funcionales ($1$, $3$ y $4$). Se observa un aumento de más del doble en la cantidad de entradas para el primer cuadrante, y un aumento importante pero menos pronunciado para el resto de los cuadrantes.}
     \label{fig:EntradasVsEpix}
 \end{figure}
 Se puede ver como los cuadrantes $1$, $3$ y $4$ tienen un cambio pronunciado en la cantidad de entradas al pasar de \verb|EPIX=0.5| a \verb|EPIX=1.5| como se esperaba, mientras que al pasar de \verb|EPIX=1.5| a \verb|EPIX=2.5| el aumento es mucho menos pronunciado. 
@@ -206,7 +206,7 @@ De la Figura \ref{fig:Eventos1e} pueden destacarse algunas características:
 %Para reproducir esta figura hay que ir al directorio /home/igna/Escritorio/Tesis2021/Figs/pys_para_plots y correr Skipper_cuadrantes_plot.py
     \centering
     \includegraphics[scale=0.4]{Figs/1ePromedio.pdf}
-    \caption{Imágenes promedio para los $4$ cuadrantes del sensor. Puede verse en la escala de la derecha que los valores más altos que se obtienen rondan el $0.3$, lo cual, interpretado como una probabilidad es un $30\,\%$ de probabilidad de que en ese píxel se encuentre un evento de un electrón. En general se ve que los promedios pueden estar entre $0.1$ y $0.2$ aproximadamente. Es decir, para los cuadrantes funcionales del sensor, cada pixel tiene una probabilidad de tener un único evento que ronda entre el $10\%$ y el $20\%$.}
+    \caption{Imágenes promedio para los $4$ cuadrantes del sensor. Puede verse en la escala de la derecha que los valores más altos que se obtienen rondan el $0.3$, lo cual se puede interpretar como un $30\,\%$ de probabilidad de que en ese píxel se encuentre un evento de un electrón. En general se ve que los promedios pueden estar entre $0.1$ y $0.2$ aproximadamente. Es decir, para los cuadrantes funcionales del sensor, cada pixel tiene una probabilidad de tener un único evento que ronda entre el $10\%$ y el $20\%$.}
     \label{fig:Eventos1e}
 \end{figure}
 Respecto al gradiente de intensidades que se observa entre filas superiores e inferiores de la imagen, implicaría una mayor incidencia de eventos de un electrón, en promedio, en los píxeles de las filas inferiores respecto de las filas superiores. 
@@ -292,7 +292,7 @@ En la imagen de la Figura \ref{fig:ImagenFits2omasElectrones} se muestra como lu
 %Para modificar este plot hay que ir a /home/igna/Escritorio/Tesis2021/Figs/pys_para_plots y correr imagen_fit_2_o_mas_e.py
     \centering
     \includegraphics[scale=0.4]{Figs/imagen_fits_2_o_mas.pdf}
-    \caption{Imagen de ejemplo en la que solo hay píxeles que tengan dos o más electrones.}
+    \caption{Imagen de ejemplo en la que se han eliminado todos los eventos de un electrón.}
     \label{fig:ImagenFits2omasElectrones}
 \end{figure}
 En el entorno cercano de los clusters, más precisamente, en los píxeles inmediatamente contiguos a los píxeles con carga, a partir de ahora  \textit{primer borde}, es la región donde se puede decir con seguridad que coexisten ambas contribuciones: fondo y eventos genuinos. En cambio, la región formada por los píxeles que se encuentran separados por un píxel entre ellos y los eventos, a partir de ahora \textit{segundo borde}, es la región donde la probabilidad de que haya eventos de un electrón que sean genuinos y que por difusión terminaron alejados de su cluster es tan baja que puede considerarse nula. 
@@ -368,7 +368,7 @@ pero como $X_{i}$ son distintas realizaciones de la misma variable aleatoria, en
 \end{equation*}
 es por esto que la cantidad de carga esperada para un cluster viene dada por el producto entre la esperanza de la distribución y la cantidad de píxeles del cluster.
 \textcolor{red}{Pero este procedimiento no vale para el borde, solo para los electrones de fondo que cayeron sobre el cluster. Para el borde seria necesario conocer cuántos pixeles de borde hay.} \textcolor{blue}{No habíamos quedado que estaba bien en la última reunion?}
-De esta forma, sabiendo que la esperanza se puede escribir como $\mu_{T} = \mu_{bgk} + \mu_{g}$, las correcciones se pueden realizar aplicando esta misma receta a los valores de carga por cluster. Si $n_{e}$ es la cantidad de carga medida en un dado cluster, la corrección de este valor de carga será $n_{c}$ y viene dado por
+De esta forma, sabiendo que la esperanza se puede escribir como $\mu_{T} = \mu_{bgk} + \mu_{g}$, las correcciones se pueden realizar aplicando esta misma receta a los valores de carga por cluster. Cabe destacar que la aplicación de las correcciones se realiza sobre los datos a los cuales ya se les ha aplicado el umbral. De esta forma, el fondo presente en los bordes de los clusters ya ha sido removido, al igual que los eventos genuinos que pudiera haber en ellos. Si $n_{e}$ es la cantidad de carga medida en un dado cluster, la corrección de este valor de carga será $n_{c}$ y viene dado por
 \begin{equation*}
     n_{c} = n_{e} + N(\mu_{g} - \mu_{bkg})
 \end{equation*}

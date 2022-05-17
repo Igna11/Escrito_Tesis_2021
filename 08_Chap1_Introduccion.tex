@@ -39,7 +39,7 @@ Dependiendo del valor de $V_{G}$ se obtienen distintos regímenes del MOS\cite{C
 \begin{figure}[h]
     \centering
         \includegraphics[scale=.35]{Figs/PixelCrossSection.pdf}
-    \caption{Esquema lateral de un capacitor MOS (píxel).}
+    \caption{Esquema de un corte lateral de un capacitor MOS (píxel).}
     \label{fig:PixelCrossSection}
 \end{figure}
 Además de los píxeles, como se puede ver en la Figura \ref{fig:ArgquitecturaCCDn}, los CCDs están compuestos de \textit{channel-stops} que se encargan de evitar que la carga de los píxeles migre entre columnas vecinas, mientras que los controladores verticales, con las señales $V_{1}$, $V_{2}$ y $V_{3}$, son las responsables de desplazarla secuencialmente de forma vertical. 
@@ -47,7 +47,7 @@ Otra parte fundamental de estos detectores es el registro horizontal, donde est�
 \begin{figure}[h]
     \centering
         \includegraphics[scale=.5]{Figs/ArquitecturaCCD.pdf}
-    \caption{Ilustración esquemática de un sensor CCD de $4\times4$ píxeles. Las flechas muestran la dirección en la que la carga es desplazada para luego ser colectada por el nodo de sensado.}
+    \caption{Ilustración esquemática de un sensor CCD de $4\times4$ píxeles. Las flechas muestran la dirección en la que la carga es desplazada píxel a píxel para luego ser colectada por el nodo de sensado.}
     \label{fig:ArgquitecturaCCDn}
 \end{figure}
 El principio de operación de un CCD se puede dividir en cuatro etapas, que a grandes rasgos son:
@@ -67,7 +67,7 @@ Sobre la curva se ven los puntos que representan los valores del factor de Fano 
 \begin{figure}[h]
     \centering
         \includegraphics[scale=0.5]{Figs/fano_y_ruido.pdf}
-    \caption{Valores que se obtendrían de medir el factor de Fano con un sensor CCD convencional (puntos negros), debido a la contribución del ruido de lectura constante de $30\,\si{eV}$ (linea punteada horizontal). La linea recta continua representa un valor de factor de Fano constante.}
+    \caption{Valores que se obtendrían de medir el factor de Fano con un sensor CCD convencional (puntos negros), debido a la contribución del ruido de lectura constante de $30\,\si{eV}$ (linea punteada horizontal). La linea recta de trazo continuo representa un valor de factor de Fano constante de $F = 0.119$.}
     \label{fig:Fano_y_ruido}
 \end{figure}
 
@@ -116,7 +116,7 @@ Para ello, las imágenes tomadas con \textit{Skipper} cuentan con una región de
 %Como reproducir este gráfico: correr el script NivelesOcupacionCarga.py ubicado en /Escritorio/Tesis2021/Figs/pys_para_plots y buscar la imagen en /home/igna/Escritorio/Tesis2021/Figs/
     \centering
         \includegraphics[scale=0.5]{Figs/ajuste_gaussiano_calibracion.pdf}
-    \caption{Histograma de los datos obtenidos al iluminar el CCD con LED, correspondiente a una región con poca ocupación, donde los picos de los ajustes entre electrones se distinguen a la perfección.}
+    \caption{Histograma de los datos obtenidos al iluminar el CCD con LED, correspondiente a una región con poca ocupación, donde los picos de los niveles de carga y su ajuste se distinguen a la perfección.}
     \label{fig:Calibracion}
 \end{figure}
 Las mediciones del factor de Fano y la energía de creación electrón-hueco se realizaron utilizando rayos $X$ de $5.9\,\si{\mbox{keV}}$ emitidos por una fuente de $\Fe{55}$. Más precisamente, rayos $X_{K}$, cuyas energías son las de la Tabla \ref{tab:EnergiasXk}.

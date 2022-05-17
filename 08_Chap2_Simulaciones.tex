@@ -66,7 +66,7 @@ Dada una energía inicial y un número fijo $N$ de experimentos de Bernoulli, pu
 %Para hacer este gráfico hay que correr el script que está en esta carpeta /home/igna/Escritorio/Tesis2021/Figs/Figuras_Apendice_Simulaciones/pys_para_plots y se llama Orden0_simu_SI_atraviesa.py con los datos de esta carpeta /home/igna/Escritorio/Tesis2021/Figs/Figuras_Apendice_Simulaciones/txts_para_plots y se llama orden0_simu_SI_atraviesa.txt
     \centering
     \includegraphics[scale=0.5]{Figs/Orden0_fano1.pdf}
-    \caption{Histograma, con los correspondientes ajustes, Gaussiano y Poissoniano, de los resultados de $2\times 10^3$ experimentos, cada uno de los cuales consiste de $N = 5000$ experimentos de Bernoulli. En este caso la energía final de la partícula no es cero, es decir, la partícula incidente logra atravesar el material. Puede verse como el ajuste poissoniano ajusta muy bien al histograma.}
+    \caption{Histograma, con los correspondientes ajustes, gaussiano y poissoniano, de los resultados de $2\times 10^3$ experimentos, cada uno de los cuales consiste de $N = 5000$ experimentos de Bernoulli. En este caso la energía final de la partícula no es cero, es decir, la partícula incidente logra atravesar el material. Puede verse como el ajuste poissoniano representa muy bien al histograma de carga.}
     \label{fig:SimulacionOrden0Fano1}
 \end{figure}
 Esto puede verse en la Figura \ref{fig:SimulacionOrden0Fano1}, donde puede observarse como una distribución poissoniana describe correctamente el histograma. El histograma corresponde a la distribución de carga obtenida mediante una simulación que parte de una energía inicial de $677\,\si{eV}$ con un $N = 5000$, que es la cantidad de veces que se repite el experimento de Bernoulli de ionizar o no con probabilidad $p=0.01$ y el factor de Fano resultó $F = 0.9790 \pm 0.0104$ mientras que el valor medio de eventos ionizados fue $\mu = 49.71 \pm 0.06$. A su vez, este experimento se repitió $20000$ veces para tener una buena cantidad de estadística para formar el histograma.
@@ -76,7 +76,7 @@ En oposición a lo previamente descripto, para el caso en que $N$ es tal que la 
 %Para hacer este gráfico hay que correr el script que está en esta carpeta /home/igna/Escritorio/Tesis2021/Figs/Figuras_Apendice_Simulaciones/pys_para_plots y se llama Orden0_simu_NO_atraviesa.py con los datos de esta carpeta /home/igna/Escritorio/Tesis2021/Figs/Figuras_Apendice_Simulaciones/txts_para_plots y se llama orden0_simu_NO_atraviesa.txt
     \centering
     \includegraphics[scale=0.5]{Figs/Orden0_fano0.pdf}
-    \caption{Histograma, con los correspondientes ajustes, Gaussiano y Poissoniano, de los resultados de $2\times 10^3$ experimentos, cada uno de los cuales consiste de $N = 30000$ experimentos de Bernoulli. En este caso la energía final de la partícula es casi siempre cero, es decir, la partícula incidente pierde toda su energía dentro del material. Es en este caso en el que el factor de Fano es menor a la unidad.}
+    \caption{Histograma, con los correspondientes ajustes, gaussiano y poissoniano, de los resultados de $2\times 10^3$ experimentos, cada uno de los cuales consiste de $N = 30000$ experimentos de Bernoulli. En este caso la energía final de la partícula es casi siempre cero, es decir, la partícula incidente pierde toda su energía dentro del material. Es en este caso en el que el factor de Fano es menor a la unidad.}
     \label{fig:SimulacionOrden0Fano0}
 \end{figure}
 
@@ -153,7 +153,7 @@ En cuanto a los resultados de estas simulaciones, para el caso del flúor, se pu
 %Los datos para este gráfico están en /home/igna/Escritorio/Tesis2021/Figs/Figuras_Apendice_Simulaciones/txts_para_plot F_E677_A20_E_loss0_Trials100000.txt Para modificar el graf hay que correr el .py que están en /home/igna/Escritorio/Tesis2021/Figs/Figuras_Apendice_Simulaciones/pys_para_plots: Al_Fano_E1570_A20_trials100k_histcarga.py
     \centering
     \includegraphics[scale=0.5]{Figs/F_Fano_E677_A20_Eloss0_100ktrials.pdf}
-    \caption{Distribución de carga simulada con el método de Monte Carlo, forzando el parámetro $A$ para que el pico se encuentre en los $181.12 \pm 0.02$ electrones esperados para los $677\,\si{eV}$ de energía de los rayos X del Flúor. El valor necesario para esto suceda fue $A=20\,\si{eV}^{3}$ y el factor de Fano obtenido fue $F = 0.1059 \pm 0.0004$.}
+    \caption{Distribución de carga simulada con el método de Monte Carlo, forzando el parámetro $A$ para que el pico se encuentre en los $181.12 \pm 0.02$ electrones esperados para los $677\,\si{eV}$ de energía de los rayos X del flúor. El valor necesario para esto suceda fue $A=20\,\si{eV}^{3}$ y el factor de Fano obtenido fue $F = 0.1059 \pm 0.0004$.}
     \label{fig:F_fano_A20}
 \end{figure}
 El factor de Fano en este caso es de $F = 0.1059 \pm 0.0004$, que está contenido entre las bandas esperadas para la cantidad de estadística utilizada en esta simulación, al igual que para el caso anterior.

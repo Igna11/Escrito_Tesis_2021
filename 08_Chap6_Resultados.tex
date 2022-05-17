@@ -16,7 +16,7 @@ El tamaño de la región de PCC, junto con su error se desprenden de los valores
 \begin{figure}[h]
     \centering
         \includegraphics[scale=0.25]{pngs/Al_barridos_beta.png}
-    \caption{Curvas del logaritmo de la verosimilitud en función de $\beta$, para los cuadrantes uno y tres con rayos $X$ del aluminio. Del ajuste cuadrático se obtiene el $\hat{\beta}$ máximo y de su intersección con la recta a a altura $\ln{(L(\hat{\beta}))} - 1/2$, los extremos de los intervalos.}
+    \caption{Curvas del logaritmo de la verosimilitud en función de $\beta$, para los cuadrantes uno y tres con rayos $X$ del aluminio. Del ajuste cuadrático se obtiene el $\hat{\beta}$ máximo y de su intersección con la recta a altura $\ln{(L(\hat{\beta}))} - 1/2$, los extremos de los intervalos.}
     \label{fig:Al_barridos_beta}
 \end{figure}
 Los valores óptimos obtenidos de los ajustes se encuentran condensados en la Tabla \ref{tab:Al_FanoEehOHDU1y3}.
@@ -31,18 +31,18 @@ EPIX 0.5 & $0.1322 \pm 0.0022$ & $3.7141 \pm 0.0019$ & $0.1498 \pm 0.0101$ & $3.
 EPIX 1.5 & $0.1455 \pm 0.0098$ & $3.7379 \pm 0.0024$ & $0.1699 \pm 0.0150$ & $3.7419 \pm 0.0039$ \\ 
 EPIX 1.5 Corr & $0.1464 \pm 0.0096$ & $3.7501 \pm 0.0006$ & $0.1504 \pm 0.0011$ & $3.7485 \pm 0.0039$ \\ \bottomrule \hline
 \end{tabular*}
-\caption{Magnitudes de interés obtenidas del ajuste de los histogramas de carga de los rayos $X$ del aluminio para cada uno de los pasos del análisis. El primer paso es con el umbral en $0.5$, el segundo paso es con el nuevo umbral en $1.5$ y el tercer paso es con el nuevo umbral y con las correcciones a la carga de los clusters.}
+\caption{Magnitudes de interés obtenidas del ajuste de los histogramas de carga de los rayos $X$ del aluminio para cada uno de los pasos del análisis. El primer paso es con el umbral \texttt{EPIX=0.5}, el segundo paso es con el umbral \texttt{EPIX=1.5} y el tercer paso agrega las correcciones a la carga de los clusters.}
 \label{tab:Al_FanoEehOHDU1y3}
 \end{table}
 De esta se puede ver que el valor del factor de Fano aumenta al pasar de \verb|EPIX=0.5| a \verb|EPIX=1.5|, al mismo tiempo que sus incertezas, tanto para el primer cuadrante como para el tercero, lo cual no era un resultado anticipable dado el aumento de estadística. El factor de Fano aumenta $\sim 10\,\%$ y su incerteza aumenta más de $4$ veces para el primer cuadrante, mientras que para el tercero el factor de Fano aumenta $\sim 12\,\%$y su incerteza un $\sim 50\,\%$.
 
 Al aplicar las correcciones respecto al paso anterior lo que se obtiene es una ligera disminución del valor del Fano para el primer cuadrante, menor al $1\,\%$, y otra no tan ligera disminución para el tercero, cerca del $\sim 12\,\%$, donde curiosamente las incertezas no se comportan de la misma manera para ambos casos: para el primer cuadrante la incerteza aumenta levemente, $\sim 3\,\%$, mientras que para el tercero disminuye muchísimo, mas del $\sim 95\,\%$. Todo esto puede verse con mayor claridad en el gráfico inferior derecho de la Figura \ref{fig:Al_mu_sigma_fano_eh}. Cabe destacar que los valores del factor de Fano para ambos cuadrantes se solapan con su error, de forma que los resultados para ambos cuadrantes resultan compatibles.
-\textcolor{red}{como resultado final final del fano tenes que hacer el promedio pesado de los dos cuadrantes, lo mismo con la energía de creación electrón hueco} 
+\textcolor{red}{como resultado final final del fano tenes que hacer el promedio pesado de los dos cuadrantes, lo mismo con la energía de creación electrón hueco} \textcolor{blue}{Ok, pero pesado con qué?}
 En los gráficos de la Figura \ref{fig:Al_OHDU1y3_EPIX15_Corr} se pueden ver los histogramas de carga generadas por la interacción de los rayos $X$ emitidos por el aluminio con su ajuste, obtenidos de los datos procesados con el umbral y las correcciones aplicadas, para los cuadrantes uno y tres, fijando el valor de $\beta$ en el máximo obtenido anteriormente para derivar el $F$ y $\varepsilon_{\eh}$ óptimos. En cada gráfico se encuentran superpuestos dos histogramas de carga: el histograma de carga con umbral \verb|EPIX=1.5| y superpuesto encima de este, el histograma de carga con el umbral \verb|EPIX=1.5| más las correcciones, con el fin de poder identificar si existen diferencias apreciables entre ambos. De esta forma se observa que las correcciones no modifican cualitativamente los histogramas.
 \begin{figure}[h]
     \centering
         \includegraphics[scale=0.5]{Figs/Al_hists_ohdu1y3_dobles.pdf}
-    \caption{Histogramas y ajustes del pico de los rayos $X$ del aluminio utilizando el modelo. El efecto de la colección parcial de carga es leve pero apreciable. Se superpusieron el histograma de carga con el nuevo umbral y el histograma de carga con el umbral más las correcciones en un mismo gráfico. No hay diferencias significativas en los histogramas.}
+    \caption{Histogramas y ajustes del pico de los rayos $X$ del aluminio utilizando el modelo. El efecto de la colección parcial de carga es leve pero apreciable. Se superpusieron ambos histogramas de carga, con el nuevo umbral y con el umbral más las correcciones, en un mismo gráfico. No hay diferencias significativas en los histogramas.}
     \label{fig:Al_OHDU1y3_EPIX15_Corr}
 \end{figure}
 Observando el gráfico del factor de Fano y la dispersión de los picos en la Figura \ref{fig:Al_mu_sigma_fano_eh} se puede notar que el aumento en el valor de $F$ al aplicar el umbral se debe a un aumento de $\sigma$, %Es decir, al aumentar la estadística también aumenta el ancho de los picos \textcolor{red}{pareciera decirse que los picos se ensanchan porque hay mas estadística, y eso no tiene mucho sentido. Algo con el corte es el responsable, no me queda claro porqué, pero no lo diría de esta manera}
@@ -52,7 +52,7 @@ En cuanto a la energía de creación electrón-hueco, para cada paso del anális
 \begin{figure}[h]
     \centering
         \includegraphics[scale=0.45]{Figs/Al_mu_sigma_fano_Eeh.pdf}
-    \caption{Valores para las magnitudes relevantes para el factor de Fano y la energía de creación electrón hueco, cuadrantes uno y tres, para los tres pasos de análisis implementados. Izquierda-arriba: Valor medio del pico de rayos $X$ del aluminio; izquierda-abajo: Energía de creación electrón hueco; derecha-arriba: Dispersión de los picos; derecha-abajo: factor de Fano. Se observa que la tendencia del factor de Fano sigue la misma tendencia que la dispersión de los picos y que la energía de creación electrón-hueco la tendencia contraria al valor medio, lo cual es esperado porque se calcula a partir de esta.}
+    \caption{Izquierda-arriba: Valor medio del pico de rayos $X$ del aluminio; izquierda-abajo: Energía de creación electrón hueco; derecha-arriba: Dispersión de los picos; derecha-abajo: factor de Fano; todas estas con sus respectivas barras de error. Se observa que la tendencia del factor de Fano es la misma que la dispersión de los picos y que la energía de creación electrón-hueco sigue la tendencia contraria al valor medio, lo cual es esperado porque se calcula a partir de esta.}
     \label{fig:Al_mu_sigma_fano_eh}
 \end{figure}
 
@@ -84,21 +84,21 @@ EPIX 0.5 & $0.1225 \pm 0.0112 $ & $3.6576 \pm 0.0006 $ & $0.1304 \pm 0.0106 $ & 
 EPIX 1.5 & $0.1415 \pm 0.0202 $ & $3.7363 \pm 0.0097 $ & $0.1416 \pm 0.0120 $ & $3.7363 \pm 0.0065 $ \\ 
 EPIX 1.5 Corr & $0.1415 \pm 0.0170 $ & $3.7363 \pm 0.0066 $ & $0.1417 \pm 0.0169 $ & $3.7363 \pm 0.0066$ \\ \bottomrule \hline
 \end{tabular*}
-\caption{Magnitudes de interés obtenidas del ajuste de los histogramas de carga de los rayos $X$ del aluminio para cada uno de los pasos del análisis. El primer paso es con el umbral en $0.5$, el segundo paso es con el nuevo umbral en $1.5$ y el tercer paso es con el nuevo umbral y con las correcciones a la carga de los clusters.}
+\caption{Magnitudes de interés obtenidas del ajuste de los histogramas de carga de los rayos $X$ del aluminio para cada uno de los pasos del análisis. El primer paso es con \texttt{EPIX=0.5}, el segundo paso es con \texttt{EPIX=1.5} y el tercer paso introduce las correcciones a la carga de los clusters.}
 \label{tab:F_FanoEehOHDU1y3}
 \end{table}
 En ambos cuadrantes se tiene que el factor de Fano aumenta junto con su incerteza al pasar de \verb|EPIX=0.5| a \verb|EPIX=1.5| y que al aplicar las correcciones, para el primer cuadrante el valor no se modifica pero su incerteza disminuye $\sim 15\,\%$ respecto de la anterior. En ambos casos la incerteza antes de aplicar el umbral y correcciones era menor, lo cual tampoco es un resultado anticipable. A pesar de que las barras de error compatibilizan ambos cuadrantes en los tres pasos del análisis, se observa que los valores absolutos se vuelven mucho más semejantes al aplicar umbral y correcciones, siendo $F=0.1415$ y $F=0.1417$ para los cuadrantes uno y tres respectivamente, mejorando aún más la compatibilidad entre ellos. Para la energía de creación electrón-hueco sucede lo mismo en ambos cuadrantes, pasar de \verb|EPIX=0.5| a \verb|EPIX=1.5| aumenta el valor de la magnitud y su incerteza, y al aplicar las correcciones hay una ligera disminución para el primer cuadrante. 
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.5]{Figs/F_hists_ohdu1y3_dobles.pdf}
-    \caption{Histogramas y ajustes del pico de los rayos $X$ del flúor utilizando el modelo. El efecto de la colección parcial de carga es mucho más relevante en este caso, con gran cantidad de eventos a la izquierda del máximo del pico. Nuevamente se superponen el histograma de carga con el nuevo umbral y el histograma de carga con el umbral más las correcciones en un mismo gráfico. No hay se observan diferencias significativas ambos.}
+    \caption{Histogramas y ajustes del pico de los rayos $X$ del flúor utilizando el modelo. El efecto de la colección parcial de carga es mucho más relevante en este caso, con gran cantidad de eventos a la izquierda del máximo del pico. Nuevamente se superponen ambos histogramas: con el umbral \texttt{EPIX=1.5} con y sin correcciones en un mismo gráfico. No hay se observan diferencias significativas ambos.}
     \label{fig:F_OHDU1y3_EPIX15conCorr}
 \end{figure}
 En los gráficos de la Figura \ref{fig:F_mu_sigma_fano_eh} se ven las tendencias de las magnitudes de interés con sus respectivos errores para cada uno de los análisis realizados. Para el caso del factor de Fano, se puede ver que sigue la misma tendencia que la dispersión, como sucedía para el aluminio y que los errores de ambos se solapan para los pasos. Sin embargo, al aumentar el umbral y aplicar las correcciones los valores absolutos se acercan mucho compatibilizándose aún más. La energía de creación electrón-hueco también se compatibiliza al aplicar el umbral y las correcciones.
 \begin{figure}[h]
     \centering
         \includegraphics[scale=0.45]{Figs/F_mu_sigma_fano_Eeh.pdf}
-    \caption{Valores para las magnitudes relevantes para el factor de Fano y la energía de creación electrón hueco, cuadrantes uno y tres, para los tres pasos de análisis implementados. Izquierda-arriba: Valor medio del pico de rayos $X$ del flúor; izquierda-abajo: Energía de creación electrón hueco; derecha-arriba: Dispersión de los picos; derecha-abajo: factor de Fano. Se observa que la tendencia del factor de Fano sigue la misma tendencia que la dispersión de los picos y que la energía de creación electrón-hueco la tendencia contraria al valor medio, lo cual es esperado porque se calcula a partir de esta.}
+    \caption{Izquierda-arriba: Valor medio del pico de rayos $X$ del flúor; izquierda-abajo: Energía de creación electrón hueco; derecha-arriba: Dispersión de los picos; derecha-abajo: factor de Fano; todos con sus respectivas barras de error obtenidas de los ajustes. Se observa que el factor de Fano sigue la misma tendencia que la dispersión de los picos y que la energía de creación electrón-hueco la tendencia contraria al valor medio, de la misma manera que ocurría con estas magnitudes en el caso del aluminio.}
     \label{fig:F_mu_sigma_fano_eh}
 \end{figure}
 
@@ -108,6 +108,6 @@ Con estos resultados se puede actualizar el gráfico de la figura \ref{fig:Fano_
 \begin{figure}[H]
     \centering
         \includegraphics[scale=0.5]{Figs/FanoyRuidoFinal.pdf}
-    \caption{Gráfico del factor de Fano obtenido de las mediciones y análisis realizados en este trabajo (cuadrados negros) comparado con la recta esperada si el factor de Fano fuera constante. También se grafica la curva y los valores con lo que mediría un CCD convencional para estas energias (puntos negros).}
+    \caption{Gráfico del factor de Fano obtenido de las mediciones y análisis realizados en este trabajo (cuadrados negros) comparado con la recta esperada si el factor de Fano fuera constante. Se observa que los valores medidos se acercan a la recta del factor de Fano constante. También se grafica la curva y los valores con lo que mediría un CCD convencional para estas energías (puntos negros).}
     \label{fig:Fano_y_ruido_final}
 \end{figure}
