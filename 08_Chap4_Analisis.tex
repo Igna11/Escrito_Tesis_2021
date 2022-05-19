@@ -6,7 +6,7 @@
 Por esta razón, resulta necesario procesar la imagen generada, promediando los $N$ muestreos por píxel y así obtener una lectura de carga con muy bajo ruido a la vez de disminuir drásticamente el tamaño y peso de la imagen.
 
 El procesamiento de las imágenes es llevado a cabo por el programa \verb|skipper2root.exe|, el cual genera una nueva imagen de formato \verb|.fits|, ya promediada y con el tamaño correspondiente a la cantidad total de píxeles del sensor que se utilizaron en la medición. 
-A su vez, es este programa el que se encarga de restar la linea de base, utilizando las columnas del \textit{over-scan}, de forma de establecer el valor nulo de carga para cada pixel vacío en las filas del sensor.
+A su vez, es este programa el que se encarga de restar la línea de base, utilizando las columnas del \textit{over-scan}, de forma de establecer el valor nulo de carga para cada pixel vacío en las filas del sensor.
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.4]{Figs/skipper2root_scheme.pdf}
@@ -32,7 +32,7 @@ A su vez, es este programa el que se encarga de restar la linea de base, utiliza
 
 Además, es necesario poder reconocer los conjuntos de píxeles contiguos con carga que pertenecen a un único evento. Con este fin, se utiliza otro programa, el cual hace uso de una calibración lineal para transformar de ADUs a electrones además de reconocer los conjuntos de píxeles con carga por medio de un algoritmo de clusterización. Este programa se llama \verb|skeExtract.exe| y procesa todas las imágenes que \verb|skipper2root.exe| generó para así formar un nuevo tipo de archivo, de formato \verb|.root|, con toda la información de los eventos encontrados en las imágenes. 
 
-Estos nuevos archivos \verb|.root| tienen la información de la carga de los eventos medidos en cada píxel, con ruido subelectrónico gracias al muestreo realizado utilizando el modo Skipper, además de muchos otros parámetros de propios de los eventos, como ser la varianza en $x$, varianza en $y$, cantidad de píxeles por cluster, etc.
+Estos nuevos archivos \verb|.root| tienen la información de la carga de los eventos medidos en cada píxel, con ruido subelectrónico gracias al muestreo realizado utilizando el modo Skipper, además de muchos otros parámetros propios de los eventos, como ser la varianza en $x$, varianza en $y$, cantidad de píxeles por cluster, etc.
 
 Algo a tener en cuenta es que la calibración utilizada por \verb|skExtract.exe| es nominal y se realiza solamente para que el archivo \verb|.root| tenga la carga en unidades de electrones, al menos de forma aproximada. Para mejorar la precisión de los análisis que se harán sobre los datos, es necesario volver a calibrar la relación ADU-electrones, y para esto es necesario realizar la calibración absoluta tal como fue descripta en la Sección \ref{sec:Antecedentes}. Esta calibración se obtiene ajustando un polinomio de orden $4$ de la forma
 %Sin embargo, los datos en ellas aún están en unidades analógico-digitales (ADUs), con lo cual, para estudiarlas en términos de la cantidad de carga es necesario utilizar una calibración ADU-electrones, que puede obtenerse a partir del método descripto en la Sección \ref{sec:Antecedentes}. Esta calibración se obtiene ajustando un polinomio de orden $4$ de la forma
@@ -45,7 +45,7 @@ Algo a tener en cuenta es que la calibración utilizada por \verb|skExtract.exe|
 \end{equation*}
 sobre los datos y es distinta para cada uno de los cuadrantes del sensor, ya que cada uno de ellos cuenta con un amplificador diferente. Los coeficientes que se obtienen de esta calibración, para cada cuadrante, se guardan en un archivo de formato \verb|.txt|.
 
-Finalmente, se utilizan programas que son los encargados de tomar los archivos \verb|.root| y a partir de estos realizar los análisis estadísticos utilizando \verb|C++| y las librerías para análisis de datos científicos desarrolladas por el CERN llamadas \textit{ROOT}. Esto es, determinar el factor de Fano y la energía de creación electrón-hueco tanto para el flúor como para el aluminio, por medio de un ajuste \textit{no bineado}. Para eso se hicieron dos programas diferentes, uno para cada elemento y se llamaron \verb|Al_Fano_Unbinned_fit.C| y \verb|F_Fano_Unbinned_fit.C|. Estos programas utilizan los coeficientes obtenidos de la calibración absoluta para contar con presición la cantidad de carga de cada evento. También en ellos se implementan los cortes de calidad que filtran los eventos no deseados y dejan los que se deseen estudiar. Estos cortes de calidad son tanto de forma como de carga: 
+Finalmente, se utilizan programas que son los encargados de tomar los archivos \verb|.root| y a partir de estos realizar los análisis estadísticos utilizando \verb|C++| y las librerías para análisis de datos científicos desarrolladas por el CERN llamadas \textit{ROOT}. Esto es, determinar el factor de Fano y la energía de creación electrón-hueco tanto para el flúor como para el aluminio, por medio de un ajuste \textit{no bineado}. Para eso se hicieron dos programas diferentes, uno para cada elemento y se llamaron \verb|Al_Fano_Unbinned_fit.C| y \verb|F_Fano_Unbinned_fit.C|. Estos programas utilizan los coeficientes obtenidos de la calibración absoluta para contar con precisión la cantidad de carga de cada evento. También en ellos se implementan los cortes de calidad que filtran los eventos no deseados y dejan los que se deseen estudiar. Estos cortes de calidad son tanto de forma como de carga: 
 \begin{itemize}
     \item Se filtran eventos cuyo tamaño supere cierto radio establecido;
     \item Se filtran eventos cuyas longitudes tanto en $x$ como en $y$ no se encuentren acotadas entre un valor mínimo y un valor máximo, es decir, no se quiere que sean muy largos en alguna dada dirección;
@@ -59,7 +59,7 @@ A partir del análisis de las imágenes previamente descripto se obtienen las ma
 \section{Impacto del corte propuesto}
 \noindent En este trabajo se propone analizar un conjunto de imágenes existente, eliminando los eventos de un electrón presentes en ellas. Se trabaja sobre la hipótesis de que esto deberá incrementar el número de eventos totales. Se espera entonces que esta mejora en la estadística redunde en mayor precisión en la determinación de las cantidades de interés. Sin embargo, aplicar este corte trae aparejado un sesgo en el conteo de carga de cada evento que debe corregirse.
 
-Es de interés entonces cuantificar el aumento en la estadística al realizar el corte mencionado y así motivar el análisis en busca de una mejora en el cálculo de las incertezas de las cantidades de interés.
+Es pertinente entonces cuantificar el aumento en la estadística al realizar el corte mencionado y así motivar el análisis en busca de una mejora en el cálculo de las incertezas de las cantidades de relevancia para este trabajo.
 
 El parámetro clave en este caso se llama \verb|EPIX| y es un valor umbral que define a partir de qué cantidad de carga en un píxel se cuenta o no como un píxel vacío. El mismo forma parte del programa de reconocimiento de clusters (\verb|skeExtract.exe|). Por ejemplo, para \verb|EPIX=0.5|, todos los píxeles con carga menor o igual a $0.5$ se cuentan como píxeles vacíos, y los que tengan carga mayor a $0.5$ serán contabilizados normalmente, para \verb|EPIX=1.5|, todos los píxeles con carga menor o igual a $1.5$ se cuentan como píxeles vacíos y los píxeles con carga mayor a $1.5$ se cuentan normalmente. En la Figura \ref{fig:HistogramaEPIX} puede verse un esquema de un histograma de los niveles de carga y cómo se sitúa el umbral \verb|EPIX| para contar la carga.
 \begin{figure}[h]
@@ -72,9 +72,7 @@ El parámetro clave en este caso se llama \verb|EPIX| y es un valor umbral que d
 
 En el trabajo predecesor de esta tesis\cite{TesisKevin}, los valores obtenidos para el factor de Fano y energía de creación electrón-hueco, fueron calculados utilizando un valor de \verb|EPIX=0.5|. Se espera que al modificar este parámetro, el número de eventos varíe y que, en particular, aumente cuando el \verb|EPIX| aumenta. 
 Esto se debe a que es muy común que se tenga un evento de interés, por ejemplo un cluster de $4$ píxeles de área y con una carga total de $180$ electrones (para el caso del flúor), y alrededor de este se acumulen píxeles con fondo de, por ejemplo, $1$ o muy raramente $2$ electrones. 
-En estos casos podría suceder que la conexión entre el cluster de interés y los píxeles con carga espuria se extiendan lo suficiente como para que el algoritmo reconozca un gran cluster con exceso de carga y sea desechado por el programa dado que no cumple con los cortes de calidad impuestos. 
-
-También podría suceder que estos píxeles con carga espuria conecten $2$ clusters de interés, lo cual es un caso más extremo, dado que el algoritmo reconocería un único cluster de $\sim 360$ electrones, de forma que se perderían, no uno, sino dos eventos que podrían aportar positivamente a la estadística. Al aplicar un umbral que elimine los píxeles con carga espuria que se amontonan y/o conectan con clusters, el programa es capaz de diferenciar y contar los eventos correctamente.
+En estos casos podría suceder que la conexión entre el cluster de interés y los píxeles con carga espuria se extienda lo suficiente como para que el algoritmo reconozca un gran cluster con exceso de carga y sea desechado por el programa dado que no cumple con los cortes de calidad impuestos. También podría suceder que estos píxeles con carga espuria conecten $2$ clusters de interés, lo cual es un caso más extremo, dado que el algoritmo reconocería un único cluster de $\sim 360$ electrones, de forma que se perderían, no uno, sino dos eventos que podrían aportar positivamente a la estadística. Al aplicar un umbral que elimine los píxeles con carga espuria que se amontonan y/o conectan con clusters, el programa es capaz de diferenciar y contar los eventos correctamente.
 
 En la Figura \ref{fig:ClusterPegoteado} se muestra un ejemplo de un evento de $179$ electrones para una medición con flúor, que es un evento de interés que el programa debería reconocer, y que hasta que no se eliminan los eventos de un electrón de la imagen, el programa lo identifica como un gran cluster con aproximadamente $40$ electrones más de carga y sin una forma definida (imagen central, píxeles pintados de blanco). A la derecha la imagen con el cluster individualizado y reconocido correctamente por el algoritmo al eliminar la carga excedente.
 \begin{figure}[H]
@@ -85,8 +83,23 @@ En la Figura \ref{fig:ClusterPegoteado} se muestra un ejemplo de un evento de $1
     \label{fig:ClusterPegoteado}
 \end{figure}
 
+En este punto es importante entender cuáles son los sesgos que afectan el conteo de carga de los eventosz. 
+\begin{itemize}
+    \item El sesgo producto de la adición de carga en las superficies de los clústers, debido a eventos de fondo. Estos provocan un corrimiento hacia la derecha de los picos en los histogramas de carga.
+    \item El sesgo producto de la aglomeración de píxeles con fondo en los bordes de los clusteres, el cual también provoca un corrimiento hacia la derecha de los picos en los espectros.
+\end{itemize}
+Sin embargo, la aplicación del umbral de detección que se encarga de eliminar todos los eventos de un electrón es incapaz de distinguir entre eventos genuinos o de fondo. Con lo cual, luego del corte estos sesgos se ven modificados
+\begin{itemize}
+    \item El sesgo debido a la adición de carga en las superficies de los clusters se mantiene debido a que el corte no puede eliminar nada que tenga más de un electrón de carga. En el interior de los clusters de interés la carga es siempre mayor a un electrón.
+    \item El sesgo debido a los píxeles con fondo adheridos a los bordes de los clusters desaparece totalmente, debido a que todos estos eventos son eliminados.
+    \item Un nuevo sesgo es generado, dado que el corte aplicado necesariamente elimina eventos de un electrón genuinamente pertenecientes a los bordes de los clusters.
+\end{itemize}
+Con lo cual, puede resumirse que, luego de aplicar el corte hay dos sesgos principales a tener en cuenta y corregir: el existente sesgo por exceso en las superficies de los clusters y el sesgo por defecto generado por la aplicación de corte en los bordes de los clusters.
+
 Se llevó a cabo entonces el análisis de las imágenes obtenidas al exponer el CCD a los rayos $X$ del flúor, con diferentes valores de umbral: \verb|EPIX=0.5|, \verb|EPIX=1.5| y \verb|EPIX=2.5| y se comparó con los resultados obtenidos para el conteo total de eventos. 
-Debe tenerse presente que estos son resultados preliminares, ya que la aplicación del umbral añade un sesgo extra al conteo de carga que posteriormente será corregido, como se esquematiza en la Tabla \ref{tab:SesgosyEpix}.
+Debe tenerse presente que estos son resultados preliminares, ya que la aplicación del umbral añade un sesgo extra al conteo de carga que posteriormente será corregido, como se esquematiza en la Tabla \ref{tab:SesgosyEpix}. \textcolor{red}{viendo la table en el contexto del texto que la acompaña, confirmo que así sola no se entiende. Hagamos lo del itemizado mejor}\textcolor{blue}{Sí, pero me pa que el mejor lugar para mandarla es acá mismo. Antes de "Se llevó a cabo entonces el análisis bla bla" Me parece el lugar ideal para meterlo y lo iba a hacer ahora}. 
+\textcolor{red}{bueno, probemos. No tengo muchas correcciones sobre la versión actual, pero no está fácil seguir el texto. Esa puede ser una queja del jurado. Hay que pensar en estrategias para simplificarles la lectura y el entendimiento. La charla va a tener que estar bien preparada y ser muy clara para compensar eso}
+
 \begin{table}[h]
 \centering
 \begin{tabular*}{\textwidth}{c @{\extracolsep{\fill}}cccc}
@@ -170,7 +183,7 @@ Habiendo tomado este rumbo, es necesario poder remover el sesgo producido por la
 \section{Caracterización de las imágenes}
 \noindent Todo el análisis cuantitativo anteriormente descripto se realizó sin la necesidad de inspeccionar visualmente las imágenes de las cuales se extraen los datos. Simplemente se aplicaron diferentes umbrales de prueba y se contabilizó el aumento en la estadística. Sin embargo, ver las imágenes y rápidamente poder reconocer patrones, como exceso de eventos en una misma región para diferentes imágenes o cualquier característica que visualmente sea reconocible pero que al analizar los datos de forma automatizada pueda quedar ofuscada, es un factor importante a la hora del estudio de los datos. Dado que la cantidad de imágenes utilizadas en este trabajo es superior a las $900$, observar una por una es una tarea monumental e impracticable. Por esta razón fue necesario buscar maneras de poder extraer información contenida en todas las imágenes, de forma práctica y realizable, como por ejemplo, generar una imagen \textit{promedio}. Con este fin, se hizo un análisis visual, cualitativo y cuantitativo de las imágenes para comprender mejor los datos, explorar las características del sensor y de cada uno de sus cuadrantes y poder reconocer posibles deficiencias o particularidades relevantes.
 
-Uno de los primeros factores a caracterizar tiene que ver con la carga de los píxeles que no es debida a eventos de interés. Estos pueden ser producto de corrientes oscuras (electrones que sufren excitaciones espontáneas debido a fluctuaciones térmicas del sensor), rebotes de un fotón de baja energía en las paredes de la cámara de vacío donde se encuentra el sensor, etc. No es sencillo y no existe una única manera de estimar el fondo en un sensor, por lo que se ensayaron deferentes maneras de encarar este análisis.
+Uno de los primeros factores a caracterizar tiene que ver con la carga de los píxeles que no es debida a eventos de interés. Estos pueden ser producto de corrientes oscuras (electrones que sufren excitaciones espontáneas debido a fluctuaciones térmicas del sensor), rebotes de un fotón de baja energía en las paredes de la cámara de vacío donde se encuentra el sensor, etc. No es sencillo y no existe una única manera de estimar el fondo en un sensor, por lo que se ensayaron diferentes maneras de encarar este análisis.
 
 Lo primero que se hizo fue buscar la manera de explorar solamente los píxeles que tuvieran una única carga. Asumiendo que en la gran mayoría de los casos, los píxeles con una única carga que se encuentran aislados de otros píxeles o de clusters de interés, son eventos que forman parte del fondo del sensor, es natural empezar el análisis con estos. Una forma de caracterizar esto es tomar las imágenes y extraer todos los píxeles donde la carga sea mayor que un electrón. De este modo, se obtienen imágenes donde solo hay eventos de un electrón y todo lo demás son píxeles vacíos. En la Figura \ref{fig:ImagenFitsOriginal} se puede ver una típica imagen tomada con el sensor, para el primer cuadrante, en la que claramente pueden observarse algunos eventos muy brillantes y un intenso fondo. En la imagen \ref{fig:ImagenFits1e} en cambio puede verse la imagen resultante de extraer todos los píxeles cuya carga es mayor a un electrón.
 \begin{figure}[h]
@@ -188,19 +201,19 @@ Lo primero que se hizo fue buscar la manera de explorar solamente los píxeles q
     \caption{Imagen resultante luego de ser extraídos los píxeles con carga mayor a $1$ electrón.}
     \label{fig:ImagenFits1e}
 \end{figure}
-Una vez que se extraen los píxeles de carga mayor a uno, se promedian todas las imágenes resultantes y se obtiene una una única imagen que condensa la información de todas las anteriores. En este contexto, promediar las imágenes implica tomar el arreglo matricial con los valores de carga de los píxeles que conforman las imágenes, y realizar la suma convencional de matrices para las más de $900$ imágenes. Finalmente, se divide cada elemento de la matriz suma por la cantidad total de imágenes y se obtiene una imagen donde cada píxel es el promedio de carga de ese píxel para todas las imágenes. De esta forma se puede ver si existen píxeles con mayor o menor tendencia a contener este tipo de eventos.
+Una vez que se extraen los píxeles de carga mayor a uno, se promedian todas las imágenes resultantes y se obtiene una única imagen que condensa la información de todas las anteriores. En este contexto, promediar las imágenes implica tomar el arreglo matricial con los valores de carga de los píxeles que conforman las imágenes, y realizar la suma convencional de matrices para las más de $900$ imágenes. Finalmente, se divide cada elemento de la matriz suma por la cantidad total de imágenes y se obtiene una imagen donde cada píxel es el promedio de carga de ese píxel para todas las imágenes. De esta forma se puede ver si existen píxeles con mayor o menor tendencia a contener este tipo de eventos.
 
 En la Figura \ref{fig:Eventos1e} se tiene una imagen por cada cuadrante del sensor, promediados en las $\sim 900$ imágenes tomadas, donde los píxeles más brillantes son los que tienen mayor promedio de eventos, es decir, en el total de las imágenes esos píxeles son los que más veces tuvieron un electrón de carga. Esto también puede interpretarse como una imagen de la probabilidad por píxel de que haya un único electrón: Píxeles más brillantes son píxeles más propensos a tener carga.
 
 De la Figura \ref{fig:Eventos1e} pueden destacarse algunas características:
 \begin{itemize}
-    \item La carga prácticamente nula (en promedio) en las regiones del pre-scan (región izquierda de $7$ columnas de píxeles de extensión) y del over-scan (región derecha de 50 columnas de píxeles de extensión), lo cual es totalmente esperable dado que estas son píxeles con muy baja probabilidad de colectar cargas durante la medición, como fue descripto en la Seccion \ref{sec:Mediciones}. Esto se ve para todos los cuadrantes menos el segundo;
+    \item La carga prácticamente nula (en promedio) en las regiones del pre-scan (región izquierda de $7$ columnas de píxeles de extensión) y del over-scan (región derecha de 50 columnas de píxeles de extensión), lo cual es totalmente esperable dado que estos son píxeles con muy baja probabilidad de colectar cargas durante la medición, como fue descripto en la Sección \ref{sec:Mediciones}. Esto se ve para todos los cuadrantes menos el segundo;
     \item El primer cuadrante es en promedio más brillante que el resto, y se observa un ligero gradiente de intensidad entre las filas inferiores y superiores. Esto se repite, pero en menor medida en los demás cuadrantes pero no necesariamente se observa a simple vista. Este efecto se aprecia con mayor claridad en los gráficos de la Figura \ref{fig:GradienteProb};
     \item El segundo cuadrante capta en promedio muy poca carga. Este cuadrante del sensor no funciona correctamente;
     \item En los cuadrantes $3$ y $4$ se pueden ver columnas enteras de píxeles oscurecidas, que captaron muchísima menos carga que podrían deberse a defectos del sensor;
     %\textcolor{red}{es al revés, no están oscurecidas porque capturaron menos carga, sino porque capturaron siempre mas de un electrón y quedaron fuera del conjunto de imágenes con un electrón o vacío a partir de las cuales calculaste la imagen promedio. Es importante decirlo, esas son hot columns y debe ser eliminadas del análisis.}
     \item En todos los cuadrantes (menos el segundo), se observa un único píxel (posición $x = 2$, $y = 0$) donde el promedio de carga es mucho mayor al resto. Además, la primera columna de píxeles luego del pre-scan también tiene tendencia a captar más carga que el resto;
-    \item Todos los cuadrantes tienen tendencia a tener \textit{hot píxels} en el interior de la región activa, estos son píxeles aislados que tienden a tener más carga que otros. Además pueden verse lineas verticales de \textit{hot píxeles}, llamadas \textit{hot columns} que se producen debido a que un \textit{hot pixel} está generando carga constantemente mientras estas son desplazadas verticalmente durante la lectura.
+    \item Todos los cuadrantes tienen tendencia a tener \textit{hot píxels} en el interior de la región activa, estos son píxeles aislados que tienden a tener más carga que otros. Además pueden verse líneass verticales de \textit{hot píxeles}, llamadas \textit{hot columns} que se producen debido a que un \textit{hot pixel} está generando carga constantemente mientras estas son desplazadas verticalmente durante la lectura.
 \end{itemize}
 \begin{figure}[h]
 %Para reproducir esta figura hay que ir al directorio /home/igna/Escritorio/Tesis2021/Figs/pys_para_plots y correr Skipper_cuadrantes_plot.py
@@ -235,7 +248,11 @@ Un camino más sofisticado para estimar el fondo en el sensor es explotando el h
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Estimación del fondo}
-\noindent Si se considera una distribución poissoniana para la variable aleatoria \textit{número de electrones de fondo por píxel}, se puede tomar el caso $p = P(k = 1 | \mu) = 0.1802 \pm 0.0213$, que es la probabilidad que se obtuvo previamente para el primer cuadrante. A partir de esta se puede despejar numéricamente el valor $\mu$ que satisface la expresión anterior y resulta ser
+\noindent Si se considera una distribución poissoniana para la variable aleatoria \textit{número de electrones de fondo por píxel}, dada por:
+
+\textcolor{red}{poner aca una ecuación con la ditribución de Poisson}
+
+se puede tomar el caso $p = P(k = 1 | \mu) = 0.1802 \pm 0.0213$, que es la probabilidad que se obtuvo previamente para el primer cuadrante. A partir de esta se puede despejar numéricamente el valor $\mu$ que satisface la expresión anterior y resulta ser
 %De forma itera partiva \textcolor{red}{qué significa de forma iterativa?}puede hallarse el valor de $\mu$ que satisface la expresión anterior y resulta ser
 \begin{equation*}
     \mu = 0.2258 \pm 0.0271
@@ -243,6 +260,8 @@ Un camino más sofisticado para estimar el fondo en el sensor es explotando el h
     % PRIMER MÉTODO: PROMEDIO SIMPLE
 \end{equation*}
 Si bien esta forma de cuantificar el fondo es un poco más general, dado que ahora pueden contemplarse casos más raros, como que un píxel tenga más de una carga, este método sigue teniendo el problema de la sobrestimación de la probabilidad por píxel, al seguir asumiendo que todo píxel con un electrón proviene del fondo.
+
+\textcolor{red}{a todas las cantidades que son estimaciones ponerle sombrerito arriba para diferenciar del valor real}
 
 Siguiendo sobre el mismo camino, todavía bajo la hipótesis de que todo evento de un electrón es debido a fondo, pero evitando el cálculo de los promedios, hay una forma de calcular la esperanza de la distribución y es notando lo siguiente: si se toman las probabilidades de que haya una sola carga y ninguna carga por píxel, es decir, se toman
 \begin{equation*}
@@ -301,10 +320,10 @@ Con lo cual, en esta región y toda región más lejana a los clusters puede con
 Sabiendo que existe una región donde se encuentran ambas contribuciones juntas y otra región donde solo se puede encontrar la contribución de fondo se pueden calcular y obtener ambas contribuciones por separado.
 
 El método utilizado consistió en tomar el primer borde de los clusters para calcular allí el valor de $\mu_{T}$. El procedimiento se basó en formar una máscara del primer borde de los clusters. Para eso se tomaron todos los eventos de dos o más electrones y se los expandió un píxel en todas las direcciones para formar la primera etapa de la máscara. Luego, se vacío el interior de esta dejando solo sus contornos, que coinciden con los píxeles contiguos a los bordes de los clusters. Luego, superponiendo la máscara sobre la imagen original (ahora con todos los eventos), se cuentan los píxeles con eventos de un electrón y los píxeles vacíos cayeron sobre la máscara. 
-\begin{figure}[h]
+\begin{figure}[H]
 %Para modificar este plot hay que ir a /home/igna/Escritorio/Tesis2021/Figs/pys_para_plots y correr imagen_bordes2.py
     \centering
-    \includegraphics[scale=0.7]{Figs/analisis_bordes.pdf}
+    \includegraphics[scale=0.65]{Figs/analisis_bordes.pdf}
     \caption{Diferentes partes del proceso de análisis de los bordes de los clusters para una imagen de ejemplo. En cada figura se ve una porción de $25 \times 100$ píxeles de área. En la primera imagen (de arriba a abajo) se tienen los clusters de dos o más electrones. En la segunda imagen se representa la dilatación de los clusters aumentando en un píxel en todas las direcciones. En la tercera imagen se ve la diferencia entre las dos primeras imágenes y se la define como la máscara a utilizar. En la cuarta se ve la máscara y superpuestos todos los eventos de un electrón de esa porción del sensor. Finalmente, en la quinta se ven solo los eventos de un electrón que cayeron encima de los píxeles de máscara. Son estos eventos los que son se cuentan en todas las imágenes, junto con los píxeles vacíos de la máscara para calcular el $\mu_{T}$.}
     \label{fig:AnalisisBordes}
 \end{figure}
@@ -315,10 +334,10 @@ Conociendo el valor de $\mu_{T}$, resta obtener la contribución del fondo que d
 Sin embargo, esta forma de calcular el fondo puede mejorarse un poco más. El objetivo del cálculo de estos valores medios es poder utilizarlos para corregir la carga medida en los clusters, debido al fondo y al umbral utilizado. Es por eso que los valores de las contribuciones que se están buscando deben ser las más representativas para los sesgos de estos eventos. Utilizar eventos de un electrón que se encuentran lejos de los eventos de interés para calcular estas correcciones no sería del todo correcto. Con lo cual, para calcular el valor de $\mu_{bkg}$ más representativo a los clusters, se optó por mirar únicamente el segundo borde y no todo el resto del sensor.
 
 El procedimiento es el mismo que para el primer borde, pero ahora expandiendo los clusters en dos píxeles en todas las direcciones, y quedándose únicamente con el segundo borde, donde no hay píxeles con carga genuina y donde se tienen los eventos de fondo más representativos para los clusters. Este proceso puede verse en la imagen \ref{fig:AnalisisBordesx2}. Nuevamente, de la relación entre los eventos de un electrón y los píxeles vacíos que se solapan con la máscara, se obtiene para el primer cuadrante $\mu_{bkg} = 0.1902 \pm 0.002$. Finalmente, teniendo el valor de $\mu_{T}$ y el valor de $\mu_{bkg}$ queda completamente determinado el valor de $\mu_{g}$.
-\begin{figure}[h]
+\begin{figure}[H]
 %Para modificar este plot hay que ir a /home/igna/Escritorio/Tesis2021/Figs/pys_para_plots y correr imagen_bordesx2.py
     \centering
-    \includegraphics[scale=0.7]{Figs/analisis_bordesx2.pdf}
+    \includegraphics[scale=0.65]{Figs/analisis_bordesx2.pdf}
     \caption{Análoga a la Figura \ref{fig:AnalisisBordes}, pero para el caso de $2$ dilataciones, de forma de generar una máscara en el segundo borde. Los pasos son los mismos antes descriptos. De este proceso se halla la esperanza $\mu_{bkg}$.}
     \label{fig:AnalisisBordesx2}
 \end{figure}
@@ -347,12 +366,12 @@ El mismo análisis puede repetirse para los demás cuadrantes. En este caso se d
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Corrección al sesgo en el conteo de carga}
-\noindent El punto del análisis anterior era generar las herramientas para corregir el conteo de carga que hace el programa de reconstrucción de eventos luego de aplicar el umbral que elimina todos los eventos menores a dos electrones
+\noindent El punto del análisis anterior era generar las herramientas para corregir el conteo de carga que hace el programa de reconstrucción de eventos luego de aplicar el umbral que elimina todos los eventos menores a dos electrones y dado que estos pueden también tener eventos extra debido a fondo.
 
-Esta corrección se llevó a cabo modificando el código del programa que es usado por \textit{ROOT} para calcular el factor de Fano, la energía de creación electrón-hueco, y otras variables, por medio del ajuste no bineado de los espectros de carga. Los espectros son reconstruidos utilizando la información de los clusters que está contenida en el archivo \verb|.root| generado por \verb|skExtract.exe| al procesar las imágenes, como se describió en la Sección \ref{sec:ProcesadoDatos}. Al contar la carga de estos clusters y conociendo el área de los mismos (cantidad de píxeles que los conforman), se agrega y se quita carga en función de los valores hallados en la sección anterior.
+Esta corrección se llevó a cabo modificando el código del programa que es usado por \textit{ROOT} para calcular el factor de Fano, la energía de creación electrón-hueco, y otras variables por medio del ajuste no bineado de los espectros de carga. Los espectros son reconstruidos utilizando la información de los clusters que está contenida en el archivo \verb|.root| generado por \verb|skExtract.exe| al procesar las imágenes, como se describió en la Sección \ref{sec:ProcesadoDatos}. Al contar la carga de estos clusters y conociendo el área de los mismos (cantidad de píxeles que los conforman), se agrega y se quita carga en función de los valores hallados en la sección anterior.
 
 %Dado que la cantidad de carga por píxel sigue una distribución poissoniana, de esperanza $\mu$, para cada tipo evento (espurio, genuino o total) se tiene una esperanza. 
-Para calcular la cantidad de carga que se espera que tenga un cluster de $N$ píxeles en el sensor, se puede hacer uso de las propiedades de la esperanza. Sea $Y = \sum\limits_{i = 1}^{N} X_{i}$, donde $X_{i}$ son distintas realizaciones de la variable aleatoria con distribución poissoniana y $N$ es el número de píxeles del cluster, entonces la esperanza de la nueva variable aleatoria $Y$ se calcula como
+Para calcular la cantidad de carga que se espera que tenga un cluster de $N$ píxeles, se puede hacer uso de las propiedades de la esperanza. Sea $Y = \sum\limits_{i = 1}^{N} X_{i}$, donde $X_{i}$ son distintas realizaciones de la variable aleatoria con distribución poissoniana y $N$ es el número de píxeles del cluster, entonces la esperanza de la nueva variable aleatoria $Y$ se calcula como
 \begin{equation*}
      E(Y) = 
      E
@@ -366,9 +385,18 @@ pero como $X_{i}$ son distintas realizaciones de la misma variable aleatoria, en
 \begin{equation*}
     E(Y) = N\mu
 \end{equation*}
-es por esto que la cantidad de carga esperada para un cluster viene dada por el producto entre la esperanza de la distribución y la cantidad de píxeles del cluster.
-\textcolor{red}{Pero este procedimiento no vale para el borde, solo para los electrones de fondo que cayeron sobre el cluster. Para el borde seria necesario conocer cuántos pixeles de borde hay.} \textcolor{blue}{No habíamos quedado que estaba bien en la última reunion?}
-De esta forma, sabiendo que la esperanza se puede escribir como $\mu_{T} = \mu_{bgk} + \mu_{g}$, las correcciones se pueden realizar aplicando esta misma receta a los valores de carga por cluster. Cabe destacar que la aplicación de las correcciones se realiza sobre los datos a los cuales ya se les ha aplicado el umbral. De esta forma, el fondo presente en los bordes de los clusters ya ha sido removido, al igual que los eventos genuinos que pudiera haber en ellos. Si $n_{e}$ es la cantidad de carga medida en un dado cluster, la corrección de este valor de carga será $n_{c}$ y viene dado por
+es por esto que la cantidad de carga esperada para un cluster viene dada por el producto entre la esperanza de la distribución y la cantidad de píxeles del cluster. De esta forma, sabiendo que la esperanza se puede escribir como $\mu_{T} = \mu_{bgk} + \mu_{g}$, las correcciones se pueden realizar aplicando esta misma receta a los valores de carga por cluster: se espera que la carga genuina removida por el umbral sea $N\mu_{g}$ y que la carga de fondo en su interior sea $N\mu_{bkg}$. Este proceso puede realizarse dado que, para los tamaños de los eventos de interés existe una relación casi $1$-$1$ entre su área y la cantidad de píxeles en sus bordes, como se observa en la Figura \ref{fig:relacion_area_perimetro}. 
+\begin{figure}[h]
+%Para modificar este plot hay que ir a /home/igna/Escritorio/Tesis2021/Figs/pys_para_plots y correr imagen_bordesx2.py
+    \centering
+    \includegraphics[scale=0.5]{Figs/clusters_perimetro_vs_area.pdf}
+    \caption{Perímetro promedio de los clusters, en función de área o cantidad de píxeles. Se ajustan los datos con una recta cuya pendiente resultó $m = 0.938 \pm 0.026$, lo cual permite usar áreas como estimador de las superficies.}
+    \label{fig:relacion_area_perimetro}
+\end{figure}
+
+\textcolor{red}{Cortar este plot en 20 o 23 electrones}
+
+Cabe destacar que la aplicación de las correcciones se realiza sobre los datos a los cuales ya se les ha aplicado el corte en el umbral para elmininar eventos de un electrón, de forma que el fondo presente en los bordes de los clusters ya ha sido removido, al igual que los eventos genuinos que pudiera haber en ellos. Si $n_{e}$ es la cantidad de carga medida en un dado cluster, la corrección de este valor de carga será $n_{c}$ y viene dada por
 \begin{equation*}
     n_{c} = n_{e} + N(\mu_{g} - \mu_{bkg})
 \end{equation*}
