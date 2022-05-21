@@ -75,6 +75,23 @@ Esta es la principal razón que motiva este trabajo, donde se realiza un estudio
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Modelo de difusión de la carga}
+\noindent Dado que el sensor utilizado en este trabajo fue del tipo \textit{back-iluminated}, como se describe en la Sección \ref{subsec:detector}, la mayor parte de las interacciones ocurren en las primeras decenas de micrones de la parte trasera del sensor. Con lo cual, para un sensor de $200\,\si{\mu m}$ de espesor, la carga producida durante la ionización debe recorrer mucha distancia hasta alcanzar la superficie donde es colectada. Mientras la carga se transporta desde la parte trasera (cara expuesta) hasta la superficie del detector (cara opuesta a la exposición), ocurre que la carga se difunde desde el píxel donde originalmente fue generada hacia los píxeles vecinos, como se muestra en los esquemas de la Figura \ref{fig:difusion}.
+\begin{figure}[h]
+    \centering
+        \includegraphics[scale=0.6]{Figs/difusion.pdf}
+    \caption{Izquieda: esquematización de la sección transversal de un CCD con como se difunde la carga en los píxeles. Derecha: esquematización frontal de un CCD con la distribución final de la carga sobre un conjunto de píxeles debido a la difusión, denominado cluster. Se colorean más tenues los píxeles representando menor cantidad de carga acumulada.}
+    \label{fig:difusion}
+\end{figure}
+La forma en la que esta difusión ocurre puede modelarse a partir de una distribución gaussiana en dos dimensiones, donde el valor de la varianza $\sigma_{xy}^{2}$ es función de la profundidad $z$ donde ocurrieron las interacciones y se puede escribir como
+\begin{equation*}
+    \sigma_{xy}^{2} = -A\ln{|1-bz|}
+\end{equation*}
+donde $A$ y $b$ son parámetros del detector.
+
+Dado que la carga producida por un único evento, inicialmente en un único píxel, puede migrar hacia píxeles vecinos por difusión durante su desplazamiento hacia la superficie, el total de carga producida queda distribuida en varios píxeles contiguos. A este conjunto de píxeles que contiene toda la carga de un único evento, se lo denomina cluster.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Eficiencia de colección de carga}
 \noindent La Eficiencia de Colección de Carga o CCE (\textit{Charge Collection Efficiency}, por sus siglas en inglés) se define como la fracción del total de carga producida durante un evento de ionización que es efectivamente medida. 
 Para sensores del tipo \textit{fully depleted}-CCD\cite{osti_838066}, a los que se les aplican campos eléctricos relativamente altos, la CCE es aproximadamente del $100\,\%$, es decir, toda la carga producida por ionización en el volumen del sensor logra ser colectada y medida. 
@@ -101,6 +118,7 @@ El efecto que provoca la colección parcial de carga en las mediciones es el de 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
 
 \section{Antecedentes \label{sec:Antecedentes}}
 \noindent En trabajos previos se han estudiado las ventajas de la utilización de la tecnología \textit{Skipper} en los CCDs, para lograr medir con precisión subelectrónica en regímenes de energía donde los sensores CCD convencionales más precisos sólo podrían alcanzar resoluciones del orden de los $2$ electrones. Por primera vez fue usada para medir el factor de Fano y la energía de creación electrón-hueco en el silicio a una energía de $5.9\,\si{keV}$ a $123\,\si{K}$\cite{Rodrigues}.
@@ -206,10 +224,7 @@ $\beta_{3}$  & $1730.50$ & $0.55$ & $14.36$ & $0.13$ &  &  & $3.751$ & $0.002$ \
 
 Así es que los valores condensados en la Tabla \ref{tab:ParametrosAjusteNoBineado} constituyen los primeros resultados obtenidos de la utilización de la tecnología \textit{Skipper}-CCD para el cálculo del factor de Fano y de la energía de creación electrón-hueco para una temperatura de $123\,\si{K}$. Los mismos se encuentran en excelente acuerdo con la bibliografía preexistente~\cite{Ryan, Alig, Kotov} y presentan la mejor incerteza alcanzada a la fecha.
 
-En esa oportunidad se llevaron a cabo además las primeras mediciones tendientes a determinar el factor de Fano y la energía de creación electrón-hueco para energías por debajo de los de $2\,\si{keV}$~\cite{TesisKevin}, más específicamente, para energías de $677\,\si{eV}$ y $1486\,\si{eV}$, que corresponden a los rayos $X$ de fluorescencia del flúor y del aluminio respectivamente. 
-En la Tabla \ref{tab:EnergiasFluorescenciaFAl} pueden verse las energías e intensidades relativas para los rayos $X$ de estos elementos. 
-Esto se logró a partir de mediciones realizadas con una fuente de $\Am{241}$ que emite partículas $\alpha$ con una energía de $\sim 5.6\,\si{MeV}$. 
-A estas partículas se las hizo impactar contra una cinta de teflón (que contiene flúor) y una barra de aluminio que por fluorescencia emitían rayos $X$ con las energías antes mencionadas. 
+En esa oportunidad se llevaron a cabo además las primeras mediciones tendientes a determinar el factor de Fano y la energía de creación electrón-hueco para energías por debajo de los de $2\,\si{keV}$~\cite{TesisKevin}, más específicamente, para energías de $677\,\si{eV}$ y $1486\,\si{eV}$, que corresponden a los rayos $X$ de fluorescencia del flúor y del aluminio respectivamente. En la Tabla \ref{tab:EnergiasFluorescenciaFAl} pueden verse las energías e intensidades relativas para los rayos $X$ de estos elementos. Esto se logró a partir de mediciones realizadas con una fuente de $\Am{241}$ que emite partículas $\alpha$ con una energía de $\sim 5.6\,\si{MeV}$. A estas partículas se las hizo impactar contra una cinta de teflón (que contiene flúor) y una barra de aluminio que por fluorescencia emitían rayos $X$ con las energías antes mencionadas. 
 \begin{table}[h]
 \centering
 \begin{tabular}{@{}cccc@{}}
@@ -224,7 +239,7 @@ Al          &   $\beta_{1}$     &   $1557.4$        &   $1$                 \\ \
 \label{tab:EnergiasFluorescenciaFAl}
 \end{table}
 
-Uno de los desafíos que surgieron en este otro trabajo fue obtener una buena estadística, debido a que solo una fracción muy pequeña de los átomos que son impactados por las partículas $\alpha$ se desexcitan emitiendo fotones $X$ en las energías de interés. La emisión de rayos $X$ tras la captura electrónica del núcleo del $\Fe{55}$, en cambio, ocurre siempre y por lo tanto es proporcional a la actividad de la fuente. Por esta razón, dada una misma actividad de la fuente de $\Fe{55}$ y la tasa de emisión de partículas $\alpha$, la obtención de rayos $X$ es mucho más probable en el primer caso, haciendo la colección de eventos más rápida.
+Uno de los desafíos que surgieron en este otro trabajo fue obtener una buena estadística, debido a que solo una fracción muy pequeña de los átomos que son impactados por las partículas $\alpha$ se desexcitan emitiendo fotones $X$ en las energías de deseadas. La emisión de rayos $X$ tras la captura electrónica del núcleo del $\Fe{55}$, en cambio, ocurre siempre y por lo tanto es proporcional a la actividad de la fuente. Por esta razón, dada una misma actividad de la fuente de $\Fe{55}$ y la tasa de emisión de partículas $\alpha$, la obtención de rayos $X$ es mucho más probable en el primer caso, haciendo la colección de eventos más rápida.
 
 Con los datos de estas mediciones se reconstruyeron los espectros para ambos picos y se les realizó un ajuste muy similar al de los experimentos con $\Fe{55}$, utilizando la verosimilitud descripta por la expresión \eqref{ec:verosimilitudF-Al}
 \begin{align}
@@ -300,12 +315,11 @@ Es a partir de aquí donde este trabajo continua con el estudio del factor de Fa
 \section{Motivación del análisis de imágenes}
 \noindent El fondo presente en las imágenes tiene diferentes orígenes, uno de ellos es la carga producida por fluctuaciones térmicas en la red cristalina del silicio del sensor (corrientes oscuras). Otra contribución es la de eventos de dispersión Compton, producidos por la interacción de los fotones con los materiales que rodean al sensor y también en la red cristalina del mismo. Podemos incluir además, aquellos fotones infrarrojos emitidos desde los materiales que rodean al detector cuando estos son excitados por radiación circundante o bien por radiación de cuerpo negro. También se encuentran los eventos de carga producida por radiación muy penetrante provenientes del exterior, como por ejemplo, muones.
 
-\textcolor{red}{Nunca se dijo que es un cluster, ni porque aparecen. Hay que contarlo y mencionar la difusion como parte del proceso.}
 Parte del análisis consistió en estudiar el efecto que produce el fondo de las imágenes sobre los eventos de interés: la aglomeración de píxeles con un único electrón alrededor de los clusters, y la carga extra añadida sobre ellos. 
-En muchos casos resulta que los píxeles con fondo se aglutinan a los clusters, aumentando su tamaño y su carga, o incluso también haciendo de puente entre dos clusters vecinos. Estos son dos efectos indeseados, primero, porque sesgan la cantidad de carga real en un evento de interés y segundo, porque los programas de reconocimiento de eventos podrían ignorarlos al no cumplir con los cortes de calidad impuestos\footnote{Ver sección \ref{sec:ProcesadoDatos}}, tanto por forma como por cantidad de carga, produciendo así una disminución en la estadística.
+En muchos casos resulta que los píxeles con fondo se aglutinan a los clusters, aumentando su tamaño y su carga, o incluso también haciendo de puente entre dos clusters vecinos. Estos son dos efectos indeseados, primero, porque sesgan la cantidad de carga real en un evento y segundo, porque los programas de reconocimiento de eventos podrían ignorarlos al no cumplir con los cortes de calidad impuestos\footnote{Ver sección \ref{sec:ProcesadoDatos}}, tanto por forma como por cantidad de carga, produciendo así una disminución en la estadística.
 
-En este contexto, se propone utilizar un umbral de detección que ignore píxeles con un sólo electrón, de forma de evitar el aglutinamiento de píxeles con fondo a los clusters de interés y así aumentar la estadística en el conteo de eventos. Pero también es necesario lograr caracterizar el fondo responsable de este efecto para corregir el sesgo introducido por el nuevo umbral de detección, el cual también eliminará píxeles con una carga genuina.
-%En este contexto, se propone utilizar un umbral de detección que ignore píxeles con un sólo electrón, de forma de evitar un píxel con una carga originada en eventos de fondo se adicione a un cluster de interés, haciendo que este entre en contacto con un tercero, dando lugar al aglutinamiento de clusters de interés. La carga neta del nuevo cluster haría que el mismo deje de encontrarse entre los de interés. Por lo tanto, evitar este efecto debe redundar en un aumento de la estadística.
+En este contexto, se propone utilizar un umbral de detección que ignore píxeles con un sólo electrón, de forma de evitar el aglutinamiento de píxeles con fondo a los clusters y así aumentar la estadística en el conteo de eventos. Pero también es necesario lograr caracterizar el fondo responsable de este efecto para corregir el sesgo introducido por el nuevo umbral de detección, el cual también eliminará píxeles con una carga genuina.
+%En este contexto, se propone utilizar un umbral de detección que ignore píxeles con un sólo electrón, de forma de evitar un píxel con una carga originada en eventos de fondo se adicione a un cluster de interes, haciendo que este entre en contacto con un tercero, dando lugar al aglutinamiento de clusters de interes. La carga neta del nuevo cluster haría que el mismo deje de encontrarse entre los de interes. Por lo tanto, evitar este efecto debe redundar en un aumento de la estadística.
 %Pero también es necesario lograr caracterizar el fondo responsable de este efecto para corregir el sesgo introducido por el nuevo umbral de detección que elimina eventos de un electrón, el cual, también eliminará píxeles con una carga genuina.
 %########################################################################
 % NACHO NOTE: perdón pero esto lo revertí porque no me gustaba nada el primer párrafo. Da información que se da en la sección 4.2 (4to párrafo aprox), aca mi idea era superficialmente tirar la motivación

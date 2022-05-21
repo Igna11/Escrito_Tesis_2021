@@ -1,25 +1,22 @@
 \chapter{Conclusiones}
 %<De qué fue la tesis>
-\noindent En este trabajo se realizó la determinación del factor de Fano y la energía de creación electrón-hueco en el silicio para energías inferiores de $2\,\si{keV}$, el cual es un rango de energías prácticamente inexplorado hasta el momento.
+\noindent En este trabajo se determinó el factor de Fano y la energía de creación electrón-hueco en el silicio para energías inferiores de $2\,\si{keV}$, el cual es un rango de energías prácticamente inexplorado hasta el momento.
 
 %utilizando un umbral de detección que permitió aumentar la estadística de los eventos sobre mediciones existentes. Además de la implementación de un método de corrección para los sesgos presentes en los datos antes y después de la aplicación del umbral. También se implementó satisfactoriamente la aplicación de un nuevo modelo de ajuste que permitió obtener el ancho de la región de colección parcial de carga del detector.
 
 %<Qué se hizo: Simulaciones, Análisis de imágenes, implementacion de correciones>
-Se lograron obtener resultados consistentes con mediciones experimentales para el factor de Fano a partir de simulaciones muy simples con el método de Monte Carlo, para las cuales el valor del factor de Fano resultó independiente de la energía de las fuentes.
+Se lograron obtener resultados consistentes con mediciones experimentales del factor de Fano a partir de simulaciones muy simples con el método de Monte Carlo, para las cuales el valor del factor de Fano resultó independiente de la energía de las fuentes.
 
 Por otro lado, se realizó un análisis cualitativo de las imágenes, pudiendo determinar características importantes en ellas que provocan efectos indeseados en las mediciones, como ser \textit{hot pixels} y \textit{hot columns} entre otras, lo cual permitió elegir los cuadrantes del sensor más aptos para el análisis.
 
-Gracias a la aplicación del umbral, \textcolor{red}{" aplicación del umbral" no se entiende, lo vi otras veces. aplicación del un corte que elimina píxeles con una solo electrón} se pudo aumentar casi tres veces la estadística de eventos. Además se desarrolló un método para la corrección del sesgo agregado por este corte y el sesgo existente en las imágenes debido a fondo. Con este aumento en la estadística se esperaba una disminución en las incertezas en la determinación del factor de Fano y la energía de creación electrón-hueco para estas energías, sin embargo esto no ocurrió.
+Gracias a la aplicación de un corte que elimina píxeles con una solo electrón, se pudo aumentar casi tres veces la estadística de eventos. Además se desarrolló un método para la corrección del sesgo agregado por este corte y el sesgo existente en las imágenes debido a fondo. Con este aumento en la estadística se esperaba una disminución en las incertezas en la determinación del factor de Fano y la energía de creación electrón-hueco para estas energías, sin embargo esto no ocurrió.
  \textcolor{red}{me parece que no paso porque no está convergiendo la minimización}
 
 %<Qué resultados se obtuvieron>
-Se obtuvo que el factor de Fano para los rayos $X$ del aluminio fue de $F = 0.1503 \pm 0.0011$ y para los rayos $X$ del flúor se obtuvo $F = 0.1416 \pm 0.0120$, valores que solapan entre sí con su error. Esto parecería ser un indicio de que el factor de Fano es en efecto independiente de la energía de las fuentes.
- \textcolor{red}{yo no diria eso porque a 5900 eV dio 0.119}
+Se obtuvo que el factor de Fano para los rayos $X$ del aluminio fue de $F = 0.1503 \pm 0.0011$ y para los rayos $X$ del flúor se obtuvo $F = 0.1694 \pm 0.0120$, valores que no solapan entre sí con su error. Esto parecería ser un indicio de que el factor de Fano no es, en efecto, independiente de la energía de las fuentes.
 
-Por otra parte, se obtuvo que la energía de creación electrón-hueco fue de $\varepsilon_{\eh} = 3.7501 \pm 0.0006$ para el aluminio, mientras que para el flúor fue de $\varepsilon_{\eh} = 3.7363 \pm 0.0047$.
-\textcolor{red}{\#\#\#\#-------------------}
-Finalmente, se logró determinar el ancho de la región de colección parcial de carga del sensor mediante la utilización del nuevo modelo de ajuste de los picos, que fue de $\tau_{\scaleto{CCE}{4pt}} = algo$ que coincide con el valor de $\tau_{\scaleto{CCE}{4pt}} = otra\ cosa$ obtenido mediante otro método.
-\textcolor{red}{-------------------\#\#\#\#}
+Por otra parte, se obtuvo que la energía de creación electrón-hueco fue de $\varepsilon_{\eh} = 3.7501 \pm 0.0006$ para el aluminio, mientras que para el flúor fue de $\varepsilon_{\eh} = 3.8222 \pm 0.0048$.
 
+Finalmente, se logró determinar el ancho de la región de colección parcial de carga del sensor mediante la utilización del nuevo modelo de ajuste de los picos, que fue de $\tau_{\scaleto{CCE}{4pt}} = (0.0979 \pm 0.0051)\,\si{\mu m}$ cuyo error solapa con el de $\tau_{\scaleto{CCE}{4pt}} = (0.0914 \pm 0.0027)\,\si{\mu m} $ obtenido mediante otro método\cite{PCC-CCE}.
 %Cabe destacar que la última permitió incrementar la estadística disponible en las imágenes. Esto se debe a que, los cortes de calidad utilizados hasta el momento descartaban eventos que se superponían debido al puente generado por los electrones que induce la luz espuria, transformando así dos o más eventos reales en uno solo. Mitigar este problema generó un mayor aprovechamiento de la estadística disponible y con ello una reducción de las incertezas finales.
 
