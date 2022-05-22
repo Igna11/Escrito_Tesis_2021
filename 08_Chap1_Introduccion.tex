@@ -8,7 +8,7 @@ La relación entre la carga producida y la energía incidente, es decir, la ener
 
 Por otro lado, existen diferentes fenómenos que modifican la forma de los espectros de carga producidos por la radiación incidente en los sensores. Entre ellos, los dos más importantes son: el factor de Fano, que cuantifica la dispersión de carga; y las deficiencias en la colección de carga, que tienden a producir colas hacia bajas energías en los picos producidos por radiación monoenergética.
 
-En este capítulo se detallan tres características que describen tanto propiedades del silicio como del sensor, y que en el marco de esta tesis han sido estudiadas más allá del ruido de lectura gracias a la tecnología Skipper-CCD: El factor de Fano, la energía de creación electrón-hueco y la colección parcial de carga.
+En este capítulo se detallan tres características que describen tanto propiedades del silicio como del sensor, y que en el marco de esta tesis han sido estudiadas más allá del ruido de lectura gracias a la tecnología Skipper-CCD: el factor de Fano, la energía de creación electrón-hueco y la colección parcial de carga.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -19,7 +19,7 @@ En este capítulo se detallan tres características que describen tanto propieda
 \end{equation*}
 donde $\sigma^{2}$ es la varianza de la distribución de carga y $\mu$ es la media. 
 Para el caso particular de una distribución de Poisson, la varianza y la esperanza coinciden, de forma que el factor de Fano equivale a $1$. 
-Estas distribuciones de carga son el producto de la interacción de fotones con el detector, que depositan energía en el material ionizando cargas que a su vez ionizan a otras a su paso. Dicha distribución tiene origen en que la energía transferida en cada interacción no es constante y, por lo tanto, para una dada energía inicial de la partícula incidente, tampoco será constante el número de cargas generadas.
+Las distribuciones de carga que se estudian en esta tesis son el producto de la interacción de fotones con el detector, que depositan energía en el material ionizando cargas que a su vez ionizan a otras a su paso. Dicha distribución tiene origen en que la energía transferida en cada interacción no es constante y, por lo tanto, para una dada energía inicial de la partícula incidente, tampoco será constante el número de cargas generadas.
 
 Por otro lado, la energía de creación electrón-hueco $\varepsilon_{\eh}$ es medida en valor medio, ya que es calculada a través del cociente entre la energía entregada al detector y la carga en él producida. Si bien $\varepsilon_{\eh}$ está relacionada con la energía del \textit{band gap} del silicio (entre la banda de valencia y la banda de conducción, $E_{g}\sim 1.1\,\si{eV}$\cite{Janesick}), debido a que durante el proceso de interacción parte de la energía entregada al material puede disiparse como fonones, la energía de creación electrón-hueco resulta ser mayor, en promedio, que la energía del \textit{gap}.
 
@@ -310,14 +310,10 @@ Es a partir de aquí donde este trabajo continúa con el estudio del factor de F
 Parte del análisis consistió en estudiar el efecto que produce el fondo de las imágenes sobre los eventos de interés: la aglomeración de píxeles con un único electrón alrededor de los clusters, y la carga extra añadida sobre ellos. 
 En muchos casos resulta que los píxeles con fondo se aglutinan a los clusters, aumentando su tamaño y su carga, o incluso también haciendo de puente entre dos clusters vecinos. Estos son dos efectos indeseados, primero, porque sesgan la cantidad de carga real en un evento y segundo, porque los programas de reconocimiento de eventos podrían ignorarlos al no cumplir con los cortes de calidad impuestos\footnote{Ver sección \ref{sec:ProcesadoDatos}}, tanto por forma como por cantidad de carga, produciendo así una disminución en la estadística.
 
-En este contexto, se propone utilizar un umbral de detección que ignore píxeles con un sólo electrón, de forma de evitar el aglutinamiento de píxeles con fondo a los clusters y así aumentar la estadística en el conteo de eventos. Pero también es necesario lograr caracterizar el fondo responsable de este efecto para corregir el sesgo introducido por el nuevo umbral de detección, el cual también eliminará píxeles con una carga genuina.
-%En este contexto, se propone utilizar un umbral de detección que ignore píxeles con un sólo electrón, de forma de evitar un píxel con una carga originada en eventos de fondo se adicione a un cluster de interes, haciendo que este entre en contacto con un tercero, dando lugar al aglutinamiento de clusters de interes. La carga neta del nuevo cluster haría que el mismo deje de encontrarse entre los de interes. Por lo tanto, evitar este efecto debe redundar en un aumento de la estadística.
-%Pero también es necesario lograr caracterizar el fondo responsable de este efecto para corregir el sesgo introducido por el nuevo umbral de detección que elimina eventos de un electrón, el cual, también eliminará píxeles con una carga genuina.
-%########################################################################
-% NACHO NOTE: perdón pero esto lo revertí porque no me gustaba nada el primer párrafo. Da información que se da en la sección 4.2 (4to párrafo aprox), aca mi idea era superficialmente tirar la motivación
-%########################################################################
+En este contexto, se propone utilizar un umbral de detección que ignore píxeles con un sólo electrón, de forma de evitar el agregado de píxeles con una carga inducida por eventos de fondo a los clusters y con este corte lograr aumentar la estadística en el conteo de eventos. Para ello, también es necesario lograr caracterizar el fondo responsable de este efecto para corregir el sesgo introducido por el nuevo umbral de detección, el cual también eliminará píxeles con una carga genuina.
+%
 Es por eso que en este trabajo se propuso un análisis de las imágenes que pueda corregir el sesgo introducido luego de recuperar la mayor estadística posible separando eventos unidos por un electrón de fondo. 
-Esto es, el desarrollo de un método para estimar en valores medios cuántos electrones genuinos son removidos y cuántos electrones espurios hay en los eventos, para mejorar así las incertezas en la determinación del factor de Fano y la energía de creación electrón-hueco a bajas energías.
+Esto es, el desarrollo de un método para estimar en valores medios cuántos electrones genuinos son removidos y cuántos electrones espurios hay en los eventos, para eliminar así sesgos y eventualmente reducir además las incertezas en la determinación del factor de Fano y la energía de creación electrón-hueco a bajas energías.
 
 Motiva también este trabajo el desarrollo y aplicación de un modelo que permita dar cuenta del efecto de colección parcial de carga y así obtener una forma analítica para la distribución de carga producida por los fotones de interés.
 
@@ -326,17 +322,13 @@ Motiva también este trabajo el desarrollo y aplicación de un modelo que permit
 \section{Organización de la tesis}
 \noindent En el presente capítulo se ha dado una breve introducción a los tres aspectos principales de estudio de este trabajo: el factor de Fano, la energía de creación electrón-hueco y la colección parcial de carga. Además se han presentado resultados que conforman los antecedentes para la motivación de esta tesis.
 
-En el capítulo \ref{chap:simulaciones} se presenta un modelo físico simple de la interacción entre fotones incidentes y la red del sensor, que luego es estudiado a partir de simulaciones Monte Carlo.
+En el capítulo \ref{chap:simulaciones} se presenta un modelo físico simple de la interacción entre fotones incidentes y la red cristalina del sensor, que luego es utilizado en simulaciones Monte Carlo tendientes a reproducir los valores experimentalmente observados para el Factor de Fano.
 
 En el capítulo \ref{chap:ConfiguracionExperimental} se desarrolla una descripción esquemática del dispositivo de medición utilizado y los regímenes de trabajo necesarios para realizar las mediciones. También se da una breve descripción del sensor y de los materiales que lo componen, como así también de la fuente radioactiva utilizada. Por último, se describe el proceso de medición.
 
-En el capítulo \ref{chap:Analisis} se describe cómo son procesados los datos y qué programas son utilizados además de las pruebas realizadas con distintos umbrales. También se muestran diferentes análisis de caracterización del sensor. Es en este capítulo que se describen los diferentes enfoques utilizados en la estimación del fondo y de la cantidad de eventos eliminados por el umbral y el método aplicado para realizar las correcciones sobre la carga.
+En el capítulo \ref{chap:Analisis} se describe cómo son procesados los datos y qué programas son utilizados además de las pruebas realizadas con distintos umbrales para la detección de carga. También se muestran los resultados del análisis realizado para caracterizar el sensor. Es en este capítulo que se describen los diferentes enfoques utilizados en la estimación del fondo y de la cantidad de eventos eliminados por el umbral de detección de carga (corte) utilizado y el método aplicado para realizar las correcciones sobre el sesgo sobre carga de cada evento introducido por el corte aplicado.
 
-En el capítulo \ref{chap:ModeloPCC} se introduce un modelo que describe la distribución de carga considerando no solo el factor de Fano sino además el de colección parcial de carga. 
+En el capítulo \ref{chap:ModeloPCC} se introduce un modelo que describe la distribución de carga considerando no solo el factor de Fano sino además el efecto que la colección parcial de carga tiene sobre las distribuciones de carga estudiadas.
 
-Por último, en el capítulo \ref{chap:Resultados} se presentan los resultados obtenidos a partir de ajustes no bineados, utilizando el modelo descripto en el capítulo \ref{chap:ModeloPCC} y las perspectivas a futuro.
+Por último, en el capítulo \ref{chap:Resultados} se presentan los resultados obtenidos para el Factor de Fano, la energía de creación electrón-hueco y el ancho efectivo de la zona de colección parcial de carga, a partir de ajustes no bineados sobre los espectros de carga medidos y utilizando el modelo descripto en el Capítulo \ref{chap:ModeloPCC}.
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

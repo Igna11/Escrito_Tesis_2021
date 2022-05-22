@@ -1,7 +1,7 @@
 \chapter{Estudio de la interacción utilizando simulaciones Monte Carlo \label{chap:simulaciones}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\noindent En este capítulo se presentan los resultados de modelar de forma cualitativa el proceso que se estudiará en esta tesis a partir de simulaciones Monte Carlo.
+\noindent En este capítulo se presentan los resultados de modelar mediante simulaciones Monte Carlo la carga producida en los sensores debido a interacción de rayos $X$. Para ello se adoptará un modelo simplificado en primer lugar, y que luego se complejiza con intenciones de dar una descripción más precisa del fenómeno.
 
 
 \section{Modelado del fenómeno físico}
@@ -88,7 +88,6 @@ Si bien este modelo de juguete es una simplificación del proceso de dispersión
 
 El resultado de la simulación es simplemente el número de pares 
 ionizados a partir de la energía inicial $E_{R}$. De esta puede verse la distribución de la cantidad de pares generados y además calcular tanto su varianza como su esperanza, para así obtener el factor de Fano y la energía de creación electrón-hueco.
-%Otro elemento a tener en cuenta en la simulación es la conservación de la energía durante el proceso de creación de pares. Puede considerarse que la energía transferida al ionizar es utilizada totalmente para ionizar otros pares o puede considerarse que siempre que se dé una ionización habrá una pequeña parte de energía que se pierde y no puede ser utilizada, es decir, que no se conserva la energía. 
 Cabe destacar que en este tipo de simulación, dada su implementación particular, solo se puede considerar el caso en que la partícula disipa toda su energía en el interior del material, de modo que se esperan valores para el factor de Fano menores a la unidad.
 
 Se realizaron las simulaciones partiendo de una energía inicial $E_{r} = 677\,\si{eV}$ y $E_{R} = 1500\,\si{eV}$, correspondiente a los rayos $X$ de flúor y del aluminio respectivamente, que son el principal objeto de estudio de este trabajo. Los valores de los parámetros fueron extraídos de la bibliografía\cite{Alig, Ramanathan} y son $A = 5.2\,\si{eV}^{3}$, la energía del gap $E_{g} = 1.1\,\si{eV}$, la energía de creación electrón-hueco promedio $\varepsilon_{eh} = 3.75\,\si{eV}$ y la energía perdida cada vez que se emiten fonones $\hbar \omega = 0.063\,\si{eV}$.
@@ -102,43 +101,6 @@ Por otro lado, con el fin de observar como afecta el número de repeticiones del
     \label{fig:FanoConvergencia}
 \end{figure}
 Entre $10^{2}$ y $10^{4}$ repeticiones del experimento se tiene que el factor de Fano se encuentra entre $0.096$ y $0.110$ aproximadamente, mientras que entre $10^{4}$ y $10^{5}$ cantidad de repeticiones los valores para el factor de Fano están acotados entre $\sim 0.100$ y $\sim 0.104$ aproximadamente. Se nota claramente la convergencia de los valores con el aumento de repeticiones y que para $10^{4}$ la variabilidad del factor de Fano es como mucho del $6\%$.
-
-%Se simuló el proceso de cascada con con diferente cantidad de repeticiones, partiendo desde $5000$ hasta incluso $100000$ para asegurar la robustez de la estadística
-
-%Además, con el fin de caracterizar las dependencias entre parámetros en esta implementación particular, se realizaron barridos sobre la pérdida de energía $E_{loss}$ y así conocer la dependencia de los resultados respecto de este, partiendo desde $0\,\si{eV}$ de pérdida de energía hasta $7\,\si{eV}$ de pérdida de energía por cada ionización (equivale a perder casi $4$ veces la energía del gap del silicio). Con esto se quiso observar el comportamiento de esta simulación en este rango de valores, por más que la pérdida de energía final sea demasiado elevada para poder considerarse en el fenómeno físico real. 
-
-%En cada uno de los barridos se obtuvo el factor de Fano, el valor medio de carga ionizada y la energía de creación electrón-hueco, como puede verse en las figuras \ref{fig:FanoVsEloss}, \ref{fig:ElossVsMu} y \ref{fig:CreacionHuecoVsEloss}.
-%\begin{figure}%[h]
-%a) Esta figura se puede hacer con los datos de: fano_Eloss_mu_vec.txt que está en el directorio /home/igna/Escritorio/Tesis2021/Figs/Figuras_Apendice_Simulaciones/txts_para_plots usando el .py Barridos_mu_Eloss_fano.py que está en /home/igna/Escritorio/Tesis2021/Figs/Figuras_Apendice_Simulaciones/pys_para_plots
-%    \centering
-%     \includegraphics[scale=0.5]{Figs/Fano_vs_Eloss_5ktrials_0-7Eloss.pdf}
-%     \caption{\footnotesize{Curva del factor de Fano en función de la energía pérdida por cada ionización. El cambio abrupto en la curva ocurre para $E_{loss} = 3.75\,\si{eV}$, coincidente con la energía media de creación electrón-hueco.}}
-%     \label{fig:FanoVsEloss}
-% \end{figure}
-%La curva del factor de Fano en función de la energía $E_{loss}$ (y al igual que la energía de creación electrón-hueco y el valor medio de carga ionizada) presenta un cambio de régimen abrupto cuando se cruza el umbral $E_{loss} = 3.75\,\si{eV}$. En la Figura \ref{fig:FanoVsEloss} puede verse claramente este cambio de régimen. También se observa que cuando hay conservación de la energía, es decir, $E_{loss} = 0$, es cuando se obtiene un factor de Fano más semejante al observado experimentalmente, que está cerca de $0.1$. A medida que aumenta la pérdida de energía, el factor de Fano comienza a decrecer hasta que se alcanza los $3.75\,\si{eV}$ de pérdida de energía, donde se observa el cambio brusco en la curva, y se observa un aumento pronunciado de la pendiente, semejante a un punto crítico.
-
-%De la misma forma, el valor medio $\mu$ de la carga ionizada tiene un cambio de concavidad en la curva a medida que aumenta la cantidad de energía perdida por cada ionización, como se ve en la Figura \ref{fig:ElossVsMu}.
-%\begin{figure}%[h]
-% b) Esta figura se puede hacer con los datos de: fano_Eloss_mu_vec.txt que está en el directorio /home/igna/Escritorio/Tesis2021/Figs/Figuras_Apendice_Simulaciones/txts_para_plots usando el .py Barridos_mu_Eloss_fano.py que está en /home/igna/Escritorio/Tesis2021/Figs/Figuras_Apendice_Simulaciones/pys_para_plots
-%     \centering
-%     \includegraphics[scale=0.5]{Figs/ELoss_vs_mu_5ktrials_0-7Eloss.pdf}
-%     \caption{\footnotesize{Curva del valor medio de carga $\mu$ en función de la energía perdida por cada ionización. El cambio abrupto en la curva ocurre para $E_{loss} = 3.75\,si{eV}$, coincidente con la energía media de creación electrón-hueco.}}
-%     \label{fig:ElossVsMu}
-% \end{figure}
-%Nuevamente, los valores más cercanos a los medidos experimentalmente son los que corresponden a los casos en los que no hay disipación de energía.
-
-%Por último, para la energía de creación electrón-hueco, calculada a partir del valor medio de carga ionizada y la energía inicial $E_{R} = 677\,\si{eV}$, usando que $\mean{\varepsilon_{\eh}} = 677\,\si{eV}/\mu$, es claro que esta tendrá el mismo cambio de régimen en $3.75\,\si{eV}$, como se ve en la Figura \ref{fig:CreacionHuecoVsEloss}.
-%\begin{figure}%[h]
-%a) Esta figura se puede hacer con los datos de: fano_Eloss_mu_vec.txt que está en el directorio /home/igna/Escritorio/Tesis2021/Figs/Figuras_Apendice_Simulaciones/txts_para_plots usando el .py Barridos_mu_Eloss_fano.py que está en /home/igna/Escritorio/Tesis2021/Figs/Figuras_Apendice_Simulaciones/pys_para_plots
-%     \centering
-%     \includegraphics[scale=0.5]{Figs/E_eh_vs_Eloss_5ktrials_0-7Eloss.pdf}
-%     \caption{\footnotesize{Curva del valor medio de la energía de creación de electrón-hueco en función de la energía perdida por cada ionización. El cambio abrupto en la curva ocurre para $E_{loss} = 3.75\,si{eV}$, coincidente con la energía media de creación electrón-hueco. Esta curva se obtiene utilizando el valor medio de carga ionizada $\mu$ y la energía inicial $677\,\si{eV}$.}}
-%     \label{fig:CreacionHuecoVsEloss}
-% \end{figure}
-%Con lo cual se observa que este Monte Carlo es muy sensible a dos parámetros muy importantes de la física real del sistema: La energía de creación electrón-hueco, que es el parámetro de la simulación que determina si hay o no ionización\footnote{Como se verá en el apéndice}; y la conservación de la energía.%Se observa que cuando la energía se conserva en la simulación, se obtienen los resultados más cercanos a los observados experimentalmente y reportados en la bibliografía.
-%Con estos barridos se vio la dependencia de tanto del factor de Fano, como de la energía de creación electrón-hueco y del valor medio de carga ionizada al variar el valor de la energía que se pierde con cada ionización. Se observó que estos parámetros son muy sensibles a la pérdida de energía del sistema, obteniéndose resultados con cambios de regímenes muy pronunciados, particularmente, cuando la energía perdida por ionización coincide con el valor $E_{loss} = 3.75\,\si{eV}$, que casualmente es la energía de creación electrón-hueco promedio y que se usó en la simulación como un parámetro fijo dentro del código, como se verá en el apéndice \ref{app:Implementación}.
-
-%En cuanto a los resultados de las simulaciones del factor de Fano, se realizaron simulaciones tanto para la energía de los rayos $X$ del flúor como para la de los rayos $X$ del aluminio, de $677\,\si{eV}$ y $1500\,\si{eV}$ respectivamente.
 
 En cuanto a los resultados de estas simulaciones, para el caso del flúor, se pueden ver los histogramas de carga en los gráficos de las figuras \ref{fig:F_fano_A5.2} y \ref{fig:F_fano_A20}. Ambos gráficos fueron realizados con $100000$ repeticiones del experimento, pero con distintos valores del parámetro $A$. En estos se muestra la distribución de carga con un ajuste gaussiano, del cual se deriva el valor de $\mu$ posteriormente utilizado para graficar una curva poissoniana. En ambos casos se observa como la distribución de carga está lejos de parecerse a una distribución de Poisson y por ello el factor de Fano se aleja de la unidad. En la Figura \ref{fig:F_fano_A5.2} se puede ver que una distribución gaussiana es una buena descripción del histograma. En este caso se utilizó $A = 5.2\,\si{eV}^{3}$, el factor de Fano corresponde a $F = 0.1018 \pm 0.0004$ y el valor medio de carga $\mu = 191.50 \pm 0.01$, un valor significativamente mayor que el valor esperado, cercano a $\mu = 181$.
 \begin{figure}[h]
@@ -169,7 +131,7 @@ De la misma manera que para la energía del flúor, se presentan los resultados 
 
 En la Figura \ref{fig:Al_fano_A5.2} se simuló el proceso partiendo de $E_{R} = 1500\,\si{eV}$, con $100000$ repeticiones del experimento y $A = 5.2\,\si{eV}^{3}$ como indica la bibliografía. Sin embargo, el valor medio de carga esperado presenta nuevamente un corrimiento hacia la derecha, teniéndose $\mu = 425.53 \pm 0.02$ y un factor de Fano $F = 0.1017 \pm 0.0003$.
 
-Por último, en la Figura \ref{fig:Al_fano_A22} se repitió la simulación variando $A$ hasta obtener el un valor medio de carga semejante al esperado. Con $A = 22\,\si{eV}^{3}$ se obtuvo $\mu = 400.28 \pm 0.02$. El factor de Fano en este caso resultó $F = 0.1054 \pm 0.0004$, también contenido entre los valores esperados, como se vio en la Figura \ref{fig:FanoConvergencia}.
+Por último, en la Figura \ref{fig:Al_fano_A22} se repitió la simulación variando $A$ hasta obtener un valor medio de carga semejante al esperado. Con $A = 22\,\si{eV}^{3}$ se obtuvo $\mu = 400.28 \pm 0.02$. El factor de Fano en este caso resultó $F = 0.1054 \pm 0.0004$, también contenido entre los valores esperados, como se vio en la Figura \ref{fig:FanoConvergencia}.
 
 Tanto para el caso del flúor como para el caso del aluminio se observaron valores del factor de Fano muy semejantes entre sí, con lo cual parecería que para esta implementación de la simulación Monte Carlo, la energía inicial $E_{R}$ no resulta ser un parámetro relevante para esta magnitud.
 \begin{figure}[h]
