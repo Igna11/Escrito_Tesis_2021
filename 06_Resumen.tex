@@ -6,36 +6,21 @@
 \thispagestyle{empty}
 %<<Breve introducción>>
 \noindent El ruido de lectura en los sensores CCDs ha sido una limitación inherente a la electrónica de estos dispositivos, imponiendo límites en la resolución con que podía medirse la carga en ellos generada. Los sensores \textit{Skipper}-CCDs, por su parte, han logrado superar esta barrera, reduciendo el ruido de lectura a niveles subelectrónicos. Sin embargo, el ruido de lectura no es el único factor que está en juego al momento de procesar mediciones realizadas con este tipo de sensores: los eventos provenientes de fuentes que no son de interés y los inducidos por fenómenos intrínsecos a la naturaleza de las interacciones, deben ser también considerados.
-%también se encuentran los eventos provenientes de fuentes que no son de interés. Estos son de diferente origen, tanto externos al detector como intrínsecos. En esta última categoría puede incluirse los eventos inducidos por deficiencia en la colección de carga.
 
 
 %\textbf{<<Objetivo de la tesis>>}
-%En esta tesis se estudió el fondo presente en un conjunto de más de $900$ imágenes tomadas con un sensor \textit{Skipper}-CCD de forma de caracterizarlo con precisión en sus valores medios.%\textcolor{red}{no queda claro que serían en este punto los valores medidos ...} 
-%Una vez logrado esto, se utilizó esta información junto con un novedoso modelo para el ajuste de los datos con el fin de corregir el sesgo que el fondo \textcolor{red}{el modelo de ajuste (el del beta) no corrige el sesgo que mete el fondo} supone en la determinación de magnitudes como el factor de Fano y la energía de creación electrón-hueco del silicio, para energía inferiores a los $2\,\si{keV}$.
-En esta tesis se estudió el fondo presente en un conjunto de más de $900$ imágenes, tomadas con un sensor \textit{Skipper}-CCD, de forma de caracterizarlo con precisión en sus valores medios. A su vez se probaron tres diferentes umbrales de detección de eventos, de forma tal de elegir aquel que aumente lo más posible la estadística alterando lo menos posible los datos. Una vez logrado esto, se utilizó la información obtenida de los análisis para corregir los sesgos presentes en la determinación del factor de Fano y la energía de creación-electrón hueco, junto con un modelo de ajuste de los datos, especialmente diseñado para reproducir los efectos dominantes a energías inferiores a los $2\,\si{keV}$.
-%\textcolor{red}{este parrafo necesita reformulacion. Si fuese por maximizar la estadística hubiésemos elegido EPIX 2.5. Lo de minimice el sesgo no me queda claro a que se refiere exactamente. Despues dice que se uso la informacion para corregir el sesgo, pero la info para eso fue otra, que sale de todo el analisis que hiciste en el capitulo 4. Asi pareciera que aplicar el corte te dio la info que necesitabas para corregir el sesgo.}
+En esta tesis se estudió el fondo presente en un conjunto de más de $900$ imágenes tomadas con un sensor \textit{Skipper}-CCD, de forma de caracterizarlo con precisión en sus valores medios. A su vez se probaron tres diferentes umbrales de detección de eventos, de forma tal de elegir aquel que aumente lo más posible la estadística introduciendo el menor sesgo posible en los datos. Una vez logrado esto, se utilizó la información obtenida de los análisis para corregir los sesgos presentes en la determinación del factor de Fano y la energía de creación electrón-hueco, junto con un modelo de ajuste de los datos, especialmente diseñado para reproducir los efectos introducidos por el detector.
 
 
 %\textbf{<<Trabajo realizado>>}
-% Durante el desarrollo de este trabajo se estudió por medio de simulaciones Monte Carlo el fenómeno de ionización, partiendo de un modelo muy sencillo para luego adoptar un modelo más sofisticado. De estas simulaciones se obtuvieron resultados para el factor de Fano semejantes a los obtenidos experimentalmente. En lo que respecta al tratamiento de datos, se probaron diferentes cortes de calidad sobre las imágenes, de forma de elegir el que maximice la estadística y minimice el sesgo \textcolor{red}{a que cortes de calidad se refiere?}. Además se calcularon las correcciones a aplicar sobre las magnitudes de interés, mejorando su incerteza por el aumento en la estadística.
-%Durante el desarrollo de este trabajo se estudió por medio de simulaciones Monte Carlo el fenómeno de ionización, con el fin de entender por qué el factor de Fano medido experimentalmente es un orden de magnitud menor a la unidad.
-
 En paralelo, se estudió el fenómeno de ionización por medio de simulaciones Monte Carlo. Para ello se partió de un modelo muy sencillo para luego adoptar uno más sofisticado, con el fin de poner en evidencia las razones por las cuales el factor de Fano medido experimentalmente es un orden de magnitud menor a la unidad. De estas simulaciones se obtuvieron resultados para el factor de Fano semejantes a los obtenidos experimentalmente.
-%Durante el desarrollo de este trabajo se estudió por medio de simulaciones Monte Carlo el fenómeno de ionización, partiendo de un modelo muy sencillo para luego adoptar un modelo más sofisticado. De estas simulaciones se obtuvieron resultados para el factor de Fano semejantes a los obtenidos experimentalmente. En lo que respecta al tratamiento de datos, se probaron tres diferentes umbrales de detección de eventos sobre las imágenes, de forma de elegir el que maximice la estadística y minimice el sesgo. Además se calcularon las correcciones a aplicar sobre las magnitudes de interés.
-
-
 
 
 %\textbf{<<Resultados>>}
-%Gracias a estos análisis, se determinaron magnitudes como \textcolor{red}{al decir magnitudes como pareciera que son algunas de un conjunto mas grande que tambien se midieron}\textcolor{green}{No entendí} el factor de Fano con una mejora en su incerteza del $N\,\%$ y la energía de creación electrón-hueco con una mejora del $M\,\%$.
-
-
-%\textbf{<<Perspectivas a futuro?>>}
-% Los resultados de este trabajo presentan una mejora en la determinación de las magnitudes antes mencionadas \textcolor{red}{yo no hablaría de mejoras, sino de haber medido en un rango antes inaccesible}, lo cual es de vital importancia en la caracterización de estos dispositivos en el rango de bajas energías, donde los CCDs convencionales presentan importantes barreras debido al ruido de lectura. Es por esto que la importancia de este trabajo radica en la combinación de la tecnología \textit{Skipper} a la vez del uso de técnicas de análisis que permitieron mejorar las incertezas de estas magnitudes que, hasta el momento, no habían podido medirse con esta precisión.
 Los resultados de este trabajo presentan la determinación de las magnitudes antes mencionadas para un rango de energías inaccesible hasta el momento, lo cual es de vital importancia en la caracterización de estos dispositivos en el rango de bajas energías, donde los CCDs convencionales presentan importantes barreras debido al ruido de lectura. Es por esto que la importancia de este trabajo radica en la combinación de la tecnología \textit{Skipper} con el uso de técnicas de análisis que permitieron corregir sesgos en mediciones que, hasta el momento, no habían podido realizarse.
 
 
-
+%\textbf{<<Perspectivas a futuro?>>}
 %------PÁGINA VACIA ------------------
 \newpage
 \thispagestyle{empty} \mbox{}

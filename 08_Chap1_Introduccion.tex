@@ -4,11 +4,11 @@
 
 \chapter{Introducción}
 \noindent Dependiendo de la energía de la radiación incidente en los sensores, esta puede ser capaz de ionizar electrones del Si.  
-La relación entre la carga producida y la energía incidente, es decir la energía necesaria para producir un par electrón-hueco, resulta ser de fundamental importancia para traducir espectros de carga en espectros de energía.
+La relación entre la carga producida y la energía incidente, es decir, la energía necesaria para producir un par electrón-hueco, resulta ser de fundamental importancia para traducir espectros de carga en espectros de energía.
 
 Por otro lado, existen diferentes fenómenos que modifican la forma de los espectros de carga producidos por la radiación incidente en los sensores. Entre ellos, los dos más importantes son: el factor de Fano, que cuantifica la dispersión de carga; y las deficiencias en la colección de carga, que tienden a producir colas hacia bajas energías en los picos producidos por radiación monoenergética.
 
-En este capítulo se describen tres cantidades que describen tanto propiedades del silicio como del sensor, y que en el marco de esta tesis han sido estudiadas mas allá del ruido de lectura gracias a la tecnología Skipper-CCD.
+En este capítulo se detallan tres características que describen tanto propiedades del silicio como del sensor, y que en el marco de esta tesis han sido estudiadas más allá del ruido de lectura gracias a la tecnología Skipper-CCD: El factor de Fano, la energía de creación electrón-hueco y la colección parcial de carga.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -19,15 +19,11 @@ En este capítulo se describen tres cantidades que describen tanto propiedades d
 \end{equation*}
 donde $\sigma^{2}$ es la varianza de la distribución de carga y $\mu$ es la media. 
 Para el caso particular de una distribución de Poisson, la varianza y la esperanza coinciden, de forma que el factor de Fano equivale a $1$. 
-Estas distribuciones de carga son el producto de la interacción de fotones con el detector, que depositan energía en el material ionizando cargas que a su vez ionizan a otras a su paso. 
-%\textcolor{red}{ASI PARECIERA QUE LOS FOTONES SON QUIENES IONIZAN A SU PASO, PERO EN REALIDAD SON LOS ELECTRONES QUE GANARON ENERGIA DE ESOS FOTONES, ARREGLAR.}
+Estas distribuciones de carga son el producto de la interacción de fotones con el detector, que depositan energía en el material ionizando cargas que a su vez ionizan a otras a su paso. Dicha distribución tiene origen en que la energía transferida en cada interacción no es constante y, por lo tanto, para una dada energía inicial de la partícula incidente, tampoco será constante el número de cargas generadas.
 
-Dicha distribución tiene origen en que la energía transferida en cada interacción no es constante y, por lo tanto, para una dada energía inicial de la partícula incidente, tampoco será constante el número de cargas generadas.
+Por otro lado, la energía de creación electrón-hueco $\varepsilon_{\eh}$ es medida en valor medio, ya que es calculada a través del cociente entre la energía entregada al detector y la carga en él producida. Si bien $\varepsilon_{\eh}$ está relacionada con la energía del \textit{band gap} del silicio (entre la banda de valencia y la banda de conducción, $E_{g}\sim 1.1\,\si{eV}$\cite{Janesick}), debido a que durante el proceso de interacción parte de la energía entregada al material puede disiparse como fonones, la energía de creación electrón-hueco resulta ser mayor, en promedio, que la energía del \textit{gap}.
 
-Por otro lado, la energía de creación electrón-hueco $\varepsilon_{\eh}$ es medida en valor medio, ya que es calculada a través del cociente entre la energía entregada al detector y la carga en él producida. 
-Si bien $\varepsilon_{\eh}$ está relacionada con la energía del \textit{band gap} del silicio (entre la banda de valencia y la banda de conducción, $E_{g}\sim 1.1\,\si{eV}$\cite{Janesick}), debido a que durante el proceso de interacción parte de la energía entregada al material puede disiparse como fonones, la energía de creación electrón-hueco resulta ser mayor, en promedio, que la energía del \textit{gap}.
-
-La estimación precisa de ambas magnitudes es de vital importancia en la caracterización de este tipo de detectores, debido a que, por ejemplo, parámetros como la eficiencia cuántica dependen fuertemente de ellos. Además es importante determinar la dependencia de estas magnitudes con la energía ya que, en particular, el factor de Fano a energías por debajo de $1\,\si{keV}$ es clave para el cálculo de sensibilidad en experimentos de búsqueda de materia oscura liviana, como es caso del experimento SENSEI (\textit{Sub-Electron Noise Skipper-CCD Experiment Instrument})\cite{barak} e interacciones de neutrinos dentro\cite{moroni1} y fuera del modelo estándar\cite{moroni2}.
+La estimación precisa de ambas magnitudes es de vital importancia en la caracterización de este tipo de detectores, debido a que, por ejemplo, parámetros como la eficiencia cuántica (medida de la sensibilidad del dispositivo) dependen fuertemente de ellos\cite{kotov2}. Además es importante determinar la dependencia de estas magnitudes con la energía ya que, en particular, el factor de Fano a energías por debajo de $1\,\si{keV}$ es clave para el cálculo de sensibilidad en experimentos de búsqueda de materia oscura liviana, como es caso del experimento SENSEI (\textit{Sub-Electron Noise Skipper-CCD Experiment Instrument})\cite{barak} e interacciones de neutrinos dentro\cite{moroni1} y fuera del modelo estándar\cite{moroni2}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -58,11 +54,8 @@ El principio de operación de un CCD se puede dividir en cuatro etapas, que a gr
 \end{itemize}
 Los CCD's convencionales son capaces de alcanzar ruidos de lectura del orden de los $2\,e^{-}\si{rms/pix}$, gracias a la técnica de muestreo doblemente correlacionado\cite{Tiffenberg}. Sin embargo, en aplicaciones de bajas energías, el ruido electrónico de lectura redunda en una barrera al límite de energías que pueden medirse con estos sensores manteniendo la precisión deseada. 
 
-%\textcolor{red}{LO QUE SIGUE DICE "ESTAS CANTIDADES" PERO HACE RATO QUE NO SE HABLA DEL FACTOR DE FANO, PARECE RECORTADO DE OTRO LADO. ANTES DE PONER EL GRAFICO QUE SIGUE FALTA OTRO PARRAFO EXPLICANDO QUE EL RUIDO DE LECTURA TIENE IMPACTO EN LA MEDICION DE LAS CANTIDADES QUE SON DE INTERES EN ESTA TESIS}
 Por debajo de los $2\,\si{keV}$ la contribución del ruido de lectura a la determinación del factor de Fano y la energía de creación electrón-hueco puede superar el $30\,\%$, como se esquematiza en la Figura \ref{fig:Fano_y_ruido}. Esto representa un impacto considerable en la determinación de estas cantidades que son de interés en el presente trabajo. La línea punteada en la Figura \ref{fig:Fano_y_ruido} representa el ruido constante de lectura de $30\,\si{eV}$, presente en estos sensores y la recta continua representa el factor de Fano si este fuera constante para todo el rango de energías, tomando $F=0.119$, obtenido experimentalmente y por primera vez para los rayos $X$ del $\Fe{55}$ utilizando la tecnología \textit{skipper}-CCD\cite{Rodrigues}. 
-%\textcolor{red}{DECIR DE CUANTO ES ESE VALOR CONSTANTE QUE REPRESENTA LA RECTA Y PORQUE SE ELIGE ESE VALOR, CITAR EL PAPER DE 55Fe}
-Sobre la curva se ven los puntos que representan los valores del factor de Fano que se medirían si se utilizaran sensores CCD convencionales, debido a la suma de contribuciones del ruido sobre un factor de Fano constante de $0.119$. En la práctica, estas cantidades no están determinados para el rango de energías inferior a $2\,\si{keV}$ debido a la imposibilidad de medirlos utilizando CCDs convencionales.
-%\textcolor{red}{HACER LA CURVA CON 0.119, LO OBTENIDO PARA Fe Y DECIRLO MAS ARRIBA. ACLARAR QUE EN REALIDAD UNO NO SABE CUANTO VALE EL FANO MAS ABAJO PORQUE NUNCA SE MIDIO. QUEDARIA SOBRE LA RECTA SOLO SI EL FANO NO CAMBIA CON LA ENERGIA.}
+Sobre la curva se ven los puntos que representan los valores del factor de Fano que se medirían si se utilizaran sensores CCD convencionales, debido a la suma de contribuciones del ruido sobre un factor de Fano constante de $0.119$. En la práctica, estas cantidades no están determinadas para el rango de energías inferior a $2\,\si{keV}$ debido a la imposibilidad de medirlas utilizando CCDs convencionales.
 \begin{figure}[h]
     \centering
         \includegraphics[scale=0.5]{Figs/fano_y_ruido.pdf}
@@ -70,55 +63,54 @@ Sobre la curva se ven los puntos que representan los valores del factor de Fano 
     \label{fig:Fano_y_ruido}
 \end{figure}
 
-Los sensores \textit{Skipper}-CCD's, por otro lado, permiten disminuir el ruido de lectura a niveles subelectrónicos gracias a que son capaces de medir la carga en los píxeles de forma no destructiva. Esto permite tomar tantas mediciones de la carga como sean necesarias y estimar la carga real a partir de un promedio sobre el número de mediciones tomadas. 
+Los sensores \textit{Skipper}-CCD's, por otro lado, permiten disminuir el ruido de lectura a niveles subelectrónicos gracias a que son capaces de medir la carga en los píxeles de forma no destructiva. Esto permite tomar tantas mediciones de la carga como sean necesarias y estimar la carga real a partir de un promedio sobre el número $N$ de mediciones tomadas, de forma que el ruido de lectura se reduce un factor $\sqrt{N}$\cite{Tiffenberg}, es decir, se tiene
+\begin{equation*}
+    \mu = \frac{1}{N}\sum\limits_{i = 1}^{N} q_{i},
+    \quad\quad
+    \sigma = \frac{\sigma_{1}}{\sqrt{N}}
+\end{equation*}
+donde $q_{i}$ es la carga leída en cada proceso de medición y $\sigma_{1}$ es el ruido de lectura para un CCD convencional. 
+
 Esta es la principal razón que motiva este trabajo, donde se realiza un estudio sistemático del factor de Fano a bajas energías, tanto a $1450\,\si{eV}$ (rayos X del Al) y $677\,\si{eV}$ (rayos X del flúor).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Modelo de difusión de la carga}
-\noindent Dado que el sensor utilizado en este trabajo fue del tipo \textit{back-iluminated}, como se describe en la Sección \ref{subsec:detector}, la mayor parte de las interacciones ocurren en las primeras decenas de micrones de la parte trasera del sensor. Con lo cual, para un sensor de $200\,\si{\mu m}$ de espesor, la carga producida durante la ionización debe recorrer mucha distancia hasta alcanzar la superficie donde es colectada. Mientras la carga se transporta desde la parte trasera (cara expuesta) hasta la superficie del detector (cara opuesta a la exposición), ocurre que la carga se difunde desde el píxel donde originalmente fue generada hacia los píxeles vecinos, como se muestra en los esquemas de la Figura \ref{fig:difusion}.
+\noindent Dado que el sensor utilizado en este trabajo fue del tipo \textit{back-iluminated}, como se describe en la Sección \ref{subsec:detector}, la mayor parte de las interacciones ocurren en las primeras centenas de nanómetros de la parte trasera del sensor. Con lo cual, para un sensor de $200\,\si{\mu m}$ de espesor, la carga producida durante la ionización debe recorrer prácticamente todo el material hasta alcanzar la superficie donde es colectada. Mientras la carga se transporta desde la parte trasera (cara expuesta) hasta la superficie del detector (cara opuesta a la exposición), ocurre que la carga se difunde desde el píxel donde originalmente fue generada hacia los píxeles vecinos, como se muestra en los esquemas de la Figura \ref{fig:difusion}.
 \begin{figure}[h]
     \centering
         \includegraphics[scale=0.6]{Figs/difusion.pdf}
-    \caption{Izquieda: esquematización de la sección transversal de un CCD con como se difunde la carga en los píxeles. Derecha: esquematización frontal de un CCD con la distribución final de la carga sobre un conjunto de píxeles debido a la difusión, denominado cluster. Se colorean más tenues los píxeles representando menor cantidad de carga acumulada.}
+    \caption{Izquieda: esquematización de la sección transversal de un CCD y de cómo se difunde la carga en los píxeles. Derecha: esquematización frontal de un CCD con la distribución final de la carga sobre un conjunto de píxeles debido a la difusión, denominado cluster. Se colorean más tenues los píxeles representando menor cantidad de carga acumulada.}
     \label{fig:difusion}
 \end{figure}
-La forma en la que esta difusión ocurre puede modelarse a partir de una distribución gaussiana en dos dimensiones, donde el valor de la varianza $\sigma_{xy}^{2}$ es función de la profundidad $z$ donde ocurrieron las interacciones y se puede escribir como
+La forma en la que esta difusión ocurre puede modelarse a partir de una distribución gaussiana en dos dimensiones, donde el valor de la varianza $\sigma_{xy}^{2}$ es función de la profundidad $z$ donde ocurrieron las interacciones y se puede escribir como\cite{DifusionCarga}
 \begin{equation*}
     \sigma_{xy}^{2} = -A\ln{|1-bz|}
 \end{equation*}
 donde $A$ y $b$ son parámetros del detector.
 
-Dado que la carga producida por un único evento, inicialmente en un único píxel, puede migrar hacia píxeles vecinos por difusión durante su desplazamiento hacia la superficie, el total de carga producida queda distribuida en varios píxeles contiguos. A este conjunto de píxeles que contiene toda la carga de un único evento, se lo denomina cluster.
+Dado que la carga producida por un único evento, inicialmente en un único píxel, puede migrar hacia píxeles vecinos por difusión durante su desplazamiento hacia la superficie, el total de carga producida queda distribuida en varios píxeles contiguos. A este conjunto de píxeles que contiene toda la carga de un único evento se lo denomina cluster.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Eficiencia de colección de carga}
 \noindent La Eficiencia de Colección de Carga o CCE (\textit{Charge Collection Efficiency}, por sus siglas en inglés) se define como la fracción del total de carga producida durante un evento de ionización que es efectivamente medida. 
 Para sensores del tipo \textit{fully depleted}-CCD\cite{osti_838066}, a los que se les aplican campos eléctricos relativamente altos, la CCE es aproximadamente del $100\,\%$, es decir, toda la carga producida por ionización en el volumen del sensor logra ser colectada y medida. 
 Sin embargo, existen casos donde la eficiencia no alcanza el $100\,\%$ y esto es debido al fenómeno de Colección Parcial de Carga o PCC (\textit{Partial Charge Collection}, por sus siglas en inglés)\cite{PCC-CCE}. 
-Este efecto se debe a que en los primeros micrones cercanos a la superficie por donde se irradia el detector (lado opuesto al que posea la superficie pixelada) existe una probabilidad no nula de que la carga generada por ionización sufra recombinación, es decir, que vuelva a enlazarse a un átomo. Este efecto produce una disminución en el número de cargas que finalmente son llevadas a la superficie del sensor. 
+Este efecto se debe a que en los primeros micrones cercanos a la superficie por donde se irradia el detector (lado opuesto al que posee la superficie pixelada) existe una probabilidad no nula de que la carga generada por ionización sufra recombinación, es decir, que vuelva a enlazarse a un átomo. Este efecto produce una disminución en el número de cargas que finalmente son llevadas a la superficie del sensor. 
 En el esquema de la Figura \ref{fig:PCC} se presenta una vista esquemática en corte lateral de las primeras centenas de nanómetros de un CCD, donde debido al ángulo $\theta$ de incidencia de los rayos $X$ de la fuente, estos fotones generan cargas por ionización en la región donde hay recombinación. Una fracción de las cargas generadas $q_{i}$ logran ser colectadas, dependiendo de la profundidad del sensor donde se produjo la interacción. También se muestra que si la interacción se da fuera de esta región, toda la carga generada por ionización es colectada, teniéndose $q_{i} = q_{f}$ y la eficiencia es máxima.
 \begin{figure}%[H]
 %Como reproducir este gráfico: correr el script NivelesOcupacionCarga.py ubicado en /Escritorio/Tesis2021/Figs/pys_para_plots y buscar la imagen en /home/igna/Escritorio/Tesis2021/Figs/
     \centering
         \includegraphics[scale=.8]{Figs/PCC.pdf}
-    \caption{Esquema lateral de las primeras centenas de nanómetros de un CCD, con una fuente de rayos $X$\cite{PCC-CCE}. Los fotones penetran en el sensor produciendo una nube de cargas $q_{i}$, de las cuales solo una fracción logra ser colectada. Esta aumentan monótonamente dependiendo de la profundidad de penetración.}
+    \caption{Esquema lateral de las primeras centenas de nanómetros de un CCD, con una fuente de rayos $X$\cite{PCC-CCE}. Los fotones penetran en el sensor produciendo una nube de cargas $q_{i}$, de las cuales solo una fracción logra ser colectada. Estas aumentan monótonamente dependiendo de la profundidad de penetración.}
     \label{fig:PCC}
 \end{figure}
 La colección parcial de carga es un problema propio de los sensores y de su fabricación. Sin embargo, existen tratamientos de la superficie posterior de estos sensores para reducir su impacto y que en general son aplicados en CCDs destinados a toma de imágenes astronómicas. 
 
 El efecto que provoca la colección parcial de carga en las mediciones es el de agregar eventos con menor cantidad de carga de la que deberían, generando así colas a la izquierda de los picos de interés en los espectros y, por ende, agregando otro sesgo a la determinación de magnitudes dependientes del valor medio de los picos, como el factor de Fano.
 
-%Por otro lado, la profundidad de la interacción depende del ángulo de incidencia y su distribución de probabilidad se puede escribir como
-%\begin{equation*}
-%    f_{Z}(z) = \frac{\cos{(\theta)}}{\lambda}e^{-z\frac{\cos{(\theta)}}{\lambda}}
-%\end{equation*}
-%donde $\lambda$ es la longitud de atenuación del fotón y depende de su longitud de onda. $\varepsilon(z)$ es la función \textit{eficiencia de colección de carga}
-%\textcolor{red}{Reformulo lo anterior sin la dependencia con $\theta$}:
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    
 
 \section{Antecedentes \label{sec:Antecedentes}}
 \noindent En trabajos previos se han estudiado las ventajas de la utilización de la tecnología \textit{Skipper} en los CCDs, para lograr medir con precisión subelectrónica en regímenes de energía donde los sensores CCD convencionales más precisos sólo podrían alcanzar resoluciones del orden de los $2$ electrones. Por primera vez fue usada para medir el factor de Fano y la energía de creación electrón-hueco en el silicio a una energía de $5.9\,\si{keV}$ a $123\,\si{K}$\cite{Rodrigues}.
@@ -128,7 +120,7 @@ Para lograr esto, se implementó un método de calibración absoluta de la relac
 %Como reproducir este gráfico: correr el script NivelesOcupacionCarga.py ubicado en /Escritorio/Tesis2021/Figs/pys_para_plots y buscar la imagen en /home/igna/Escritorio/Tesis2021/Figs/
     \centering
         \includegraphics[scale=0.5]{Figs/ajuste_gaussiano_calibracion.pdf}
-    \caption{Histograma de los datos obtenidos al iluminar el CCD con LED, correspondiente a una región con poca ocupación, donde los picos de los niveles de carga y su ajuste se distinguen a la perfección.}
+    \caption{Histograma de los datos obtenidos al iluminar el CCD con LED, correspondiente a una región con poca ocupación, donde los picos de los niveles de carga están ajustados por gaussianas y se distinguen a la perfección.}
     \label{fig:Calibracion}
 \end{figure}
 Las mediciones del factor de Fano y la energía de creación electrón-hueco se realizaron utilizando rayos $X$ de $5.9\,\si{\mbox{keV}}$ emitidos por una fuente de $\Fe{55}$. Más precisamente, rayos $X_{K}$, cuyas energías son las de la Tabla \ref{tab:EnergiasXk}.
@@ -218,7 +210,7 @@ $\alpha_{2}$ &
 $\alpha_{1}$ & $1573.48$ & $0.18$ & $13.69$ & $0.12$ &  &  &         &         \\
 $\beta_{3}$  & $1730.50$ & $0.55$ & $14.36$ & $0.13$ &  &  & $3.751$ & $0.002$ \\ \bottomrule
 \end{tabular*}
-\caption{Parámetros obtenidos de los ajustes para las mediciones del $\Fe{55}$. El factor de Fano se tomó el mismo para los tres picos y la energía de creación electrón hueco se fijó para que sea la misma en los picos $\alpha$.}
+\caption{Parámetros obtenidos de los ajustes para las mediciones del $\Fe{55}$. El factor de Fano se tomó el mismo para los tres picos y la energía de creación electrón-hueco se fijó para que sea la misma en los picos $\alpha$.}
 \label{tab:ParametrosAjusteNoBineado}
 \end{table}
 
@@ -308,7 +300,7 @@ Elemento&
 
 Sin embargo, estos últimos fueron resultados preliminares que podían mejorarse tanto aumentando la estadística, como realizando un análisis de los datos más sofisticado. Sobre este último punto, vale decir que el modelo de ajuste utilizado antes de esta tesis no incluye los efectos de la colección parcial de carga. Además, en el análisis de las imágenes, no se realizó ninguna corrección por el sesgo que podría significar la adición de carga originada por fuentes de fondo descriptas en la próxima sección.
 
-Es a partir de aquí donde este trabajo continua con el estudio del factor de Fano, la energía de creación electrón hueco y la colección parcial de carga, a partir de mediciones de rayos X con energías por debajo de los $2\,\si{keV}$.
+Es a partir de aquí donde este trabajo continúa con el estudio del factor de Fano, la energía de creación electrón-hueco y la colección parcial de carga, a partir de mediciones de rayos X con energías por debajo de los $2\,\si{keV}$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -332,7 +324,7 @@ Motiva también este trabajo el desarrollo y aplicación de un modelo que permit
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Organización de la tesis}
-\noindent En el presente capítulo se ha dado una breve introducción a los tres aspectos principales de estudio de este trabajo: el factor de Fano, la energía de creación electrón hueco y la colección parcial de carga. Además se han presentado resultados que conforman los antecedentes para la motivación de esta tesis.
+\noindent En el presente capítulo se ha dado una breve introducción a los tres aspectos principales de estudio de este trabajo: el factor de Fano, la energía de creación electrón-hueco y la colección parcial de carga. Además se han presentado resultados que conforman los antecedentes para la motivación de esta tesis.
 
 En el capítulo \ref{chap:simulaciones} se presenta un modelo físico simple de la interacción entre fotones incidentes y la red del sensor, que luego es estudiado a partir de simulaciones Monte Carlo.
 

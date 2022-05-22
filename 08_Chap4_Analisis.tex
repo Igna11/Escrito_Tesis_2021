@@ -53,15 +53,15 @@ Finalmente, se utilizan programas que son los encargados de tomar los archivos \
 \end{itemize}
 Una vez que se tienen los eventos deseados, el programa realiza los histogramas de carga correspondientes que luego pueden ser usados para realizar un ajuste bineado de los datos. El ajuste bineado consiste en tomar el histograma de carga y ajustar los datos con el modelo utilizado minimizando $\chi^{2}$ para obtener $\mu$, $\sigma$ y $\beta$, donde $\mu$ es el valor medio del pico, $\sigma$ es su dispersión y $\beta$ es un parámetro que da cuenta de la colección parcial de carga, como se verá en el Capítulo \ref{chap:ModeloPCC}. Por otro lado, el ajuste no bineado consiste en tomar los parámetros resultantes del ajuste bineado, inyectarlos en el modelo con el que se desea ajustar y calcular la verosimilitud para todo el conjunto de datos. En este caso, se fija el valor de $\beta$ y se dejan libres $\mu$ y $\sigma$ que son variados hasta que se maximiza la verosimilitud. Los parámetros que maximicen la verosimilitud serán los parámetros óptimos para el ajuste. La necesidad de utilizar un ajuste bineado previamente para calcular los parámetros surge de que favorece la velocidad de convergencia del ajuste no bineado.
 
-A partir del análisis de las imágenes previamente descripto se obtienen: el factor de Fano, la energía de creación electrón hueco y el espesor de la zona de colección parcial de carga.
+A partir del análisis de las imágenes previamente descripto se obtienen: el factor de Fano, la energía de creación electrón-hueco y el espesor de la zona de colección parcial de carga.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Impacto del corte propuesto}
-\noindent En este trabajo se propone analizar un conjunto de imágenes, eliminando los eventos de un electrón presentes en ellas. Se trabaja sobre la hipótesis de que esto deberá incrementar el número de eventos totales. Se espera entonces que esta mejora en la estadística redunde en mayor precisión en la determinación de las cantidades de interés. Sin embargo, aplicar este corte trae aparejado un sesgo en el conteo de carga de cada evento que debe corregirse.
+\noindent En este trabajo se propone analizar un conjunto de imágenes, eliminando los eventos de un electrón presentes en ellas. Se trabaja sobre la hipótesis de que esto deberá incrementar el conteo de eventos con la cantidad de carga deseada y se espera que esta mejora en la estadística redunde en mayor precisión en la determinación de las cantidades de interés. Sin embargo, aplicar este corte trae aparejado un sesgo en el conteo de carga de cada evento que debe corregirse.
 
 Es pertinente entonces cuantificar el aumento en la estadística al realizar el corte mencionado y así motivar el análisis en busca de una mejora en el cálculo de las incertezas de las cantidades de relevancia para este trabajo.
 
-El parámetro clave en este caso se llama \verb|EPIX| y es un valor umbral que define a partir de qué cantidad de carga en un píxel se cuenta o no como un píxel vacío. El mismo forma parte del programa de reconocimiento de clusters (\verb|skeExtract.exe|). Por ejemplo, para \verb|EPIX=0.5|, todos los píxeles con carga menor o igual a $0.5$ se cuentan como píxeles vacíos, y los que tengan carga mayor a $0.5$ serán contabilizados normalmente, para \verb|EPIX=1.5|, todos los píxeles con carga menor o igual a $1.5$ se cuentan como píxeles vacíos y los píxeles con carga mayor a $1.5$ se cuentan normalmente. En la Figura \ref{fig:HistogramaEPIX} puede verse un esquema de un histograma de los niveles de carga y cómo se sitúa el umbral \verb|EPIX| para contar la carga.
+El parámetro clave para llevar esto a cabo se llama \verb|EPIX| y es un valor umbral que define a partir de qué cantidad de carga en un píxel se cuenta o no como un píxel vacío. El mismo forma parte del programa de reconocimiento de clusters (\verb|skeExtract.exe|). Por ejemplo, para \verb|EPIX=0.5|, todos los píxeles con carga menor o igual a $0.5$ se cuentan como píxeles vacíos, y los que tengan carga mayor a $0.5$ serán contabilizados normalmente; para \verb|EPIX=1.5|, todos los píxeles con carga menor o igual a $1.5$ se cuentan como píxeles vacíos y los píxeles con carga mayor a $1.5$ se cuentan normalmente. En la Figura \ref{fig:HistogramaEPIX} puede verse un esquema de un histograma de los niveles de carga y dónde se sitúa el umbral \verb|EPIX| para realizar el corte.
 \begin{figure}[h]
 %Como reproducir este gráfico: correr el script NivelesOcupacionCargaEPIX_e.py ubicado en /Escritorio/Tesis2021/Figs/pys_para_plots y buscar la imagen en /home/igna/Escritorio/Tesis2021/Figs/
     \centering
@@ -70,7 +70,7 @@ El parámetro clave en este caso se llama \verb|EPIX| y es un valor umbral que d
     \label{fig:HistogramaEPIX}
 \end{figure}
 
-En el trabajo predecesor de esta tesis\cite{TesisKevin}, los valores obtenidos para el factor de Fano y energía de creación electrón-hueco, fueron calculados utilizando un valor de \verb|EPIX=0.5|. Se espera que al modificar este parámetro, el número de eventos varíe y que, en particular, aumente cuando el \verb|EPIX| aumenta. Esto se debe a que es muy común que se tenga un evento de interés, por ejemplo un cluster de $4$ píxeles de área y con una carga total de $180$ electrones (para el caso del flúor), y alrededor de este se acumulen píxeles con fondo de, por ejemplo, $1$ o muy raramente $2$ electrones. En estos casos podría suceder que la conexión entre estos clusters y los píxeles con carga espuria se extienda lo suficiente como para que el algoritmo reconozca un gran cluster con exceso de carga y sea desechado por el programa dado que no cumple con los cortes de calidad impuestos. También podría suceder que estos píxeles con carga espuria conecten dos de estos clusters, lo cual es un caso más extremo, dado que el algoritmo reconocería un único cluster de $\sim 360$ electrones, de forma que se perderían, no uno, sino dos eventos que podrían aportar positivamente a la estadística. Al aplicar un umbral que elimine los píxeles con carga espuria que se amontonan y/o conectan con clusters, el programa es capaz de diferenciar y contar los eventos correctamente.
+En el trabajo predecesor de esta tesis\cite{TesisKevin}, los valores obtenidos para el factor de Fano y energía de creación electrón-hueco, fueron calculados utilizando un valor de \verb|EPIX=0.5|. Se espera que al modificar este parámetro, el número de eventos varíe y que, en particular, aumente cuando el \verb|EPIX| aumenta. Esto se debe a que es muy común que se tenga un evento de interés, por ejemplo un cluster de $4$ píxeles de área con una carga total de $180$ electrones (para el caso del flúor) y alrededor de este se acumulen píxeles con fondo de, por ejemplo, $1$ o muy raramente $2$ electrones. En estos casos podría suceder que la conexión entre estos clusters y los píxeles con carga espuria se extienda lo suficiente como para que el algoritmo reconozca un gran cluster con exceso de carga y sea desechado por el programa dado que no cumple con los cortes de calidad impuestos. También podría suceder que estos píxeles con carga espuria conecten dos de estos clusters, lo cual es un caso más extremo, dado que el algoritmo reconocería un único cluster de $\sim 360$ electrones, de forma que se perderían, no uno, sino dos eventos que podrían aportar positivamente a la estadística. Al aplicar un umbral que elimine los píxeles con carga espuria que se amontonan y/o conectan con clusters, el programa es capaz de diferenciar y contar los eventos correctamente.
 
 En la Figura \ref{fig:ClusterPegoteado} se muestra un ejemplo de un evento de $179$ electrones para una medición con flúor, que es un evento de interés que el programa debería reconocer, y que hasta que no se eliminan los eventos de un electrón de la imagen, el programa lo identifica como un gran cluster con aproximadamente $40$ electrones más de carga y sin una forma definida (imagen central, píxeles pintados de blanco). A la derecha la imagen con el cluster individualizado y reconocido correctamente por el algoritmo al eliminar la carga excedente.
 \begin{figure}[H]
@@ -80,54 +80,25 @@ En la Figura \ref{fig:ClusterPegoteado} se muestra un ejemplo de un evento de $1
     \caption{Ejemplo del caso de un evento cercano a los $180$ electrones de carga, que son los eventos buscados. En la imagen de la izquierda se ve la medición sin alterar (ya convertida a unidades de carga). En la imagen del centro se ve en blanco y en un degrade muy tenue de rojos los diferentes clusters que el algoritmo logra reconocer. Lo importante de esta imagen es notar que el algoritmo reconoce como un único cluster (blanco) a un número de píxeles muy grande debido justamente a que píxeles con una única carga generan la unión entre todos ellos. Por último, la imagen de la derecha contiene el cluster de interés una vez que los eventos de un electrón son desechados del análisis, haciendo que pueda contabilizarse correctamente.}
     \label{fig:ClusterPegoteado}
 \end{figure}
+%En este punto es importante entender cuáles son los sesgos que afectan el conteo de carga de los eventos y para esto es necesario hacer algunas definiciones: se entiende por cluster a todo conjunto de píxeles contiguos con carga mayor o igual a uno que el algoritmo de clusterización es capaz de reconocer en las imágenes. Se define como superficie del cluster al conjunto de píxeles contiguos con carga mayor o igual a uno que pertenecen a un único evento de interés y que no tienen fondo. Nótese que no es posible conocer exactamente la superficie de un cluster. Por último, se define como borde del cluster a todos aquellos píxeles que de no existir fondo se encontrarían vacíos alrededor de la superficie de un cluster. 
 
-En este punto es importante entender cuáles son los sesgos que afectan el conteo de carga de los eventosz. 
+En este punto es importante entender cuáles son los sesgos que afectan el conteo de carga de los eventos. En principio, el fondo puede añadir carga extra a la carga real de un cluster proveniente de un evento de interés, generando un corrimiento hacia la derecha en los picos de los espectros. Este caso puede dividirse en dos
 \begin{itemize}
-    \item El sesgo producto de la adición de carga en las superficies de los clústers, debido a eventos de fondo. Estos provocan un corrimiento hacia la derecha de los picos en los histogramas de carga.
-    \item El sesgo producto de la aglomeración de píxeles con fondo en los bordes de los clusteres, el cual también provoca un corrimiento hacia la derecha de los picos en los espectros.
+    \item La carga extra que puede añadirse a los píxeles interiores (o de superficie) de un cluster.
+    \item La carga extra que puede añadirse a los píxeles, inicialmente vacíos, inmediatamente contiguos a los píxeles de superficie de un cluster (caso apreciable en la Figura \ref{fig:ClusterPegoteado}).
 \end{itemize}
-Sin embargo, la aplicación del umbral de detección que se encarga de eliminar todos los eventos de un electrón es incapaz de distinguir entre eventos genuinos o de fondo. Con lo cual, luego del corte estos sesgos se ven modificados
+
+Sin embargo, la aplicación del umbral (o del corte) modifica estos sesgos. Debido a que este corte elimina todos los píxeles con un electrón, aquellos que inicialmente estaban vacíos pero se agregaron al cluster por efecto de fondo, ahora son eliminados (y con ellos, el segundo caso mencionado anteriormente). Pero también es posible que se eliminen píxeles con un electrón de carga que sí pertenecen a un cluster, %(tanto de la superficie como del borde),
+por lo tanto, una vez aplicado el corte, los sesgos se resumen en:
 \begin{itemize}
-    \item El sesgo debido a la adición de carga en las superficies de los clusters se mantiene debido a que el corte no puede eliminar nada que tenga más de un electrón de carga. En el interior de los clusters de interés la carga es siempre mayor a un electrón.
-    \item El sesgo debido a los píxeles con fondo adheridos a los bordes de los clusters desaparece totalmente, debido a que todos estos eventos son eliminados.
-    \item Un nuevo sesgo es generado, dado que el corte aplicado necesariamente elimina eventos de un electrón genuinamente pertenecientes a los bordes de los clusters.
+    \item La carga extra que puede añadirse a los píxeles interiores (o de superficie) de un cluster debido al fondo.
+    \item La eliminación de píxeles con un único electrón que genuinamente pertenecían a un cluster debido al corte.
 \end{itemize}
-Con lo cual, puede resumirse que, luego de aplicar el corte hay dos sesgos principales a tener en cuenta y corregir: el existente sesgo por exceso en las superficies de los clusters y el sesgo por defecto generado por la aplicación de corte en los bordes de los clusters.
 
-Se llevó a cabo entonces el análisis de las imágenes obtenidas al exponer el CCD a los rayos $X$ del flúor, con diferentes valores de umbral: \verb|EPIX=0.5|, \verb|EPIX=1.5| y \verb|EPIX=2.5| y se comparó con los resultados obtenidos para el conteo total de eventos. 
-Debe tenerse presente que estos son resultados preliminares, ya que la aplicación del umbral añade un sesgo extra al conteo de carga que posteriormente será corregido, como se esquematiza en la Tabla \ref{tab:SesgosyEpix}. \textcolor{red}{viendo la table en el contexto del texto que la acompaña, confirmo que así sola no se entiende. Hagamos lo del itemizado mejor}\textcolor{blue}{Sí, pero me pa que el mejor lugar para mandarla es acá mismo. Antes de "Se llevó a cabo entonces el análisis bla bla" Me parece el lugar ideal para meterlo y lo iba a hacer ahora}. 
-\textcolor{red}{bueno, probemos. No tengo muchas correcciones sobre la versión actual, pero no está fácil seguir el texto. Esa puede ser una queja del jurado. Hay que pensar en estrategias para simplificarles la lectura y el entendimiento. La charla va a tener que estar bien preparada y ser muy clara para compensar eso}
+Se llevó a cabo entonces el análisis de las imágenes obtenidas al exponer el CCD a los rayos $X$ del flúor, con diferentes valores de umbral de corte: \verb|EPIX=0.5|, \verb|EPIX=1.5| y \verb|EPIX=2.5| y se comparó con los resultados obtenidos para el conteo total de eventos. 
+Debe tenerse presente que estos son resultados preliminares, ya que el sesgo añadido por la aplicación del umbral al conteo de carga será posteriormente corregido.
 
-\begin{table}[h]
-\centering
-\begin{tabular*}{\textwidth}{c @{\extracolsep{\fill}}cccc}
-\toprule
- &
-  \begin{tabular}[c]{@{}c@{}}Sesgo \\ por eventos espurios\\  en la superficies\end{tabular} &
-  \begin{tabular}[c]{@{}c@{}}Sesgo\\ por eventos espurios\\  en los bordes\end{tabular} &
-  \begin{tabular}[c]{@{}c@{}}Sesgo\\ por eliminación de eventos \\ reales en los bordes\end{tabular} \\ \hline \hline
-\verb|EPIX=0.5| &
-  $+$ &
-  $+$ &
-  $-$ \\
-\verb|EPIX=1.5| &
-  $+$ &
-  $-$ &
-  $+$ \\
-\verb|EPIX=2.5| &
-  $+$ &
-  $-$ &
-  $+$ \\ \bottomrule
-\end{tabular*}
-\caption{Efectos en el sesgo de los resultado con la aplicación de diferentes umbrales. En todos los casos el sesgo por eventos espurios en el interior de los clusters no puede ser eliminado por la aplicación de un umbral, mientras que el sesgo de los eventos espurios en sus bordes desaparece dado que el umbral elimina los bordes de los clusters. Por otro lado la aplicación de estos umbrales introduce un nuevo sesgo al eliminar carga de los bordes que es genuina.}
-\label{tab:SesgosyEpix}
-\end{table}
-Esto se hizo para tres de los cuatro cuadrantes del sensor y para la suma de estos, dado que el segundo cuadrante no funciona correctamente.
-
-%En las Figuras \ref{fig:EntradasVsEpix}, \ref{fig:EnergiadeCreacionVsEpix} y \ref{fig:FanoVsEpix} puede verse la variación de estos parámetros dependiendo del valor de umbral usado. 
-%El gráfico más importante en este punto es el de la Figura 
-En el gráfico de la Figura \ref{fig:EntradasVsEpix} se observa un drástico aumento en la cantidad de entradas (eventos contabilizados) cuando se varía el \verb|EPIX|. %Se graficaron en cada figura las modificaciones para tres de los cuatro cuadrantes del sensor y para la suma de los cuadrantes $1$, $3$ y $4$. 
-%El cuadrante $2$ no funciona correctamente y por eso sus datos no han sido utilizados.
+Esto se hizo para tres de los cuatro cuadrantes del sensor y para la suma de estos, dado que el segundo cuadrante no funciona correctamente. En el gráfico de la Figura \ref{fig:EntradasVsEpix} se observa un drástico aumento en la cantidad de entradas (eventos contabilizados) cuando se varía el \verb|EPIX|.
 \begin{figure}[h]
 %Para hacer estas figs hay que ir a /home/igna/Escritorio/Tesis2021/Figs/pys_para_plots y correr plots_entries_fano_eh.py que usa los datos que están en /home/igna/Escritorio/Tesis2021/Figs/txts_para_plots y se llaman Entries_count.txt
     \centering
@@ -152,28 +123,6 @@ EPIX = 2.5 & 2399   & 2261   & 2356   & 7016           \\ \bottomrule
 \caption{Diferentes valores para las entradas, para cada uno de los cuadrantes, para los diferentes valores de EPIX utilizados.}
 \label{tab:EntriesVsEpix}
 \end{table}
-%Efectivamente se observa un aumento en el conteo de eventos que reconoce el programa al aumentar el valor del parámetro \verb|EPIX|. También se observa que el aumento más pronunciado es desde $0.5$ a $1.5$. El aumento promedio en el conteo de eventos es de alrededor del $100\%$.
-
-% \begin{comment}
-% \begin{figure}[h]
-% %Para hacer estas figs hay que ir a /home/igna/Escritorio/Tesis2021/Figs/pys_para_plots y correr plots_entries_fano_eh.py que usa los datos que están en /home/igna/Escritorio/Tesis2021/Figs/txts_para_plots y se llaman Entries_count.txt
-%     \centering
-%     \includegraphics[scale=0.5]{Figs/EnergiaCreacion_vs_Epix.pdf}
-%     \caption{Diferentes valores para la energía de creación electrón-hueco en función del EPIX y del cuadrante del sensor utilizado. OHDU hace referencia a al promedio del resto de los cuadrantes funcionales ($1$, $3$ y $4$). Se observa que en todos los casos hay un aumento de la energía de creación electrón hueco cuando aumenta el EPIX.}
-%     \label{fig:EnergiadeCreacionVsEpix}
-% \end{figure}
-% En cuanto al gráfico de la Figura \ref{fig:EnergiadeCreacionVsEpix}, se ve como el valor preliminar para la energía de creación electrón hueco aumenta en todos los casos al aumentar el umbral \verb|EPIX|. Esto puede deberse al efecto que genera aplicar un umbral y disminuir la carga en los clusters contabilizados, que a su vez son más. Puede suceder que la cantidad de carga en los clusters sufra una disminución respecto del valor real y por esto la energía de creación electrón-hueco aumente al aumentar el \verb|EPIX|: a un mismo valor de energía, una menor carga ionizada implica una mayor energía de creación electrón-hueco.
-% Finalmente, el caso más irregular corresponde al gráfico de la Figura \ref{fig:FanoVsEpix}, donde cada cuadrante y para cada valor de \verb|EPIX| el factor de Fano dio valores diferentes y no puede definirse una tendencia a partir de estos resultados. 
-% De todas formas es importante recordar que el factor de Fano y la energía de creación electrón hueco obtenidas de estos análisis presentan un sesgo debido a la aplicación del umbral, además del proveniente de eventos de fondo, que debe ser corregido.
-% \begin{figure}[h]
-% %Para hacer estas figs hay que ir a /home/igna/Escritorio/Tesis2021/Figs/pys_para_plots y correr plots_entries_fano_eh.py que usa los datos que están en /home/igna/Escritorio/Tesis2021/Figs/txts_para_plots y se llaman Entries_count.txt
-%     \centering
-%     \includegraphics[scale=0.5]{Figs/Fano_vs_Epix.pdf}
-%     \caption{Variación del factor de Fano en función del EPIX para diferentes cuadrantes del sensor. No se observa un patrón que se repita.}
-%     \label{fig:FanoVsEpix}
-% \end{figure}
-% Entonces, del análisis preliminar modificando el umbral de detección de carga por píxel, se puede observar el aumento esperado en la estadística para los eventos de interés de este trabajo. Como se observa que el cambio de \verb|EPIX = 1.5| a \verb|EPIX = 2.5|, no es tan significativo como el que se obtiene al pasar de \verb|EPIX = 0.5| a \verb|EPIX = 1.5|, será este último el que se utilizará en el análisis. Además, este corregir este corte resultará más sencillo que si se eliminaran también los píxeles con dos electrones.
-% \end{comment}
 
 Habiendo tomado este rumbo, es necesario poder remover el sesgo producido por la eliminación de carga en los eventos medidos al aplicar este umbral. Si bien este proceso genera un aumento en la estadística, también genera un corrimiento hacia la izquierda en los picos de los espectros que debe ser corregido. Además, también es necesario remover el exceso de carga que tengan los clusters de debido al fondo presente en las imágenes y que en este caso genera un corrimiento a la derecha de estos picos. En adelante, la idea es intentar comprender este fondo en las imágenes y con ello poder aplicar correcciones a los valores de carga de los clusters, una vez aplicado el umbral y así mejorar la incerteza de los resultados.
 
