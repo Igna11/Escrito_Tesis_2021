@@ -71,7 +71,7 @@ Los sensores \textit{Skipper}-CCD's, por otro lado, permiten disminuir el ruido 
 \end{equation*}
 donde $q_{i}$ es la carga leída en cada proceso de medición y $\sigma_{1}$ es el ruido de lectura para un CCD convencional. 
 
-Esta es la principal razón que motiva este trabajo, donde se realiza un estudio sistemático del factor de Fano a bajas energías, tanto a $1450\,\si{eV}$ (rayos X del Al) y $677\,\si{eV}$ (rayos X del flúor).
+Esta es la principal razón que motiva este trabajo, donde se realiza un estudio sistemático del factor de Fano a bajas energías, tanto a $1486\,\si{eV}$ (rayos $X$ del Al) y $677\,\si{eV}$ (rayos $X$ del flúor).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -96,7 +96,7 @@ Dado que la carga producida por un único evento, inicialmente en un único píx
 \noindent La Eficiencia de Colección de Carga o CCE (\textit{Charge Collection Efficiency}, por sus siglas en inglés) se define como la fracción del total de carga producida durante un evento de ionización que es efectivamente medida. 
 Para sensores del tipo \textit{fully depleted}-CCD\cite{osti_838066}, a los que se les aplican campos eléctricos relativamente altos, la CCE es aproximadamente del $100\,\%$, es decir, toda la carga producida por ionización en el volumen del sensor logra ser colectada y medida. 
 Sin embargo, existen casos donde la eficiencia no alcanza el $100\,\%$ y esto es debido al fenómeno de Colección Parcial de Carga o PCC (\textit{Partial Charge Collection}, por sus siglas en inglés)\cite{PCC-CCE}. 
-Este efecto se debe a que en los primeros micrones cercanos a la superficie por donde se irradia el detector (lado opuesto al que posee la superficie pixelada) existe una probabilidad no nula de que la carga generada por ionización sufra recombinación, es decir, que vuelva a enlazarse a un átomo. Este efecto produce una disminución en el número de cargas que finalmente son llevadas a la superficie del sensor. 
+Este efecto se debe a que en las primeras centenas de nanómetros cercanos a la superficie por donde se irradia el detector (lado opuesto al que posee la superficie pixelada) existe una probabilidad no nula de que la carga generada por ionización sufra recombinación, es decir, que vuelva a enlazarse a un átomo. Este efecto produce una disminución en el número de cargas que finalmente son llevadas a la superficie del sensor. 
 En el esquema de la Figura \ref{fig:PCC} se presenta una vista esquemática en corte lateral de las primeras centenas de nanómetros de un CCD, donde debido al ángulo $\theta$ de incidencia de los rayos $X$ de la fuente, estos fotones generan cargas por ionización en la región donde hay recombinación. Una fracción de las cargas generadas $q_{i}$ logran ser colectadas, dependiendo de la profundidad del sensor donde se produjo la interacción. También se muestra que si la interacción se da fuera de esta región, toda la carga generada por ionización es colectada, teniéndose $q_{i} = q_{f}$ y la eficiencia es máxima.
 \begin{figure}%[H]
 %Como reproducir este gráfico: correr el script NivelesOcupacionCarga.py ubicado en /Escritorio/Tesis2021/Figs/pys_para_plots y buscar la imagen en /home/igna/Escritorio/Tesis2021/Figs/
@@ -113,7 +113,7 @@ El efecto que provoca la colección parcial de carga en las mediciones es el de 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Antecedentes \label{sec:Antecedentes}}
-\noindent En trabajos previos se han estudiado las ventajas de la utilización de la tecnología \textit{Skipper} en los CCDs, para lograr medir con precisión subelectrónica en regímenes de energía donde los sensores CCD convencionales más precisos sólo podrían alcanzar resoluciones del orden de los $2$ electrones. Por primera vez fue usada para medir el factor de Fano y la energía de creación electrón-hueco en el silicio a una energía de $5.9\,\si{keV}$ a $123\,\si{K}$\cite{Rodrigues}.
+\noindent En trabajos previos se han estudiado las ventajas de la utilización de la tecnología \textit{Skipper} en los CCDs, para lograr medir con precisión subelectrónica en regímenes de energía donde los sensores CCD convencionales más precisos solo podrían alcanzar resoluciones del orden de los $2$ electrones. Por primera vez fue usada para medir el factor de Fano y la energía de creación electrón-hueco en el silicio a una energía de $5.9\,\si{keV}$ a $123\,\si{K}$\cite{Rodrigues}.
 
 Para lograr esto, se implementó un método de calibración absoluta de la relación entre el número de electrones en cada píxel y el valor de lectura en ADUs (\textit{Analog Digital Unit} o Unidades analógico-digitales). El procedimiento para la calibración consistió en la utilización de un LED que emitía fotones en $405\,\si{nm}$ de longitud de onda para poblar de carga los píxeles del sensor. Realizando un barrido en el tiempo de exposición del sensor a la luz del LED, se logró poblar a los píxeles del sensor con un amplio rango de cargas. La medición de carga se realizó tomando $300$ lecturas por cada píxel, que luego fueron promediadas logrando reducir el ruido de lectura en un factor $\sqrt{300}$. Como resultado, se obtuvieron distribuciones de carga gaussianas en los posibles niveles de ocupación de carga con una resolución tal que hizo posible distinguir perfectamente entre picos consecutivos, como se puede ver en la Figura \ref{fig:Calibracion}. De esta forma, mediante un ajuste gaussiano se pudo establecer el valor medio en ADUs para cada uno de estos picos, estableciendo como valor correspondiente de carga el número de orden del pico en cuestión. Así es que se obtuvo una relación uno a uno entre cantidad de carga por píxel y ADUs. Cabe destacar que para comenzar a numerar los picos, primero es necesario establecer el valor de $0$ carga o píxel vacío, lo cual no corresponde, a priori, a un valor nulo en ADUs. Para ello, las imágenes tomadas con \textit{Skipper} cuentan con una región denominada \textit{over-scan} que se utiliza para calcular la línea de base y poder sustraerla luego al valor en ADU medido para cada píxel, logrando así que la media de los píxeles vacíos quede en cero ADUs.
 \begin{figure}[H]
@@ -128,7 +128,7 @@ Las mediciones del factor de Fano y la energía de creación electrón-hueco se 
 \centering
 \begin{tabular}{@{}ccc@{}}
 \toprule
-$X_{K}$         &   Energía [keV]   &   Intensidad relativa \\ \hline \hline
+$X_{K}$         &   Energía [eV]   &   Intensidad relativa \\ \hline \hline
 $\alpha_{2}$    &   $5887.6$        &   $8.5 (4)$           \\
 $\alpha_{1}$    &   $5898.8$        &   $16.9 (8)$          \\
 $\beta_{3}$     &   $6490.4$        &   $4.1 (11)$          \\ \bottomrule
@@ -136,8 +136,7 @@ $\beta_{3}$     &   $6490.4$        &   $4.1 (11)$          \\ \bottomrule
 \caption{Energías e intensidades relativas de los fotones X emitidos tras el decaimiento de $\Fe{55}$}
 \label{tab:EnergiasXk}
 \end{table}
-Sobre los histogramas de los espectros obtenidos al irradiar el CCD con estos rayos $X$, se realizó un ajuste de los picos del espectro para obtener los parámetros $\mu$ y $\sigma$ de cada uno. 
-Para esto, se utilizó la verosimilitud de la ecuación \eqref{ec:verosimilitud}, que surge de convolucionar dos distribuciones exponenciales y una distribución gaussiana
+Sobre los picos de los espectros obtenidos al irradiar el CCD con estos rayos $X$, se realizó un ajuste para obtener los parámetros $\mu$ y $\sigma$ de cada uno. Para esto, se utilizó la verosimilitud de la ecuación \eqref{ec:verosimilitud}, que surge de convolucionar dos distribuciones exponenciales y una distribución gaussiana
 {\small
 \begin{align}
     \Lagr(e|\mu_{1},
@@ -196,8 +195,8 @@ $X_{K}$ &
   $\Delta \sigma\ [e^{-}]$ &
   $F$ &
   $\Delta F$ &
-  $\varepsilon_{\eh}\ [\mbox{eV}/e^{-}]$ &
-  $\Delta \varepsilon_{\eh} \ [\mbox{eV}/e^{-}]$ \\ \hline\hline
+  $\varepsilon_{\eh}\ [\mbox{eV}]$ &
+  $\Delta \varepsilon_{\eh} \ [\mbox{eV}]$ \\ \hline\hline
 $\alpha_{2}$ &
   $1570.50$ &
   $0.18$ &
@@ -289,8 +288,8 @@ Elemento&
   $\Delta \sigma\ [e^{-}]$ &
   $F$ &
   $\Delta F$ &
-  $\varepsilon_{\eh}\ [\mbox{eV}/e^{-}]$ &
-  $\Delta \varepsilon_{\eh} \ [\mbox{eV}/e^{-}]$ \\ \hline\hline
+  $\varepsilon_{\eh}\ [\mbox{eV}]$ &
+  $\Delta \varepsilon_{\eh} \ [\mbox{eV}]$ \\ \hline\hline
   F &   $182.0$ &   $0.8$  &   $7.0$   &   $0.7$   &   $0.27$  &   $0.05$  &   $3.72$ &   $0.02$\\
   Al&   $404.4$ &   $0.4$  &   $8.3$   &   $0.3$   &   $0.17$  &   $0.01$  &   $3.679$ &   $0.004$\\ \bottomrule
 \end{tabular*}
@@ -310,10 +309,10 @@ Es a partir de aquí donde este trabajo continúa con el estudio del factor de F
 Parte del análisis consistió en estudiar el efecto que produce el fondo de las imágenes sobre los eventos de interés: la aglomeración de píxeles con un único electrón alrededor de los clusters, y la carga extra añadida sobre ellos. 
 En muchos casos resulta que los píxeles con fondo se aglutinan a los clusters, aumentando su tamaño y su carga, o incluso también haciendo de puente entre dos clusters vecinos. Estos son dos efectos indeseados, primero, porque sesgan la cantidad de carga real en un evento y segundo, porque los programas de reconocimiento de eventos podrían ignorarlos al no cumplir con los cortes de calidad impuestos\footnote{Ver sección \ref{sec:ProcesadoDatos}}, tanto por forma como por cantidad de carga, produciendo así una disminución en la estadística.
 
-En este contexto, se propone utilizar un umbral de detección que ignore píxeles con un sólo electrón, de forma de evitar el agregado de píxeles con una carga inducida por eventos de fondo a los clusters y con este corte lograr aumentar la estadística en el conteo de eventos. Para ello, también es necesario lograr caracterizar el fondo responsable de este efecto para corregir el sesgo introducido por el nuevo umbral de detección, el cual también eliminará píxeles con una carga genuina.
+En este contexto, se propone utilizar un umbral de detección que ignore píxeles con un solo electrón, de forma de evitar el agregado de píxeles con una carga inducida por eventos de fondo a los clusters y con este corte lograr aumentar la estadística en el conteo de eventos. Para ello, también es necesario lograr caracterizar el fondo responsable de este efecto para corregir el sesgo introducido por el nuevo umbral de detección, el cual también eliminará píxeles con una carga genuina.
 %
-Es por eso que en este trabajo se propuso un análisis de las imágenes que pueda corregir el sesgo introducido luego de recuperar la mayor estadística posible separando eventos unidos por un electrón de fondo. 
-Esto es, el desarrollo de un método para estimar en valores medios cuántos electrones genuinos son removidos y cuántos electrones espurios hay en los eventos, para eliminar así sesgos y eventualmente reducir además las incertezas en la determinación del factor de Fano y la energía de creación electrón-hueco a bajas energías.
+Es por eso que en este trabajo se desea realizar un análisis de las imágenes del cual obtener un método que pueda corregir el sesgo introducido luego de recuperar la mayor estadística posible separando eventos unidos por un electrón de fondo. 
+Esto es, el desarrollo de un método para estimar en valores medios cuántos electrones genuinos son removidos y cuántos electrones de fondo hay en los clusters, para eliminar así sesgos y eventualmente reducir además las incertezas en la determinación del factor de Fano y la energía de creación electrón-hueco a bajas energías.
 
 Motiva también este trabajo el desarrollo y aplicación de un modelo que permita dar cuenta del efecto de colección parcial de carga y así obtener una forma analítica para la distribución de carga producida por los fotones de interés.
 
@@ -324,7 +323,7 @@ Motiva también este trabajo el desarrollo y aplicación de un modelo que permit
 
 En el capítulo \ref{chap:simulaciones} se presenta un modelo físico simple de la interacción entre fotones incidentes y la red cristalina del sensor, que luego es utilizado en simulaciones Monte Carlo tendientes a reproducir los valores experimentalmente observados para el Factor de Fano.
 
-En el capítulo \ref{chap:ConfiguracionExperimental} se desarrolla una descripción esquemática del dispositivo de medición utilizado y los regímenes de trabajo necesarios para realizar las mediciones. También se da una breve descripción del sensor y de los materiales que lo componen, como así también de la fuente radioactiva utilizada. Por último, se describe el proceso de medición.
+En el capítulo \ref{chap:ConfiguracionExperimental} se desarrolla una descripción esquemática del dispositivo de medición utilizado y los regímenes de trabajo necesarios para su correcta operación. También se da una breve descripción del sensor y de los materiales que lo componen, como así también de la fuente radioactiva utilizada. Por último, se describe el proceso de medición.
 
 En el capítulo \ref{chap:Analisis} se describe cómo son procesados los datos y qué programas son utilizados además de las pruebas realizadas con distintos umbrales para la detección de carga. También se muestran los resultados del análisis realizado para caracterizar el sensor. Es en este capítulo que se describen los diferentes enfoques utilizados en la estimación del fondo y de la cantidad de eventos eliminados por el umbral de detección de carga (corte) utilizado y el método aplicado para realizar las correcciones sobre el sesgo sobre carga de cada evento introducido por el corte aplicado.
 
