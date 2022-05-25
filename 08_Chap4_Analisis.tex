@@ -14,28 +14,11 @@ A su vez, es este programa el que se encarga de restar la línea de base, utiliz
     \label{fig:Skipper2root_esquema}
 \end{figure}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\textcolor{red}{Lo que sigue no está en el mejor lugar. La calibración absoluta es algo que nosotros hacemos después de correr skExtract, aca pareciera que es antes.}
-
-% Estas nuevas imágenes tienen la información de la carga de los eventos medidos en cada píxel con ruido subelectrónico gracias al muestreo realizado utilizando el modo Skipper. Sin embargo, los datos en ellas aún están en unidades analógico-digitales (ADUs), con lo cual, para estudiarlas en términos de la cantidad de carga es necesario utilizar una calibración ADU-electrones, que puede obtenerse a partir del método descripto en la Sección \ref{sec:Antecedentes}. Esta calibración se obtiene ajustando un polinomio de orden $4$ de la forma
-% \begin{equation*}
-%     e^{-} 
-%     = \alpha \mbox{ADU} 
-%     + \beta \mbox{ADU}^{2}
-%     + \gamma \mbox{ADU}^{3}
-%     + \delta \mbox{ADU}^{4}
-% \end{equation*}
-% y es distinta para cada uno de los cuadrantes del sensor, ya que cada uno de ellos cuenta con un amplificador diferente.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%\textcolor{red}{-----------------------------------------------------------------}
-
 Además, es necesario poder reconocer los conjuntos de píxeles contiguos con carga que pertenecen a un único evento. A este proceso se lo conoce como clusterización y, con este fin, se utiliza otro programa, el cual hace uso de una calibración lineal para transformar de ADUs a electrones además de reconocer los conjuntos de píxeles con carga por medio de un algoritmo de clusterización. Este programa se llama \verb|skExtract.exe| y procesa todas las imágenes que \verb|skipper2root.exe| generó para así formar un nuevo tipo de archivo, de formato \verb|.root|, con toda la información de los eventos encontrados en las imágenes. 
 
 Estos nuevos archivos \verb|.root| tienen la información de la carga de los eventos medidos en cada imagen, con ruido subelectrónico, gracias al muestreo realizado utilizando el modo \textit{Skipper}, además de muchos otros parámetros propios de los eventos, como ser la varianza en $x$, varianza en $y$, cantidad de píxeles por cluster, entre otros.
 
 Algo a tener en cuenta es que la calibración utilizada por \verb|skExtract.exe| es nominal y se realiza solamente para que el archivo \verb|.root| tenga la carga en unidades de electrones, al menos de forma aproximada, y pueda realizar el proceso de clusterización que une píxeles no vacíos y contiguos. Posteriormente y para mejorar la precisión de los análisis que se harán sobre los datos, es necesario volver a calibrar la relación ADU-electrones y para esto es necesario realizar la calibración absoluta tal como fue descripta en la Sección \ref{sec:Antecedentes}. Esta calibración se obtiene ajustando un polinomio de orden $4$ de la forma
-%Sin embargo, los datos en ellas aún están en unidades analógico-digitales (ADUs), con lo cual, para estudiarlas en términos de la cantidad de carga es necesario utilizar una calibración ADU-electrones, que puede obtenerse a partir del método descripto en la Sección \ref{sec:Antecedentes}. Esta calibración se obtiene ajustando un polinomio de orden $4$ de la forma
 \begin{equation*}
     e^{-} 
     = \alpha \mbox{ADU} 
