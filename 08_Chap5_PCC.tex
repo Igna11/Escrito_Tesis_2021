@@ -13,7 +13,7 @@ donde $\tau_{\scaleto{X}{4pt}}$ es la longitud de atenuación, es decir, la dist
 \begin{figure}[h]
     \centering
         \includegraphics[scale=0.5]{Figs/AttenuationLength.pdf}
-    \caption{\footnotesize{Longitud de atenuación para el silicio en función de la energía de un fotón que incide con un ángulo de $90\,^{\circ}$ sobre el material. Datos obtenidos de \textit{The Center for X-Ray Optics}\cite{AttenuationLength}.}}
+    \caption{Longitud de atenuación para el silicio en función de la energía de un fotón que incide con un ángulo de $90\,^{\circ}$ sobre el material. Datos obtenidos de \textit{The Center for X-Ray Optics}\cite{AttenuationLength}.}
     \label{fig:Attenuation}
 \end{figure}
 Realizaciones de la variable aleatoria que sigue esta distribución son las diferentes distancias que puede alcanzar un fotón que penetra en el sensor hasta generar cargas por ionización.
@@ -32,7 +32,6 @@ donde $\tau_{\scaleto{CCE}{4pt}}$ es la distancia media para la cual la cantidad
     \centering
         \includegraphics[scale=0.5]{Figs/CCE_vs_z.pdf}
     \caption{Mediciones de la eficiencia de colección de carga como función de la profundidad y ajuste de los mismos utilizando la función de eficiencia de la colección de carga. Datos obtenidos de mediciones con rayos $X$ del flúor de $677\,\si{eV}$. Del ajuste con la función de la Eq. \ref{ec:funcionCCE} se obtiene $\tau_{\scaleto{CCE}{3pt}} = (0.0914 \pm 0,0027)\,\si{\mu m}$.}
-    % Se observa que luego de los primeros $100\,\si{nm}$ logra colectarse cerca del $65\,\%$ de carga y como luego de los primeros $\sim 400\,\si{nm}$ ya es colectada casi el $100\,\%$ de la carga producida por ionización.
     \label{fig:EficienciaCC}
 \end{figure}
 
@@ -241,34 +240,3 @@ En el gráfico de la Figura \ref{fig:FotoelectricoComptonPares} se encuentran la
 
 Resulta importante notar que, debido a que la longitud de atenuación $\tau_{\scaleto{X}{4pt}}$ depende de la energía del fotón incidente (entre otros), para el caso de los rayos $X$ del flúor cuya energía es menor a la de los rayos $X$ del aluminio, la longitud de atenuación es menor. Por otro lado, como $\tau_{\scaleto{CCE}{4pt}}$ es una característica del detector y no depende de ningún parámetro, y como $\beta = \tau_{\scaleto{CCE}{4pt}}/\tau_{\scaleto{X}{4pt}}$, entonces se espera que el valor de $\beta$ sea mucho mayor en el caso del flúor respecto del aluminio. Con lo cual, el efecto de la colección parcial de carga debería ser más pronunciado en esos picos. Esto implica que deberían poder apreciarse colas más pronunciadas hacia bajas energías en los espectros obtenidos con $X$ del flúor que aquellos correspondientes al aluminio.
 
-%\indent Si el detector fuera perfecto, el factor de Fano existiría igual. Este no es un problema del detector, viene del proceso de interacción en sí mismo que a la larga es un fenómeno binomial. Sin embargo, lo que sí es un problema del detector es la PCC. Un fotón interactuando con materia es un experimento Bernoulli, una serie de procesos de interacción es un fenómeno binomial y, en consecuencia, en el límite de probabilidades pequeñas y gran número de repeticiones, de Poisson. Por lo tanto, cuán lejos llega es una variable aleatoria con distribución exponencia (La distancia entre dos eventos de poisson es exponencial). Si uno quiere saber cuál es la probabilidad de que un fotón penetre una dada distancia, hay que hacer
-%\begin{equation*}
-%    e^{-\frac{d}{\tau}}
-%\end{equation*}
-%con $\tau$ es la attenuation length. La eficiencia de colección de carga viene dada por 
-%\begin{equation*}
-%    E_{ff}(z) = 1 - e^{-\frac{z}{\tau_{\scaleto{CEE}{2pt}}}}
-%\end{equation*}
-%que quiere decir que si la interacción se realizó para un dado $z_{0}$, entonces por ejemplo el $70\%$ de la carga logró ser colectada. Para $Z_{0}$ muy chico, la eficiencia es muy chica, para $z_{0}$ creciente, la eficiencia es creciente.
-
-%Dada la variable aleatoria: Longitud penetrada hasta interactuar, tiene una distribución exponencial. Dada una energía fija, la longitud que recorre hasta interactuar no es siempre la misma, hay una aleatoria inherente. La distribución de probabilidades de este experimento es exponencial. Si por ejemplo la probabilidad de interactuar en los primeros $3\,\si{\mu m}$ es del $50\%$, la probabilidad de interactuar recién luego de recorridos $80\,\si{\mu m}$ es $10^{-14}$. Esta variable aleatoria se inyecta dentro de la función $E_{ff}(z)$: Función a la que le digo hasta donde llegó la partícula antes de interactuar y devuelve con qué eficiencia colectó la carga.
-
-%Se tiene la energía del fotón, se genera un evento aleatorio con distribución exponencial $z_{0}$ que dice qué distancia penetró el fotón antes de interactuar. Esa realización se usa como argumento de $E_{ff}(z) \longrightarrow E_{ff}(z_{0})$. Ese cambio de variables da como resultado 
-%\begin{equation*}
-%    f_{E_{ff}}(z) = \beta (1 - \varepsilon)^{\beta - 1}
-%\end{equation*}
-%donde $\beta = \frac{\tau_{\scaleto{CCE}{3pt}}}{\tau_{\scaleto{X}{3pt}}}$. La probabilidad de recuperar la carga de un fotón de una dada energía sigue esa distribución.
-
-%Todavía no entró el Fano. A esto hay que agregarle que además de haber una distribución de carga para la profundidad, además de haber una función que dice cuánta carga se logra colectar con esa profundidad, hay otra variable aleatoria que es cuántos electrones se ionizan cuando se interactúa, que viene de una poissoniana, pero en el límite se puede pensar como una gaussiana. Entonces, a la función anterior hay que convolucionarla con una gaussiana. El efecto de convolucionar una gaussiana con esta distribución es añadirle una cola del lado izquierdo a la gaussiana. De hacer esa convolución se obtiene
-%\begin{equation*}
-%     f_{Q_{f}}(q_{f}) = 
-%     \int\limits_{0}^{1}
-%     \frac{\beta}{\sqrt{2\pi \sigma^{2}}\varepsilon}
-%     \exp[%
-%     -\frac{(q_{f}-\varepsilon\mu)^{2}}{2\sigma^{2}\varepsilon^{2}}
-%     ](1-\varepsilon)^{\beta - 1}
-%     d\varepsilon
-% \end{equation*}
-%La cola que aparece a la izquierda es culpa de la PCC, debido a que hay eventos con menor carga generada debido a este fenómeno de recombinación para los eventos que suceden en los primeros micrones del detector. Del lado derecho no hay nada porque no hay un fenómeno que genere más carga de la que el proceso de ionización puede generar.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
